@@ -1,3 +1,4 @@
+package b_05_stack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,7 +7,7 @@ import java.util.Stack;
 
 public class B_1874 {
 	public void work() throws NumberFormatException, IOException {
-		Stack<Integer> st = new Stack<Integer>();
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		Stack<Integer> stack = new Stack<Integer>();

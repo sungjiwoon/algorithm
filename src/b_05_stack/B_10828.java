@@ -1,3 +1,4 @@
+package b_05_stack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
