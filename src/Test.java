@@ -1,6 +1,8 @@
 import java.io.IOException;
 
 import b_05_stack.*;
+import b_06_queue.*;
+import b_07_deque.*;
 
 public class Test {
 
@@ -13,7 +15,10 @@ public class Test {
 //		B_10845 b = new B_10845();
 //		B_1874 b = new B_1874();
 //		B_2493 b = new B_2493();
-		B_6198 b = new B_6198();
+//		B_6198 b = new B_6198();
+//		B_17298 b = new B_17298();
+//		B_2164 b = new B_2164();
+		B_10866 b = new B_10866();
 		
 		b.work();
 	}
