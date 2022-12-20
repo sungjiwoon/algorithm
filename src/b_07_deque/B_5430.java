@@ -1,20 +1,21 @@
+package b_07_deque;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.StringTokenizer;
+/*
+ * 골드 5 문제
+ * 덱이용
+ * 덱은 LinkedList<Integer> 를 사용하는게 훨씬 효과적 
+ * 방향바꾸고 싶을 땐 그냥 if문과 boolean 쓰는게 더 효과적이다!!!
+ * 
+ */
 
+public class B_5430 {
+	public void work() throws NumberFormatException, IOException {
 
-public class Main {
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
@@ -75,5 +76,6 @@ public class Main {
 			
 		}
 		System.out.print(sb);
+		
 	}
 }
