@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Stack;
-
+/*
+ * 스택의 괄호쌍 기본 문제 
+ *
+ */
 public class B_4949 {
 	public void work() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

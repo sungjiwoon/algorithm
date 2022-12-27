@@ -22,7 +22,8 @@ public class Test {
 //		B_10866 b = new B_10866();
 //		B_1021 b = new B_1021();
 //		B_5430 b = new B_5430();
-		B_4949 b = new B_4949();
+//		B_4949 b = new B_4949();
+		B_10799 b = new B_10799();
 		
 		b.work();
 	}

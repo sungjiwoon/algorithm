@@ -1,20 +1,18 @@
+package b_08_stack2;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
+/*
+ * 스택의 괄호쌍. 연습
+ * 답지 안봤지만 시간이 꽤나 오래 걸림.
+ * 
+ */
 
-public class Main {
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+public class B_10799 {
+	public void work() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
@@ -44,5 +42,6 @@ public class Main {
 			
 		}
 		System.out.println(sum);
+		
 	}
 }
