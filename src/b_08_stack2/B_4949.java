@@ -1,20 +1,13 @@
+package b_08_stack2;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.nio.charset.Charset;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
-
-public class Main {
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+public class B_4949 {
+	public void work() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		String s = br.readLine();
@@ -51,7 +44,7 @@ public class Main {
 				
 			}
 			if (!stack.isEmpty()) {
-				isok = false;
+					isok = false;
 			}
 				
 			if (isok) {					
@@ -62,5 +55,6 @@ public class Main {
 			s = br.readLine();
 		}
 		System.out.println(sb);
+		
 	}
 }
