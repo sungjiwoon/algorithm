@@ -12,37 +12,42 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 
+class Pair {
+	int X, Y;
+	public Pair(int x, int y) {
+		super();
+		X = x;
+		Y = y;
+	}
+}
 public class Main {
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
 		
-		String s = br.readLine();		
-		Stack<String> stack = new Stack<>();
-		int sum = 0;
-		boolean ispop = false;
-		for (int i = 0; i < s.length(); i++) {
-			
-			String value = String.valueOf(s.charAt(i));
-			
-			if (value.equals("(")) {
-				stack.push("(");
-				ispop = false;
-			
-			} else if (value.equals(")")) {
-				stack.pop();
-				
-				if (!ispop) {	
-					sum += stack.size();
-				} else {
-					sum++;
-				}
-				ispop = true;
-									
-			}			
-			
-		}
-		System.out.println(sum);
+		int n = 5;
+		int[] arr1 = {9, 20, 28, 18, 11};
+		int[] arr2 = {30, 1, 21, 17, 28};
+		//char[][] map_result = new char[n][n];
+		String[] answer = new String[n];
+	        
+	        for (int i = 0; i < n; i++) {
+	        	String s1 = String.format("%0"+n+"d", Long.parseLong(Integer.toBinaryString(arr1[i])));
+	        	String s2 = String.format("%0"+n+"d", Long.parseLong(Integer.toBinaryString(arr2[i])));
+	        	
+	        	String s = "";
+	        	for (int j = 0; j < n; j++) {
+	        		if (s1.charAt(j)=='1' || s2.charAt(j)=='1') {
+	        			s += "#";
+	        		}else {
+	        			s += " ";
+	        		}
+	        	}
+	        	answer[i] = s;
+	        	
+	        }
+	        for (int i = 0; i <n;i++) {
+	        	System.out.println(answer[i]);
+//	        	System.out.println();
+	        }
 	}
 }
