@@ -1,33 +1,21 @@
+package b_09_bfs;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
-
-class Pair {
-	int X, Y;
-	public Pair(int x, int y) {
-		super();
-		X = x;
-		Y = y;
-	}
-}
-
-public class Main {
+public class B_7576 {
 	static boolean[][] visited = new boolean[10001][1001];
 	static int[][] borad = new int[1001][1001];
 	static int[][] dis = new int[1001][1001];
 	static Queue<Pair> qu;
 	static int n, m;
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public void work() throws NumberFormatException, IOException {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuffer sb = new StringBuffer();
 		
@@ -93,6 +81,7 @@ public class Main {
 			if (result == -1) break;
 		}
 		System.out.println(result);
+		
 		
 	}
 }

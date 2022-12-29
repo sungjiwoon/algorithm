@@ -9,31 +9,36 @@ public class S_221228 {
 		다행히 지도 암호를 해독할 방법을 적어놓은 메모도 함께 발견했다.
 	 */
 		public String[] solution(int n, int[] arr1, int[] arr2) {
+//			n = 5;
+//			arr1 = {9, 20, 28, 18, 11};
+//			arr2 = {30, 1, 21, 17, 28};
+			
 			String[] answer = new String[n];
-	        
-	        for (int i = 0; i < n; i++) {
-	        	//10진수에서 2진수 변환. String.format 함수를 사용하여 자릿수를 일정하게 하도록 함. Integer를 썼더니 런타임에러 발생.
-	        	String s1 = String.format("%0"+n+"d", Integer.parseInt(Integer.toBinaryString(arr1[i]))); 
-	        	String s2 = String.format("%0"+n+"d", Integer.parseInt(Integer.toBinaryString(arr2[i])));
-	        	
-	        	String s = "";
-	        	
-	        	//만들어진 String에서 둘 중 하나라도 1이면 # 아니면 공백
-	        	for (int j = 0; j < n; j++) {
-	        		if (s1.charAt(j)=='1' || s2.charAt(j)=='1') {
-	        			s += "#";
-	        		}else {
-	        			s += " ";
-	        		}
-	        	}
-	        	answer[i] = s;
-	        	
-	        }
-	        for (int i = 0; i <n;i++) {
-	        	System.out.println(answer[i]);       
-	        }
-	        
-	        
-	        return answer;
+		        
+		        for (int i = 0; i < n; i++) {
+		        	//10진수에서 2진수 변환. String.format 함수를 사용하여 자릿수를 일정하게 하도록 함. Integer를 썼더니 런타임에러 발생.
+		        	
+		        	String s1 = String.format("%0"+n+"d", Long.parseLong(Integer.toBinaryString(arr1[i]))); 
+		        	//9 -> 1001(2)(String) -> 1001(2)(Long타입) -> 01001(2)(String)
+		        	// 10000000000000001   
+		        	String s2 = String.format("%0"+n+"d", Long.parseLong(Integer.toBinaryString(arr2[i]))); 
+		        	//30 -> 10011
+		        	String s = "";
+		        	//만들어진 String에서 둘 중 하나라도 1이면 # 아니면 공백
+		        	for (int j = 0; j < n; j++) {
+		        		if (s1.charAt(j)=='1' || s2.charAt(j)=='1') {
+		        			s += "#";
+		        		}else {
+		        			s += " ";
+		        		}
+		        	}
+		        	answer[i] = s;
+		        	
+		        }
+		        for (int i = 0; i <n;i++) {
+		        	System.out.println(answer[i]);
+		        }
+		       // return answer;
+				return answer;
 	    }
 }
