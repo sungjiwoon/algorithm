@@ -29,7 +29,10 @@ public class Test {
 //		B_1926 b = new B_1926();
 //		B_2178 b = new B_2178();
 //		B_7576 b = new B_7576();
-		B_4179 b = new B_4179();
+//		B_4179 b = new B_4179();
+//		B_1697 b = new B_1697();
+//		B_1012 b = new B_1012();
+		B_10026 b = new B_10026();
 		
 		b.work();
 		
