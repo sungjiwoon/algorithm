@@ -5,6 +5,7 @@ import b_06_queue.*;
 import b_07_deque.*;
 import b_08_stack2.*;
 import b_09_bfs.*;
+import b_11_square.*;
 
 public class Test {
 
@@ -33,7 +34,10 @@ public class Test {
 //		B_1697 b = new B_1697();
 //		B_1012 b = new B_1012();
 //		B_10026 b = new B_10026();
-		B_7569 b = new B_7569();
+//		B_7569 b = new B_7569();
+//		B_7562 b = new B_7562();
+//		B_5427 b = new B_5427();
+		B_1629 b = new B_1629();
 		
 		b.work();
 		
