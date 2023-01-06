@@ -13,21 +13,27 @@ import java.util.StringTokenizer;
 
 
 public class Main {
-	static long mod(long a, long b, long c) {
-//		long mod = a % c;
-		if (b == 1) return a % c;
-		long val = mod(a, b/2, c);
-		val = val * val % c;
-		if (b % 2 == 0) return val;
-		return val * a % c;
+	public static void hanoi(int N, int start, int mid, int end) {
+		if (N == 1) {
+			System.out.println(start + " " + end);
+			return;
+		}
+		
+		// 1) 원판 n-1 개를 이동 중간에 이동해야함. 
+		hanoi(N-1, start, end, mid);
+		// 2) 원판 1개를 start -> end지점으로 이동.
+		System.out.println(start + " " + end);
+		//3) 원판 N-1개를 mid -> end 지점으로 이동. 
+		hanoi(N-1, mid ,start, end);
+		
+	
 		
 	}
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		Scanner sc = new Scanner(System.in);
-		
-		long a = sc.nextInt();
-		long b = sc.nextInt();
-		long c = sc.nextInt();
-		System.out.println(mod(a,b,c));
+		int N = sc.nextInt();
+		int count = (int) (Math.pow(2, N)-1);
+		System.out.println(count);
+		hanoi(N, 1, 2, 3);
 	}
 }
