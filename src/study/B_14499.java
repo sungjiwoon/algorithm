@@ -1,26 +1,18 @@
+package study;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
-
-
-public class Main {
+public class B_14499 {
 	static int N, M, x, y, K;
 	static int[][] map;
 	static int[] comm;
 	static int[] dice = new int[7];
 	static int[] dx = {0,0,0,-1,1}, dy = {0,1,-1,0,0};
+	
 	private static void move1() { //동쪽
 		int tmp = dice[4];
 		dice[4] = dice[6];
@@ -50,7 +42,7 @@ public class Main {
 		dice[5] = dice[6];
 		dice[6] = tmp;
 	}
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public void work() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder(); 
 		
@@ -98,17 +90,23 @@ public class Main {
 				move4();
 			}
 			
-			//주사위에서 맨위칸은 1 하단은 6
+			//하단은 6 반환
 			if (map[x][y] == 0) {
 				map[x][y] = dice[6];
 			} else {
 				dice[6] = map[x][y];
 				map[x][y] = 0;
 			}
+			
 			//상단은 맨위 1
 			sb.append(dice[1]+"\n");
-
+			
+			
+			
 		}	
 		System.out.println(sb);
+		
+		
+		
 	}
 }

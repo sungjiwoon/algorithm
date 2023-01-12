@@ -6,6 +6,8 @@ import b_07_deque.*;
 import b_08_stack2.*;
 import b_09_bfs.*;
 import b_11_square.*;
+import b_12_backtracking.*;
+import study.*;
 
 public class Test {
 
@@ -37,7 +39,7 @@ public class Test {
 //		B_7569 b = new B_7569();
 //		B_7562 b = new B_7562();
 //		B_5427 b = new B_5427();
-		B_2583 b = new B_2583(); //BFS 
+//		B_2583 b = new B_2583(); //BFS 
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
 //		B_1074 b = new B_1074();
@@ -46,7 +48,14 @@ public class Test {
 //		B_2630 b = new B_2630();
 //		B_1992 b = new B_1992();
 //		B_2447 b = new B_2447();
+		/* 백트래킹 부분 */
+//		B_15649 b = new B_15649();
+//		B_15650 b = new B_15650();
+		B_15651 b = new B_15651();
 		
+		
+		/*study*/
+//		B_14499 b = new B_14499();
 		
 		b.work();
 		

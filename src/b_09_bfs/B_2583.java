@@ -65,19 +65,19 @@ public class B_2583 {
 			int x2 = Integer.parseInt(st.nextToken());
 			int y2 = Integer.parseInt(st.nextToken());
 			
-			for (int i = M-y1-1; i >= M-y2; i--) {
+			for (int i = y1; i < y2; i++) { //굳이 배열과 그림판이 똑같을 필요는 없다. 값은 똑같다. 
 				for (int j = x1; j < x2; j++) {
 					//System.out.println("->" + k + " (" + i + "," +j+ ")");
 					map[i][j] = 0;
 				}
 			}
 		}
-//		for (int i = 0; i < M; i++) {
-//			for (int j = 0; j < N; j++) {
-//				System.out.print(map[i][j]+" ");
-//			}
-//			System.out.println();
-//		}
+		for (int i = 0; i < M; i++) {
+			for (int j = 0; j < N; j++) {
+				System.out.print(map[i][j]+" ");
+			}
+			System.out.println();
+		}
 		
 		qu = new LinkedList<>();
 		ArrayList<Integer> areas = new ArrayList<>();
