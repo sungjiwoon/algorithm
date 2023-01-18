@@ -7,6 +7,7 @@ import b_08_stack2.*;
 import b_09_bfs.*;
 import b_11_square.*;
 import b_12_backtracking.*;
+import b_13_simulation.*;
 import study.*;
 
 public class Test {
@@ -66,7 +67,10 @@ public class Test {
 //		B_9663_2 b = new B_9663_2();
 //		B_1182 b = new B_1182();
 //		B_6603 b = new B_6603();
-		B_1759 b = new B_1759();
+//		B_1759 b = new B_1759();
+		
+		/* 시뮬레이션 파트 */
+		B_15683 b = new B_15683();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
