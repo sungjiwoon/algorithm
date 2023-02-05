@@ -56,13 +56,13 @@ public class B_13335 {
 			ts[i].dis = 0;
 		}
 		
-		int x = 0;
-		int first = 0;
-		int tail = first;
-		int count = 0;
+		int x = 0; //다리위에 올라가져 있는 트럭 무게의 합. 
+		int first = 0; //선두 차량
+		int tail = first; //맨 뒤 차량
+		int count = 0; // 총 시간 (결과값)
 
 		while (ts[n-1].dis!=w && first < n) { //단위시간 반복문
-			if (ts[tail].dis == 0) {
+			if (ts[tail].dis == 0) { //후두 차량이 맨 마지막 차량일 경우를 대비 . 
 				x += ts[tail].wei;
 				if (x > l) {
 					x -= ts[tail].wei;
@@ -77,6 +77,7 @@ public class B_13335 {
 				first++;
 			}
 			count++;
+			
 			tail++;
 			if (tail == n) tail--;
 			
