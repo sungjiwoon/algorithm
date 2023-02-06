@@ -9,24 +9,28 @@ public class Main {
 		
 		/* 선언 및 초기화 부분 */
 		int n = Integer.parseInt(br.readLine());
-		int[] t = new int[15+n];
-		int[] prices = new int[15+n];
+		long[] dp = new long[n+1];
+		long[] values = new long[n+1];
 		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		for (int i = 1; i <= n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			t[i] = Integer.parseInt(st.nextToken()); 
-			prices[i] = Integer.parseInt(st.nextToken());
+			values[i] = Integer.parseInt(st.nextToken()); 
 		}
-		int[] dp = new int[15+n]; //i당 최대 가격  
-		int max = 0;
-		
-		for (int i = 1; i <= n+1; i++) {
+		dp[1] = 1;
+		for (int i = 2; i <= n; i++) {
 			
-			dp[i] = Math.max(dp[i], max);
-			dp[t[i] + i] = Math.max(dp[t[i]+i], prices[i]+dp[i]);
-			max = Math.max(max,  dp[i]);
-			
+			long v = values[i];
+			dp[i] = 1;
+			for (int j = 1; j < i; j++) {
+				if (v > values[j]) {
+					dp[i] = Math.max(dp[j]+1, dp[i]);
+				}
+			}
 				
+		}
+		long max = Integer.MIN_VALUE;
+		for (int i = 1; i <= n; i++) {
+			if (dp[i] > max) max = dp[i];
 		}
 		System.out.println(max);
 	}
