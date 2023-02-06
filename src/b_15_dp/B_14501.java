@@ -1,23 +1,27 @@
-import java.io.*;
-import java.util.*;
+package b_15_dp;
 
-public class Main {
-	//이해못함 걍 포기~
-	public static void main(String[] args) throws NumberFormatException, IOException {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class B_14501 {
+	//어휴.. 이해 못했음 ㅠㅠ
+	public void work() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder(); 
 		
 		/* 선언 및 초기화 부분 */
 		int n = Integer.parseInt(br.readLine());
-		int[] t = new int[15+n];
-		int[] prices = new int[15+n];
+		int[] t = new int[17+n];
+		int[] prices = new int[17+n];
 		
 		for (int i = 1; i <= n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			t[i] = Integer.parseInt(st.nextToken()); 
 			prices[i] = Integer.parseInt(st.nextToken());
 		}
-		int[] dp = new int[15+n]; //i당 최대 가격  
+		int[] dp = new int[17+n]; //i당 최대 가격  
 		int max = 0;
 		
 		for (int i = 1; i <= n+1; i++) {
@@ -29,6 +33,7 @@ public class Main {
 				
 		}
 		System.out.println(max);
+		
+		
 	}
-	
 }
