@@ -9,30 +9,25 @@ public class Main {
 		
 		/* 선언 및 초기화 부분 */
 		int n = Integer.parseInt(br.readLine());
-		long[] dp = new long[n+1];
-		long[] values = new long[n+1];
+		int[] a = new int[n];
+		int[] b = new int[n];
 		
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		for (int i = 1; i <= n; i++) {
-			values[i] = Integer.parseInt(st.nextToken()); 
-		}
-		dp[1] = 1;
-		for (int i = 2; i <= n; i++) {
-			
-			long v = values[i];
-			dp[i] = 1;
-			for (int j = 1; j < i; j++) {
-				if (v > values[j]) {
-					dp[i] = Math.max(dp[j]+1, dp[i]);
-				}
+		for (int i = 0; i < 2; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			for (int j = 0; j < n; j++) {
+				if (i == 0)
+					a[j] = Integer.parseInt(st.nextToken()); 
+				else 
+					b[j] = Integer.parseInt(st.nextToken());
 			}
-				
 		}
-		long max = Integer.MIN_VALUE;
-		for (int i = 1; i <= n; i++) {
-			if (dp[i] > max) max = dp[i];
+		Arrays.sort(a);
+		Arrays.sort(b);
+		int ans = 0;
+		for (int i = 0; i < n; i++) {
+			ans += a[i] * b[n-i-1];
 		}
-		System.out.println(max);
+		System.out.println(ans);
 	}
 	
 }

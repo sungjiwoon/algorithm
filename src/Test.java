@@ -9,6 +9,7 @@ import b_11_square.*;
 import b_12_backtracking.*;
 import b_13_simulation.*;
 import b_15_dp.*;
+import b_16_greedy.*;
 import study.*;
 
 public class Test {
@@ -90,8 +91,14 @@ public class Test {
 //		B_9461 b = new B_9461();
 //		B_10844 b = new B_10844();
 //		B_14501 b = new B_14501();
-		B_11053 b = new B_11053();
+//		B_11053 b = new B_11053();
 //		B_11055 b = new B_11055();
+		
+		/*그리디 알고리즘*/
+//		B_11047 b = new B_11047();
+//		B_1931 b = new B_1931();
+//		B_2217 b = new B_2217();
+		B_1026 b = new B_1026();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
