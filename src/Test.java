@@ -76,6 +76,7 @@ public class Test {
 //		B_18808 b = new B_18808();
 //		B_14891 b = new B_14891();
 //		B_13335 b = new B_13335();
+		B_14503 b = new B_14503();
 		
 		/*dp ÆÄÆ® */
 //		B_1463 b = new B_1463();
@@ -98,7 +99,7 @@ public class Test {
 //		B_11047 b = new B_11047();
 //		B_1931 b = new B_1931();
 //		B_2217 b = new B_2217();
-		B_1026 b = new B_1026();
+//		B_1026 b = new B_1026();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
