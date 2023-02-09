@@ -57,7 +57,7 @@ public class B_1026 {
 		Arrays.sort(b);
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
-			ans += a[i] * b[n-i-1];
+			ans += a[i] * b[n-i-1]; //гоюл 
 		}
 		System.out.println(ans);
 		
