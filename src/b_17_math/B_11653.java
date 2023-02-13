@@ -1,10 +1,17 @@
-import java.io.*;
-import java.util.*;
+package b_17_math;
 
-
-public class Main {
-	//이해못함 걍 포기~
-	public static void main(String[] args) throws NumberFormatException, IOException {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+/*
+ * 문제 : 소인수 분해 
+ * 난이도 : 브론즈 5
+ * 
+ */
+public class B_11653 {
+	public void work() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder(); 
 		/* 선언 및 초기화 부분 */
@@ -18,7 +25,5 @@ public class Main {
 			if (n == 1) break;
 		}
 		System.out.println(sb);
-		
 	}
-	
 }

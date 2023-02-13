@@ -10,6 +10,7 @@ import b_12_backtracking.*;
 import b_13_simulation.*;
 import b_15_dp.*;
 import b_16_greedy.*;
+import b_17_math.*;
 import study.*;
 
 public class Test {
@@ -103,7 +104,11 @@ public class Test {
 //		B_11399 b = new B_11399();
 //		B_2457 b = new B_2457();
 //		B_1541 b = new B_1541();
-		B_11501 b = new B_11501();
+//		B_11501 b = new B_11501();
+//		B_1744 b = new B_1744();
+//		B_2847 b = new B_2847();
+//		B_1929 b = new B_1929();
+		B_11653 b = new B_11653();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
