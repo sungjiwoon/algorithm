@@ -109,7 +109,8 @@ public class Test {
 //		B_2847 b = new B_2847();
 //		B_1929 b = new B_1929();
 //		B_11653 b = new B_11653();
-		B_6064 b = new B_6064();
+//		B_6064 b = new B_6064();
+		B_4796 b = new B_4796();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
