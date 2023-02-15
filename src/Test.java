@@ -121,7 +121,8 @@ public class Test {
 		
 		
 		/* ÀÌºĞÅ½»ö */
-		B_1920 b = new B_1920();
+//		B_1920 b = new B_1920();
+		B_10816 b = new B_10816();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
