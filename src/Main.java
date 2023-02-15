@@ -4,30 +4,39 @@ import java.util.*;
 
 public class Main {
 	//이해못함 걍 포기~
-	private static int gcd(int a, int b) { //최대공약수 구하는 함수. 
-		if (b == 0) return a;
-		return gcd(b, a%b);
+	static long[] a;
+
+	private static int binary_search(int start, int end, long k) {
+		while (start <= end) {
+			int mid = (start + end) / 2;
+			if (a[mid] < k) {
+				start = mid+1;
+			} else if (a[mid] > k) {
+				end = mid-1;
+			} else 
+				return 1;
+		} 
+		return 0;
+			
+		
 	}
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder(); 
-		/* 선언 및 초기화 부분 */
-		int T = Integer.parseInt(br.readLine());
-		for (int t = 0; t < T; t++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int n = Integer.parseInt(st.nextToken());
-			int arr[] = new int[n];
-			for (int i = 0; i < n; i++) {
-				arr[i] = Integer.parseInt(st.nextToken());
-			}
-			int res = 0;
-			for (int i = 0; i < n; i++) {
-				for (int j = i+1; j < n; j++) {
-					res += gcd(arr[i],arr[j]);
-				}
-			}
-			System.out.println(res);
+		/* 선언 및 초기화 부분 */	
+		
+		int n = Integer.parseInt(br.readLine());
+		a = new long[n+1];
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		for (int i = 0; i < n; i++) a[i] = Long.parseLong(st.nextToken());
+		Arrays.sort(a);
+		int m = Integer.parseInt(br.readLine());
+		st = new StringTokenizer(br.readLine(), " ");
+		
+		for (int i = 0; i < m; i++) {
+			long k = Integer.parseInt(st.nextToken());
 			
+			System.out.println(binary_search(0, n, k));
 		}
 		
 	}

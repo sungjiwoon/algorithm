@@ -11,6 +11,7 @@ import b_13_simulation.*;
 import b_15_dp.*;
 import b_16_greedy.*;
 import b_17_math.*;
+import b_18_binarysearch.*;
 import study.*;
 
 public class Test {
@@ -115,7 +116,12 @@ public class Test {
 //		B_1193 b = new B_1193();
 //		B_4948 b = new B_4948();
 //		B_1676 b = new B_1676();
-		B_9613 b = new B_9613();
+//		B_9613 b = new B_9613();
+//		B_1790 b = new B_1790();
+		
+		
+		/* ÀÌºÐÅ½»ö */
+		B_1920 b = new B_1920();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
