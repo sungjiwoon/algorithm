@@ -4,33 +4,43 @@ import java.util.*;
 
 public class Main {
 	static int n;
-	static int[][] nums;
-	static boolean[] vis;
-	static int min = Integer.MAX_VALUE;
-	private static void dfs (int depth, int st) {
-		if (depth == n/2) {
-			int ta = 0, tb = 0;
-			
+	static int[] nums = new int[101], op = new int[101], op_copy = new int[101];
+	static int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+	static boolean[] vis = new boolean[101];
+	
+	private static void dfs(int depth) {
+		if (depth == n-1) {
+			int sum = nums[0];
 			for (int i = 0; i < n-1; i++) {
-				for (int j = i+1; j < n; j++) {
-					if (vis[i] && vis[j]) {
-						ta += nums[i][j] + nums[j][i];
-					} else if (!vis[i] && !vis[j]) {
-						tb += nums[i][j] + nums[j][i];
-					}
-				}
+				
+				if (op_copy[i] == 0) { //µ¡¼À
+					sum += nums[i+1];
+				} else if (op_copy[i] == 1) {
+					sum -= nums[i+1];
+				} else if (op_copy[i] == 2) {
+					sum *= nums[i+1];
+				} else if (op_copy[i] == 3) {
+					if (sum < 0) { //À½¼öÀÏ °æ¿ì 
+						sum *= -1;
+						sum /= nums[i+1];
+						sum *= -1;
+					} else 	sum /= nums[i+1];	
+				} 
+				
 			}
 			
-			if (Math.abs(ta-tb) < min) min = Math.abs(ta-tb);
+			max = Math.max(max, sum);
+			min = Math.min(min, sum);
 			return;
 		}
 		
-		for (int i = st; i < n; i++) {
-//			if (!vis[i]) {
+		for (int i = 0; i < n-1; i++) {
+			if (!vis[i]) {
 				vis[i] = true;
-				dfs(depth+1, i+1);
+				op_copy[depth] = op[i];
+				dfs(depth+1);
 				vis[i] = false;
-//			}
+			}
 		}
 	}
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -39,18 +49,22 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		
 		n = Integer.parseInt(br.readLine());
-		vis = new boolean[n];
-		nums = new int[n][n];
-		
+		String[] s = br.readLine().split(" ");
 		for (int i = 0; i < n; i++) {
-			String[] s = br.readLine().split(" ");
-			for (int j = 0; j < n; j++) {
-				nums[i][j] = Integer.parseInt(s[j]);
-			}
-
+			nums[i] = Integer.parseInt(s[i]);
 		}
 		
-		dfs(0,0);
+		s = br.readLine().split(" ");
+		int v = 0;
+		for (int i = 0; i < 4; i++) {
+			int k = Integer.parseInt(s[i]);
+			for (int j = 0; j < k; j++) {
+				op[v++] = i;
+			}
+		}
+		
+		dfs(0);
+		System.out.println(max);
 		System.out.println(min);
 	}
 	
