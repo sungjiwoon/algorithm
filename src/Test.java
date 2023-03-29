@@ -16,7 +16,7 @@ import study.*;
 
 public class Test {
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 //		B_2751 b = new B_2751();
 //		B_2108 b = new B_2108();
@@ -79,6 +79,7 @@ public class Test {
 //		B_14891 b = new B_14891();
 //		B_13335 b = new B_13335();
 //		B_14503 b = new B_14503();
+		B_14889 b = new B_14889();
 		
 		/*dp 파트 */
 //		B_1463 b = new B_1463();
@@ -122,7 +123,13 @@ public class Test {
 		
 		/* 이분탐색 */
 //		B_1920 b = new B_1920();
-		B_10816 b = new B_10816();
+//		B_10816 b = new B_10816();
+//		B_18870 b = new B_18870();
+//		B_2295 b = new B_2295();
+//		B_10815 b = new B_10815();
+//		B_1822 b = new B_1822();
+//		B_2467 b = new B_2467();
+//		B_3151 b = new B_3151();
 		
 		/*study*/
 //		B_14499 b = new B_14499();

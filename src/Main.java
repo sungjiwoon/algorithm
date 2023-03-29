@@ -3,49 +3,55 @@ import java.util.*;
 
 
 public class Main {
-	//이해못함 걍 포기~
-	static long[] a;
-	private static int upper(int st, int en, long k) {
-		while (st < en) { //같아지는 순간에 return
-			int mid = (st+en) / 2;
-			if (a[mid] > k) en = mid;
-			else st = mid+1;
+	static int n;
+	static int[][] nums;
+	static boolean[] vis;
+	static int min = Integer.MAX_VALUE;
+	private static void dfs (int depth, int st) {
+		if (depth == n/2) {
+			int ta = 0, tb = 0;
+			
+			for (int i = 0; i < n-1; i++) {
+				for (int j = i+1; j < n; j++) {
+					if (vis[i] && vis[j]) {
+						ta += nums[i][j] + nums[j][i];
+					} else if (!vis[i] && !vis[j]) {
+						tb += nums[i][j] + nums[j][i];
+					}
+				}
+			}
+			
+			if (Math.abs(ta-tb) < min) min = Math.abs(ta-tb);
+			return;
 		}
-		return st;
-	}
-	
-	private static int lower(int st, int en, long k) {
-		while (st < en) { //같아지는 순간에 return
-			int mid = (st+en) / 2;
-			if (a[mid] >= k) en = mid;
-			else st = mid+1;
+		
+		for (int i = st; i < n; i++) {
+//			if (!vis[i]) {
+				vis[i] = true;
+				dfs(depth+1, i+1);
+				vis[i] = false;
+//			}
 		}
-		return en;
 	}
 	public static void main(String[] args) throws NumberFormatException, IOException {
+	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder(); 
-		/* 선언 및 초기화 부분 */	
+		StringBuilder sb = new StringBuilder();
 		
-		int n = Integer.parseInt(br.readLine());
-		a = new long[n];
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		n = Integer.parseInt(br.readLine());
+		vis = new boolean[n];
+		nums = new int[n][n];
 		
-		for (int i = 0; i < n; i++) a[i] = Long.parseLong(st.nextToken());
-		
-		Arrays.sort(a);
-		int m = Integer.parseInt(br.readLine());
-		
-		st = new StringTokenizer(br.readLine(), " ");
-		for (int i = 0; i < m; i++) {
-			long k = Long.parseLong(st.nextToken());
-			
-			int start = upper(0, n, k);
-			int end = lower(0, n, k);
-			sb.append(Math.abs(end-start) + " ");
+		for (int i = 0; i < n; i++) {
+			String[] s = br.readLine().split(" ");
+			for (int j = 0; j < n; j++) {
+				nums[i][j] = Integer.parseInt(s[j]);
+			}
+
 		}
-		System.out.println(sb);
 		
+		dfs(0,0);
+		System.out.println(min);
 	}
 	
 }
