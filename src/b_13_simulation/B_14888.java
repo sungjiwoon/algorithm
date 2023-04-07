@@ -73,7 +73,6 @@ public class B_14888 {
 			min = Math.min(min, sum);
 			return;
 		}
-		
 		for (int i = 0; i < n-1; i++) {
 			if (!vis[i]) {
 				vis[i] = true;

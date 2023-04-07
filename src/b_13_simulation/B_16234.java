@@ -1,16 +1,9 @@
+package b_13_simulation;
+
 import java.io.*;
 import java.util.*;
 
-
-
-class Pair {
-	int X, Y;
-	Pair(int X, int Y) {
-		this.X = X;
-		this.Y = Y;
-	}
-}
-public class Main {
+public class B_16234 {
 	static int n, l, r;
 	static int[][] nums;
 	static ArrayList<Pair> list;
@@ -76,7 +69,7 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void work() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
@@ -96,6 +89,6 @@ public class Main {
 		
 		changePopulation();
 		System.out.println(res);
+		
 	}
-	
 }
