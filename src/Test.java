@@ -34,6 +34,9 @@ public class Test {
 //		B_4949 b = new B_4949();
 //		B_10799 b = new B_10799();
 //		B_2504 b = new B_2504();
+
+		/* bfs 부분 */
+		
 //		B_1926 b = new B_1926();
 //		B_2178 b = new B_2178();
 //		B_7576 b = new B_7576();
@@ -44,7 +47,9 @@ public class Test {
 //		B_7569 b = new B_7569();
 //		B_7562 b = new B_7562();
 //		B_5427 b = new B_5427();
-//		B_2583 b = new B_2583(); //BFS 
+//		B_2583 b = new B_2583(); 
+//		B_9466 b = new B_9466();
+		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
 //		B_1074 b = new B_1074();
@@ -82,7 +87,7 @@ public class Test {
 //		B_14889 b = new B_14889();
 //		B_14888 b = new B_14888();
 //		B_14502 b = new B_14502();
-		B_16234 b = new B_16234();
+//		B_16234 b = new B_16234();
 		
 		/*dp 파트 */
 //		B_1463 b = new B_1463();
@@ -136,6 +141,7 @@ public class Test {
 		
 		/*study*/
 //		B_14499 b = new B_14499();
+		S_230425 b = new S_230425();
 		
 		b.work();
 		
