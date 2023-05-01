@@ -141,7 +141,8 @@ public class Test {
 		
 		/*study*/
 //		B_14499 b = new B_14499();
-		S_230425 b = new S_230425();
+//		S_230425 b = new S_230425();
+		S_230501 b = new S_230501();
 		
 		b.work();
 		
