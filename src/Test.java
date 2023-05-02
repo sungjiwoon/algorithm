@@ -13,6 +13,7 @@ import b_16_greedy.*;
 import b_17_math.*;
 import b_18_binarysearch.*;
 import study.*;
+import programmers.*;
 
 public class Test {
 
@@ -148,7 +149,11 @@ public class Test {
 //		S_230501_4 b = new S_230501_4();
 //		S_230501_5 b = new S_230501_5();
 //		S_230501_6 b = new S_230501_6();
-		S_230501_7 b = new S_230501_7();
+//		S_230501_7 b = new S_230501_7();
+		
+//		P_230503 b = new P_230503();
+//		P_230503_2 b = new P_230503_2();
+		P_230503_3 b = new P_230503_3();
 		
 		b.work();
 		
