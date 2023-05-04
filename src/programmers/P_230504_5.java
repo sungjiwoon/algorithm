@@ -2,7 +2,10 @@ package programmers;
 
 import java.io.*;
 import java.util.*;
-
+/*
+ * 주차요금 계산
+ * 
+ */
 public class P_230504_5 {
 	public int[] solution(int[] fees, String[] records) {
         HashMap<Integer, int[]> hs = new HashMap<>();
@@ -67,6 +70,7 @@ public class P_230504_5 {
             int time = value[1];
             int res = 0;
             if (time > fees[0])
+            	//math.ceil 반올림. 
             	res = fees[1] + ( (int) Math.ceil((time-fees[0])/(double)fees[2])) * fees[3];
             else 
             	res = fees[1];
