@@ -1,10 +1,11 @@
+package study;
+
 import java.io.*;
 import java.util.*;
 
 
-public class Main {
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+public class B_4396 {
+	public void work() throws NumberFormatException, IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -21,11 +22,12 @@ public class Main {
 		int[] dy = {-1,0,1,-1,1,-1,0,1};
 		char[][] res = new char[n][n];
 		
+		boolean is = false;
 		for (int i = 0; i < n; i++) {
 			String s = br.readLine();
 			for (int j = 0; j < n; j++) {
 				res[i][j] = '.';
-				if (s.charAt(j)=='x') {
+				if (s.charAt(j)=='x' && map[i][j] != '*') {
 					int r = 0;
 					for (int k = 0; k < 8; k++) {
 						int xx = i + dx[k];
@@ -34,18 +36,25 @@ public class Main {
 						if (map[xx][yy] == '*') r++;
 					}
 					res[i][j] = Character.forDigit(r, 10);
+				} else if (s.charAt(j)=='x' && map[i][j] == '*') {
+					is = true;
 				}
 			}
 		}
 		
+		
 		for (int i =0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				System.out.print(res[i][j]);
+				if (is && map[i][j] == '*') {
+					System.out.print(map[i][j]);
+				} else {
+					System.out.print(res[i][j]);
+				}
+				
 			}
 			System.out.println();
 		}
 		
 		
 	}
-	
 }

@@ -8,6 +8,7 @@ import b_09_bfs.*;
 import b_11_square.*;
 import b_12_backtracking.*;
 import b_13_simulation.*;
+import b_14_sort.*;
 import b_15_dp.*;
 import b_16_greedy.*;
 import b_17_math.*;
@@ -35,6 +36,7 @@ public class Test {
 //		B_4949 b = new B_4949();
 //		B_10799 b = new B_10799();
 //		B_2504 b = new B_2504();
+//		B_2304 b = new B_2304();
 
 		/* bfs ºÎºÐ */
 		
@@ -160,7 +162,15 @@ public class Test {
 //		P_230504_3 b = new P_230504_3();
 //		P_230504_4 b = new P_230504_4();
 //		P_230504_5 b = new P_230504_5();
-		P_230504_6 b = new P_230504_6();
+//		P_230504_6 b = new P_230504_6();
+//		P_230504_7 b = new P_230504_7();
+		
+//		KAKAO_2020_1 b = new KAKAO_2020_1();
+//		Dev_Matching_2021 b = new Dev_Matching_2021();
+		
+//		P_230505_1 b = new P_230505_1();
+		
+		B_4396 b = new B_4396();
 		
 		b.work();
 		
