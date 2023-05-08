@@ -52,6 +52,7 @@ public class Test {
 //		B_5427 b = new B_5427();
 //		B_2583 b = new B_2583(); 
 //		B_9466 b = new B_9466();
+		SW_1868 b = new SW_1868();
 		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
@@ -170,7 +171,8 @@ public class Test {
 		
 //		P_230505_1 b = new P_230505_1();
 		
-		B_4396 b = new B_4396();
+//		B_4396 b = new B_4396();
+		
 		
 		b.work();
 		
