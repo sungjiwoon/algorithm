@@ -3,6 +3,7 @@ package b_09_bfs;
 import java.io.*;
 import java.util.*;
 
+//지뢰찾기 문제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 public class SW_1868 {
 	static int[] dx = {-1,-1,-1,0,0,1,1,1};
 	static int[] dy = {-1,0,1,-1,1,-1,0,1};

@@ -13,6 +13,7 @@ import b_15_dp.*;
 import b_16_greedy.*;
 import b_17_math.*;
 import b_18_binarysearch.*;
+import b_19_twopointer.*;
 import study.*;
 import programmers.*;
 
@@ -52,7 +53,7 @@ public class Test {
 //		B_5427 b = new B_5427();
 //		B_2583 b = new B_2583(); 
 //		B_9466 b = new B_9466();
-		SW_1868 b = new SW_1868();
+//		SW_1868 b = new SW_1868(); //지뢰찾기.
 		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
@@ -142,6 +143,12 @@ public class Test {
 //		B_1822 b = new B_1822();
 //		B_2467 b = new B_2467();
 //		B_3151 b = new B_3151();
+		
+		/*수고르기*/
+//		B_2230 b = new B_2230();
+//		B_1806 b = new B_1806();
+//		B_1644 b = new B_1644();
+		B_13144 b = new B_13144();
 		
 		/*study*/
 //		B_14499 b = new B_14499();

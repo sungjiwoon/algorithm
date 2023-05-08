@@ -3,47 +3,28 @@ import java.util.*;
 
 
 public class Main {
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+
+	public static void main(String[] args) throws Exception {		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		/* 선언 및 초기화 부분 */		
 		int n = Integer.parseInt(br.readLine());
-		
-		char[][] map = new char[n][n];
+		int[] a = new int[n];
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		for (int i = 0; i < n; i++) {
-			String s = br.readLine();
-			for (int j = 0; j < n; j++) {
-				map[i][j] = s.charAt(j);
-			}
-		}		
-		
-		int[] dx = {-1,-1,-1,0,0,1,1,1};
-		int[] dy = {-1,0,1,-1,1,-1,0,1};
-		char[][] res = new char[n][n];
-		
+			a[i] = Integer.parseInt(st.nextToken());
+		}
+
+		int res = n;	
+		boolean[] cnt = new boolean[100001];
 		for (int i = 0; i < n; i++) {
-			String s = br.readLine();
-			for (int j = 0; j < n; j++) {
-				res[i][j] = '.';
-				if (s.charAt(j)=='x') {
-					int r = 0;
-					for (int k = 0; k < 8; k++) {
-						int xx = i + dx[k];
-						int yy = j + dy[k];
-						if (xx < 0 || yy < 0 || xx >= n || yy >= n) continue;
-						if (map[xx][yy] == '*') r++;
-					}
-					res[i][j] = Character.forDigit(r, 10);
-				}
+			int j = i+1;
+			while (j <= n && !cnt[a[j]]) {
+				cnt[a[j]] = true;
 			}
+			res += j-i+1;
 		}
-		
-		for (int i =0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				System.out.print(res[i][j]);
-			}
-			System.out.println();
-		}
+		System.out.println(res);
 		
 		
 	}
