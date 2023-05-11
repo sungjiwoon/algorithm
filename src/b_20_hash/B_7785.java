@@ -22,6 +22,7 @@ public class B_7785 {
 				hs.remove(name);
 			}
 		}
+		
 		ArrayList<Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(hs.entrySet());
 		
 		Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
