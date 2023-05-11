@@ -14,6 +14,7 @@ import b_16_greedy.*;
 import b_17_math.*;
 import b_18_binarysearch.*;
 import b_19_twopointer.*;
+import b_20_hash.*;
 import study.*;
 import programmers.*;
 
@@ -149,7 +150,12 @@ public class Test {
 //		B_1806 b = new B_1806();
 //		B_1644 b = new B_1644();
 //		B_13144 b = new B_13144();
-		B_22862 b = new B_22862();
+//		B_22862 b = new B_22862();
+		
+		/* ÇØ½Ã */
+//		B_7785 b = new B_7785();
+//		B_1620 b = new B_1620();
+		B_13414 b = new B_13414();
 		
 		/*study*/
 //		B_14499 b = new B_14499();

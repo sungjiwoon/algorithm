@@ -1,11 +1,11 @@
+package b_20_hash;
+
 import java.io.*;
+import java.util.Map.*;
 import java.util.*;
-import java.util.Map.Entry;
 
-
-public class Main {
-
-	public static void main(String[] args) throws Exception {		
+public class B_13414 {
+	public void work() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
@@ -38,5 +38,11 @@ public class Main {
 		}
 		
 	}
-	
 }
+
+
+
+
+
+
+
