@@ -9,84 +9,46 @@ public class Main {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		TreeMap<Integer, TreeSet<Integer>> tmap = new TreeMap<>();
-		TreeSet<Integer> solve = new TreeSet<>(); //문제 담는 곳. 
-		int n = Integer.parseInt(br.readLine());
+		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		int n = Integer.parseInt(st.nextToken());
+		int q = Integer.parseInt(st.nextToken());
+		
+		TreeSet<Integer> ts = new TreeSet<>();
+		st = new StringTokenizer(br.readLine(), " ");
 		for (int i = 0; i < n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int p = Integer.parseInt(st.nextToken());
-			int l = Integer.parseInt(st.nextToken());
-			
-			if (tmap.containsKey(l)) {
-				TreeSet<Integer> ts = tmap.get(l);
-				ts.add(p);
-				tmap.put(l, ts);
-			} else {
-				TreeSet<Integer> ts = new TreeSet<>();
-				ts.add(p);	
-				tmap.put(l, ts);
+			int k = Integer.parseInt(st.nextToken());
+			if (k == 1) {
+				ts.add(i);
 			}
-			solve.add(p);
 		}
 		
-		int m = Integer.parseInt(br.readLine());
-		for (int i = 0;i < m; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			String s = st.nextToken();
-			if (s.equals("add")) {
+		int x = 0; //현재 위치. 
+		for (int i = 0; i < q; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int k = Integer.parseInt(st.nextToken());
+			if (k == 1) {
+				int place = Integer.parseInt(st.nextToken());
 				
-				int p = Integer.parseInt(st.nextToken());
-				int l = Integer.parseInt(st.nextToken());
-				
-				if (tmap.containsKey(l)) {
-					TreeSet<Integer> ts = tmap.get(l);
-					ts.add(p);
-					tmap.put(l, ts);
+				if (ts.contains(place-1)) {
+					ts.remove(place-1);
 				} else {
-					TreeSet<Integer> ts = new TreeSet<>();
-					ts.add(p);	
-					tmap.put(l, ts);
+					ts.add(place-1);
 				}
-				solve.add(p);
 				
-			} else if (s.equals("recommend")) {
-				int k = Integer.parseInt(st.nextToken());
-				int p = 0;
-				if (k == 1) {					
-					while (p == 0) {
-						int max = tmap.lastKey();
-						TreeSet<Integer> ts = tmap.get(max);
-						for (int t : ts) {
-							if (solve.contains(t)) {
-								p = t;
-							}
-						}
-						if (p == 0) {
-							tmap.remove(max);
-						}
-					}
-					
-				} else {
-					
-					while (p == 0) {
-						int min = tmap.firstKey();
-						TreeSet<Integer> ts = tmap.get(min);
-						for (int t : ts) {
-							if (solve.contains(t)) {
-								p = t;
-								break;
-							}
-						}
-						if (p == 0) {
-							tmap.remove(min);
-						}
-					}
+			} else if (k == 2) {	
+				x += Integer.parseInt(st.nextToken());
+				if (x >= n) x %= n;
+				
+			} else if (k == 3) {
+				if (ts.isEmpty()) sb.append("-1\n");
+				else {
+					int res = ts.first();
+					if (ts.higher(x) != null) res = ts.higher(x);
+					int v = Math.abs(res - x);
+					sb.append(v+"\n");
 				}
-				sb.append(p+"\n");
 				
-			} else if (s.equals("solved")) {
-				int p = Integer.parseInt(st.nextToken());
-				solve.remove(p);				
 			}
 
 		}

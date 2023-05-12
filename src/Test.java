@@ -164,7 +164,8 @@ public class Test {
 //		TreeMapTest b = new TreeMapTest();
 //		B_7662 b = new B_7662();
 //		B_1202 b = new B_1202();
-		B_21939 b = new B_21939();
+//		B_21939 b = new B_21939();
+		B_23326 b = new B_23326();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
