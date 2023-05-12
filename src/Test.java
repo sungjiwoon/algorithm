@@ -15,6 +15,7 @@ import b_17_math.*;
 import b_18_binarysearch.*;
 import b_19_twopointer.*;
 import b_20_hash.*;
+import b_21_binary_tree.*;
 import study.*;
 import programmers.*;
 
@@ -157,7 +158,13 @@ public class Test {
 //		B_1620 b = new B_1620();
 //		B_13414 b = new B_13414();
 //		B_17219 b = new B_17219();
-		B_20166 b = new B_20166();
+//		B_20166 b = new B_20166();
+		
+		/* 이진 검색 트리 */
+//		TreeMapTest b = new TreeMapTest();
+//		B_7662 b = new B_7662();
+//		B_1202 b = new B_1202();
+		B_21939 b = new B_21939();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
