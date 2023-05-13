@@ -51,6 +51,11 @@ public class TreeMapTest {
 		 * 가장 높은 값의 key를 가지고 있는 Entry를 리턴한다. 만약 값이 없으면 null을 return 한다.
 		 */
 		
+		System.out.println("tmap.higherEntry(10) : " + tmap.higherEntry(10));
+		/*
+		 * 인자로 받은 key보다 큰 값들 중에서 가장 작은 값의 key를 가진 entry를 반환. 
+		 */
+		
 		System.out.println("tmap.firstEntry() : " + tmap.firstEntry());
 		//treemap 첫번쨰 entry
 		

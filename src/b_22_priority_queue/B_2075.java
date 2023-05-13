@@ -1,11 +1,13 @@
+package b_22_priority_queue;
+
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
-
-
-public class Main {
-	public static void main(String[] args) throws Exception {		
-		
+/*
+ * N번째 큰수, 실버 2, 1초 
+ * 
+ */
+public class B_2075 {
+	public void work() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		int n = Integer.parseInt(br.readLine());
@@ -23,5 +25,4 @@ public class Main {
 		}
 		System.out.println(qu.poll());
 	}
-	
 }

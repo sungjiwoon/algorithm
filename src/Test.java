@@ -16,6 +16,8 @@ import b_18_binarysearch.*;
 import b_19_twopointer.*;
 import b_20_hash.*;
 import b_21_binary_tree.*;
+import b_22_priority_queue.*;
+import b_40_permutation.*;
 import study.*;
 import programmers.*;
 
@@ -165,7 +167,18 @@ public class Test {
 //		B_7662 b = new B_7662();
 //		B_1202 b = new B_1202();
 //		B_21939 b = new B_21939();
-		B_23326 b = new B_23326();
+//		B_23326 b = new B_23326();
+		
+		/* 우선순위 힙 */
+//		PriorityQueueTest b = new PriorityQueueTest();
+//		B_1927_heap b = new B_1927_heap();
+//		B_11286 b = new B_11286();
+//		B_1715 b = new B_1715();
+//		B_2075 b = new B_2075();
+		
+		/* 다음 순열 이전 순열 */
+//		NextPermutationTest b = new NextPermutationTest();
+		PrePermutationTest b = new PrePermutationTest();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
