@@ -178,7 +178,8 @@ public class Test {
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
-		PrePermutationTest b = new PrePermutationTest();
+//		PrePermutationTest b = new PrePermutationTest();
+		B_10973 b = new B_10973();
 		
 		/*study*/
 //		B_14499 b = new B_14499();
