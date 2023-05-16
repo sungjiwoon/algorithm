@@ -178,7 +178,8 @@ public class Test {
 //		B_2075 b = new B_2075();
 		
 		/* 그래프! */
-		B_11724 b = new B_11724();	
+//		B_11724 b = new B_11724();	
+		B_1260 b = new B_1260();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
