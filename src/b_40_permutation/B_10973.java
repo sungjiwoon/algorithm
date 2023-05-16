@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+//다음 순열 문제인데 번호를 이전순열 번호로 했다.. ㅋ
 public class B_10973 {
 	private boolean next_permutation(int[] arr) {
 		int idx = arr.length -1;

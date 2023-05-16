@@ -17,6 +17,7 @@ import b_19_twopointer.*;
 import b_20_hash.*;
 import b_21_binary_tree.*;
 import b_22_priority_queue.*;
+import b_23_graph.*;
 import b_40_permutation.*;
 import study.*;
 import programmers.*;
@@ -176,10 +177,13 @@ public class Test {
 //		B_1715 b = new B_1715();
 //		B_2075 b = new B_2075();
 		
+		/* 그래프! */
+		B_11724 b = new B_11724();	
+		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
 //		PrePermutationTest b = new PrePermutationTest();
-		B_10973 b = new B_10973();
+//		B_10973 b = new B_10973();
 		
 		/*study*/
 //		B_14499 b = new B_14499();

@@ -4,24 +4,46 @@ import java.util.Map.Entry;
 
 
 public class Main {
-	public static void main(String[] args) throws Exception {		
+	static int[][] arr;
+	static boolean[] vis;
+	static int n, m, res = 0;
+	static StringBuilder sb = new StringBuilder();
+	private static void dfs(int index) {
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int n = Integer.parseInt(br.readLine());
-		PriorityQueue<Integer> qu = new PriorityQueue<>(Collections.reverseOrder());
-		for (int i = 0; i < n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			while (st.hasMoreTokens()) {
-				int k =  Integer.parseInt(st.nextToken());
-				qu.add(k);
+		if (vis[index]) return;
+		
+		vis[index] = true;
+		for (int i = 1; i <= n; i++) {
+			if (arr[index][i] == 1) {				
+				dfs(i);
 			}
 		}
 		
-		for (int i = 0; i < n-1; i++) {
-			qu.poll();
+	}
+	public static void main(String[] args) throws Exception {		
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());		
+		
+		arr = new int[n+1][n+1];
+		for (int i = 0; i < m; i++) {
+			 st = new StringTokenizer(br.readLine(), " ");
+			 int a = Integer.parseInt(st.nextToken());
+			 int b = Integer.parseInt(st.nextToken());
+			 arr[a][b] = arr[b][a] = 1;
 		}
-		System.out.println(qu.poll());
+		
+		vis = new boolean[n+1];
+		//1. dfs 버전 그래프 
+		for (int i = 1; i <= n; i++) {
+			if (!vis[i]) {
+				dfs(i);
+				res++;
+			}
+		}
+		System.out.println(res);
 	}
 	
 }
