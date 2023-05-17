@@ -183,7 +183,7 @@ public class Test {
 //		B_11724 b = new B_11724();	
 //		B_1260 b = new B_1260();
 //		B_2606 b = new B_2606();
-//		B_1707 b = new B_1707();
+		B_1707 b = new B_1707();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
