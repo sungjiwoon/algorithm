@@ -7,37 +7,29 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {		
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		
-		String a = br.readLine();
-		String b = br.readLine();
-		if (b.length() < a.length()) {
-			String tmp = b;
-			b = a;
-			a = tmp;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder(); 
+		
+		int n = Integer.parseInt(br.readLine());
+		
+		int[] dp = new int[n+1];
+		
+		//최소 항은 가장 가까운 제곱수의 항의 수부터 뺴주면 된다!
+		// 11 -> dp[9] + dp[2] 9는 가장 가까운 제곱수 이므로!! 
+		
+		dp[1] = 1;
+		int rt = 1;
+		for (int i = 2; i <= n; i++) {
+			
+			if ((int)Math.sqrt(i) * (int)Math.sqrt(i) == i) {
+				dp[i] = 1;
+				rt = i;
+			} else {
+				dp[i] = dp[rt] + dp[i-rt];
+			}	
 		}
 		
-		int[] dp = new int[1001];
-
-		int k = 0;
-		dp[0] = 0;
-		for (int i = 0; i < a.length(); i++) {
-			int j = 0;
-			//if (i > 0 && k != 0) j = k+1;
-			boolean isSame = false;
-			while (j < b.length()) {
-				if (a.charAt(i) == b.charAt(j)) {
-					if (i > 0)
-						dp[i] = Math.max(dp[i-1] + 1, dp[i]);
-					else dp[i] = 1;
-					//k = j;
-					isSame = true;
-					break;
-				}
-				j++;
-			}
-			if (!isSame && i > 0) dp[i] =  Math.max(dp[i-1], dp[i]);
-		}
-		System.out.println(dp[a.length()-1]);
+		System.out.println(dp[n]);	
 	}
 	
 }
