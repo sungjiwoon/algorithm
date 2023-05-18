@@ -116,7 +116,7 @@ public class Test {
 //		B_11053 b = new B_11053();
 //		B_11055 b = new B_11055();
 //		B_9251 b = new B_9251();
-		B_1699 b = new B_1699();
+//		B_1699 b = new B_1699();
 		
 		/*그리디 알고리즘*/
 //		B_11047 b = new B_11047();
@@ -183,7 +183,9 @@ public class Test {
 //		B_11724 b = new B_11724();	
 //		B_1260 b = new B_1260();
 //		B_2606 b = new B_2606();
-		B_1707 b = new B_1707();
+//		B_1707 b = new B_1707(); //미완성.
+		B_2617 b = new B_2617();
+		
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();

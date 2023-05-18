@@ -4,32 +4,54 @@ import java.util.Map.Entry;
 
 
 public class Main {
-
+	static int n;
+	static int[][] arr;
+	static boolean[] vis;
+	static int[] res;
+	private static void dfs(int index) {
+		
+		for (int i = 1; i <= n; i++) {
+			if (index != i && arr[index][i] == 1) {
+				res[i]++;
+				res[index]--;
+				dfs(i);
+			}
+		}
+		
+	}
 	public static void main(String[] args) throws Exception {		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder(); 
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
 		
-		int n = Integer.parseInt(br.readLine());
-		
-		int[] dp = new int[n+1];
-		
-		//최소 항은 가장 가까운 제곱수의 항의 수부터 뺴주면 된다!
-		// 11 -> dp[9] + dp[2] 9는 가장 가까운 제곱수 이므로!! 
-		
-		dp[1] = 1;
-		int rt = 1;
-		for (int i = 2; i <= n; i++) {
-			
-			if ((int)Math.sqrt(i) * (int)Math.sqrt(i) == i) {
-				dp[i] = 1;
-				rt = i;
-			} else {
-				dp[i] = dp[rt] + dp[i-rt];
-			}	
+		arr = new int[n+1][n+1];
+		res = new int[n+1];
+		vis = new boolean[n+1];
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			arr[b][a] = 1; // a > b 
 		}
 		
-		System.out.println(dp[n]);	
+		for (int i = 1; i <= n; i++) {
+			dfs(i);
+		}
+		int max = Integer.MIN_VALUE;
+		int min = Integer.MAX_VALUE;
+		for (int i = 1; i<= n; i++) {
+			max = Math.max(max, res[i]);
+			min = Math.min(min, res[i]);
+		}
+		int cnt = 0;
+		for (int i = 1; i <= n; i++) {
+			if (res[i] == min || res[i] == max) cnt++;
+		}
+		System.out.println(cnt);
+		
 	}
 	
 }
