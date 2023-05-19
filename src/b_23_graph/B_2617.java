@@ -32,7 +32,7 @@ public class B_2617 {
 			
 		}
 		
-		System.out.println(cnt);
+//		System.out.println(cnt);
 		
 		
 	}
