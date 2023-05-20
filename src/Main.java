@@ -4,46 +4,55 @@ import java.util.Map.Entry;
 
 
 public class Main {
-	static int n, cnt = 0;
-	static int[][] graph;
-	static int[] arr;
-	
-	private static void dfs(int depth, int index) {
-		if (depth > 2) return;
-		
-		for (int i = 2; i <= n; i++) {
-			if (graph[index][i] == 1) {
-				System.out.println(index + " " + i + ", depth :" + depth);
-				arr[i] = Math.min(depth, arr[i]);
-				
-				dfs(depth+1, i);
-
-			}
-		}
-		
-	}
+	static int[][] usado;
+	static int n;
 	public static void main(String[] args) throws Exception {		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		
-		n = Integer.parseInt(br.readLine());
-		int m = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		graph = new int[n+1][n+1];
-		for (int i = 1; i <= m; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-			graph[a][b] = graph[b][a] = 1;
+		n = Integer.parseInt(st.nextToken());
+		int q = Integer.parseInt(st.nextToken());
+		usado = new int[n+1][n+1];
+		//usodo ÀÔ·Â. 
+		for (int i = 0; i < n-1; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int pi = Integer.parseInt(st.nextToken());
+			int qi = Integer.parseInt(st.nextToken());
+			int ri = Integer.parseInt(st.nextToken());
+			
+			usado[pi][qi] = usado[qi][pi] = ri;
 		}
-		arr = new int[n+1];
-		Arrays.fill(arr, 501);
-		dfs(1, 1);
 		
-		for (int i = 2; i <= n; i++) {
-			if (arr[i] < 3) cnt++;
+		for (int aa = 1; aa <= n; aa++) {
+			for (int bb = 1; bb <= n; bb++) {
+				for (int cc = 1; cc <= n; cc++) {
+					if (aa == bb || bb == cc || aa == cc) continue;					
+					if (usado[aa][bb] != 0 && usado[bb][cc] != 0 && usado[aa][cc] == 0) {
+						usado[aa][cc] = usado[cc][aa] = Math.min(usado[aa][bb], usado[bb][cc]);
+					} else if (usado[aa][bb] != 0 && usado[bb][cc] == 0 && usado[aa][cc] != 0) {
+						usado[bb][cc] = usado[cc][bb] =Math.min(usado[aa][bb], usado[aa][cc]);
+					} else if (usado[aa][bb] == 0 && usado[bb][cc] != 0 && usado[aa][cc] != 0) {
+						usado[aa][bb] = usado[bb][aa] = Math.min(usado[bb][cc], usado[aa][cc]);
+					}
+				}
+			}
 		}
-		System.out.println(cnt);
+		
+		//System.out.println(Arrays.deepToString(usado));
+		for (int i = 0; i < q; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int ki = Integer.parseInt(st.nextToken());
+			int index =  Integer.parseInt(st.nextToken());
+			int cnt = 0;
+			for (int k = 1; k <= n; k++) {
+				if (usado[index][k] >= ki) cnt++;
+			}
+			sb.append(cnt+"\n");
+		}
+		System.out.println(sb);
 		
 	}
 	
