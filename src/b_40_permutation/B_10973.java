@@ -9,26 +9,36 @@ import java.util.StringTokenizer;
 
 //다음 순열 문제인데 번호를 이전순열 번호로 했다.. ㅋ
 public class B_10973 {
-	private boolean next_permutation(int[] arr) {
-		int idx = arr.length -1;
-		while (idx > 0 && arr[idx] < arr[idx-1]) { idx--; }
-		if (idx == 0) {
-			System.out.println("-1");
-			return false;
+	private boolean pre_permutation(int[] arr) {
+		int idx = arr.length-1;
+		while (idx > 0 ) {
+			if (arr[idx] >= arr[idx-1]) idx--;
+		}
+		if (idx == 0) return false;
+		//오름이란 의미.
+		
+		int small_idx = arr.length -1;
+		while (small_idx > idx && arr[small_idx] >= arr[idx-1]) {
+			small_idx--;
 		}
 		
-		int j = arr.length-1;
-		while (arr[j] < arr[idx-1] && idx < j) { j--; }
+		int tmp = arr[idx-1];
+		arr[idx-1] = arr[small_idx];
+		arr[small_idx] = tmp;
 		
-		int tmp = arr[j];
-		arr[j] = arr[idx-1];
-		arr[idx-1] = tmp;
 		
-		Arrays.sort(arr, idx, arr.length);
+		small_idx = arr.length-1; //역순정렬. 
+		while (idx < small_idx) {
+			tmp = arr[small_idx];
+			arr[small_idx] = arr[idx];
+			arr[idx] = tmp;
+			
+			idx++;
+			small_idx--;
+		}
 		
-		for (int i = 0; i < arr.length; i++) 
-			System.out.print(arr[i] + " ");
-		System.out.println();
+		System.out.println(Arrays.toString(arr));
+		
 		return true;
 
 		
@@ -40,7 +50,7 @@ public class B_10973 {
 		int[] arr = new int[n];
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) arr[i] = Integer.parseInt(st.nextToken());
-		while (next_permutation(arr));
+		while (pre_permutation(arr));
 		
 	}
 }

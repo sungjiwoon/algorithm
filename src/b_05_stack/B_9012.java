@@ -1,12 +1,10 @@
+package b_05_stack;
+
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
 
-
-public class Main {
-
-	public static void main(String[] args) throws Exception {		
-	
+public class B_9012 {
+	public void work() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int n = Integer.parseInt(br.readLine());
@@ -32,6 +30,8 @@ public class Main {
 			if (!st.isEmpty()) ok = false;
 			if (ok) System.out.println("YES");
 			else System.out.println("NO");
+			
 		}
+		
 	}
 }

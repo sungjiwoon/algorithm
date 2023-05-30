@@ -18,9 +18,11 @@ import b_20_hash.*;
 import b_21_binary_tree.*;
 import b_22_priority_queue.*;
 import b_23_graph.*;
+import b_24_tree.*;
 import b_40_permutation.*;
 import study.*;
 import programmers.*;
+import swexpert.*;
 
 public class Test {
 
@@ -43,6 +45,8 @@ public class Test {
 //		B_10799 b = new B_10799();
 //		B_2504 b = new B_2504();
 //		B_2304 b = new B_2304();
+//		B_2841 b = new B_2841();
+		B_9012 b = new B_9012();
 
 		/* bfs 부분 */
 		
@@ -59,7 +63,7 @@ public class Test {
 //		B_2583 b = new B_2583(); 
 //		B_9466 b = new B_9466();
 //		SW_1868 b = new SW_1868(); //지뢰찾기.
-		B_15591 b = new B_15591();
+//		B_15591 b = new B_15591();
 		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
@@ -187,7 +191,11 @@ public class Test {
 //		B_1707 b = new B_1707(); //미완성.
 //		B_2617 b = new B_2617();
 //		B_5567 b = new B_5567();
+//		B_11403 b = new B_11403();
+//		B_2660 b = new B_2660();
 		
+		/* 트리 */
+//		B_11725 b = new B_11725();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
@@ -223,6 +231,10 @@ public class Test {
 //		P_230505_1 b = new P_230505_1();
 		
 //		B_4396 b = new B_4396();
+		
+//		S_1244 b = new S_1244();
+//		S_2817 b = new S_2817();
+//		S_1209 b = new S_1209();
 		
 		
 		b.work();
