@@ -96,6 +96,14 @@ public class B_14500 {
 				if (i+2 < n && j+1 < m) sum = arr[i][j]+arr[i+1][j]+arr[i+1][j+1]+arr[i+2][j];
 				max = Math.max(sum, max);
 				
+				//18
+				if (i+1<n && j+2 < m) sum = arr[i][j]+arr[i+1][j]+arr[i+1][j+1]+arr[i+1][j+2];
+				max = Math.max(sum, max);
+				
+				//19
+				if (i+1<n && j+2 < m) sum = arr[i][j+2]+ arr[i+1][j]+arr[i+1][j+1]+arr[i+1][j+2];
+				max = Math.max(sum, max);
+				
 				
 			}
 		}
