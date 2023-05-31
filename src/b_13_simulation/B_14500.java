@@ -1,13 +1,14 @@
+package b_13_simulation;
+
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
 
-
-public class Main {
+public class B_14500 {
 	static int[][] arr;
 	static int n, m;
 	
-	public static void main(String[] args) throws Exception {		
+	public void work() throws NumberFormatException, IOException {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		n = Integer.parseInt(st.nextToken());
@@ -99,7 +100,12 @@ public class Main {
 			}
 		}
 		System.out.println(max);
-		
-		
 	}
+	
+	
+	
+	
+	
+	
+	
 }

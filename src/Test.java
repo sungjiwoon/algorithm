@@ -46,7 +46,7 @@ public class Test {
 //		B_2504 b = new B_2504();
 //		B_2304 b = new B_2304();
 //		B_2841 b = new B_2841();
-		B_9012 b = new B_9012();
+//		B_9012 b = new B_9012();
 
 		/* bfs 부분 */
 		
@@ -103,6 +103,7 @@ public class Test {
 //		B_14888 b = new B_14888();
 //		B_14502 b = new B_14502();
 //		B_16234 b = new B_16234();
+		B_14500 b = new B_14500();
 		
 		/*dp 파트 */
 //		B_1463 b = new B_1463();
