@@ -64,6 +64,7 @@ public class Test {
 //		B_9466 b = new B_9466();
 //		SW_1868 b = new SW_1868(); //지뢰찾기.
 //		B_15591 b = new B_15591();
+//		B_3190 b = new B_3190(); /* 포기  */
 		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
@@ -103,7 +104,7 @@ public class Test {
 //		B_14888 b = new B_14888();
 //		B_14502 b = new B_14502();
 //		B_16234 b = new B_16234();
-		B_14500 b = new B_14500();
+//		B_14500 b = new B_14500();
 		
 		/*dp 파트 */
 //		B_1463 b = new B_1463();
@@ -196,7 +197,7 @@ public class Test {
 //		B_2660 b = new B_2660();
 		
 		/* 트리 */
-//		B_11725 b = new B_11725();
+		B_11725 b = new B_11725();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();

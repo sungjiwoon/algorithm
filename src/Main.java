@@ -3,103 +3,27 @@ import java.util.*;
 import java.util.Map.Entry;
 
 
-public class Main {
-	static int[][] arr;
-	static int n, m;
-	
+public class Main {	
 	public static void main(String[] args) throws Exception {		
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
 		
-		arr = new int[n][m];
-		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-			for (int j = 0; j < m; j++) {
-				arr[i][j] = Integer.parseInt(st.nextToken());
-			}
+		int n = Integer.parseInt(br.readLine());
+		int[] arr = new int[n+1];
+		arr[1] = 1;
+		for (int i = 0; i < n-1; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			//arr[a] = b -> aÀÇ ºÎ¸ð b
+			if (arr[a] != 0)  arr[b] = a;
+			else if (arr[b] != 0) arr[a] = b;
+			
 		}
 		
-		int max = 0;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0;  j < m; j++) {
-				
-				int sum = 0;
-				
-				//1
-				if (j+3 < m) sum = arr[i][j] + arr[i][j+1]+arr[i][j+2]+arr[i][j+3];
-				max = Math.max(sum, max); 
-				
-				//2
-				if (i+3 < n) sum = arr[i][j] + arr[i+1][j]+arr[i+2][j]+arr[i+3][j];
-				max = Math.max(sum, max); 
-				
-				//3
-				if (i+1 < n && j+1 < m) sum = arr[i][j]+arr[i+1][j]+arr[i][j+1]+arr[i+1][j+1];
-				max = Math.max(sum, max); 
-				
-				//4
-				if (i+2<n && j+1 <m) sum = arr[i][j]+arr[i+1][j]+arr[i+2][j]+arr[i+2][j+1];
-				max = Math.max(sum, max); 
-				
-				//5
-				if (i+2<n && j-1 >= 0) sum = arr[i][j]+arr[i+1][j]+arr[i+2][j]+arr[i+2][j-1];
-				max = Math.max(sum, max);
-				
-				//6
-				if (i+2<n && j+1 <m) sum = arr[i][j]+arr[i][j+1]+arr[i+1][j]+arr[i+2][j];
-				max = Math.max(sum, max);
-				
-				//7
-				if (i+2<n && j-1 >= 0) sum = arr[i][j-1]+arr[i][j]+arr[i+1][j]+arr[i+2][j];
-				max = Math.max(sum, max);
-				
-				//8
-				if (i+1 <n && j+2 < m) sum = arr[i][j]+arr[i][j+1]+arr[i][j+2]+arr[i+1][j];
-				max = Math.max(sum, max);
-				
-				//9
-				if (i+1 <n && j+2 < m) sum = arr[i][j]+arr[i][j+1]+arr[i][j+2]+arr[i+1][j+2];
-				max = Math.max(sum, max);
-				
-				//10
-				if (i+2<n && j+1 < m) sum = arr[i][j]+arr[i+1][j]+arr[i+1][j+1]+arr[i+2][j+1];
-				max = Math.max(sum, max);
-				
-				//11
-				if (i+2<n && j+1 < m) sum = arr[i][j+1]+arr[i+1][j]+arr[i+1][j+1]+arr[i+2][j];
-				max = Math.max(sum, max);
-				
-				//12
-				if (i+1 < n && j+2 <m) sum = arr[i+1][j]+arr[i+1][j+1]+arr[i][j+1]+arr[i][j+2];
-				max = Math.max(sum, max);
-				
-				//13
-				if (i+1 < n && j+2 < m) sum = arr[i][j]+arr[i][j+1]+arr[i+1][j+1]+arr[i+1][j+2];
-				max = Math.max(sum, max);
-				
-				//14
-				if (i+1 < n && j+2 < m) sum = arr[i][j]+arr[i][j+1]+arr[i+1][j+1]+arr[i][j+2];
-				max = Math.max(sum, max);
-				
-				//15
-				if (i-1 >= 0 && j+2 < m) sum = arr[i][j]+arr[i][j+1]+arr[i-1][j+1]+arr[i][j+2];
-				max = Math.max(sum, max);
-				
-				//16
-				if (i+2 < n && j-1 >= 0) sum = arr[i][j]+arr[i+1][j]+arr[i+1][j-1]+arr[i+2][j];
-				max = Math.max(sum, max);
-				
-				//17
-				if (i+2 < n && j+1 < m) sum = arr[i][j]+arr[i+1][j]+arr[i+1][j+1]+arr[i+2][j];
-				max = Math.max(sum, max);
-				
-				
-			}
+		for (int i = 2; i <= n; i++) {
+			System.out.println(arr[i]);
 		}
-		System.out.println(max);
-		
 		
 	}
 }
