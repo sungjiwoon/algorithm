@@ -197,7 +197,9 @@ public class Test {
 //		B_2660 b = new B_2660();
 		
 		/* 트리 */
-		B_11725 b = new B_11725();
+//		B_11725 b = new B_11725();
+//		B_1991 b = new B_1991();
+		B_4803 b = new B_4803();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
