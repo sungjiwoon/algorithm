@@ -201,6 +201,7 @@ public class Test {
 //		B_1991 b = new B_1991();
 //		B_4803 b = new B_4803();
 //		B_1240 b = new B_1240();
+		B_14267 b = new B_14267();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
@@ -232,7 +233,7 @@ public class Test {
 		
 //		KAKAO_2020_1 b = new KAKAO_2020_1();
 //		Dev_Matching_2021 b = new Dev_Matching_2021();
-		DFS_43164 b = new DFS_43164();
+//		DFS_43164 b = new DFS_43164();
 		
 //		P_230505_1 b = new P_230505_1();
 		
