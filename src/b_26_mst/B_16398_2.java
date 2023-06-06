@@ -1,8 +1,10 @@
+package b_26_mst;
+
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
 
-public class Main {	
+//크루스칼 버전! :: 계속 실패 뜸 ㅡㅡ 
+public class B_16398_2 {
 	static int[] parent;
 	private static int find(int x) {
 		if (parent[x] == x) return x;
@@ -11,9 +13,10 @@ public class Main {
 	private static void union(int x, int y) {
 		x = find(x);
 		y = find(y);
-		parent[y] = x;
+		if (x > y) parent[x] = y;
+		else parent[y] = x;
 	}
-	public static void main(String[] args) throws Exception {		
+	public void work() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		int n = Integer.parseInt(br.readLine());
@@ -42,14 +45,25 @@ public class Main {
 		parent = new int[n+1];
 		for (int i = 1; i<= n; i++) parent[i] = i;
 		long cnt = 0;
-		for (int i = 1; i <= k; i++) {
+		int cnt_vis = 0;
+		for (int i = 1; i < k; i++) {
 			if (find(graph[i][0]) != find(graph[i][1])) {
 				union(graph[i][0], graph[i][1]);
 				cnt+= graph[i][2];
+				cnt_vis++;
+				if (cnt_vis == n-1) break;
 			}
 			
 		}
 		
-		System.out.println(cnt);	
+		System.out.println(cnt);
+		
+		
 	}
 }
+
+
+
+
+
+

@@ -19,6 +19,9 @@ import b_21_binary_tree.*;
 import b_22_priority_queue.*;
 import b_23_graph.*;
 import b_24_tree.*;
+import b_24_tree_unionfind.*;
+import b_25_topology_sort.*;
+import b_26_mst.*;
 import b_40_permutation.*;
 import study.*;
 import programmers.*;
@@ -201,7 +204,24 @@ public class Test {
 //		B_1991 b = new B_1991();
 //		B_4803 b = new B_4803();
 //		B_1240 b = new B_1240();
-		B_14267 b = new B_14267();
+//		B_14267 b = new B_14267();
+//		B_2250 b = new B_2250();
+		
+		/* 유니온 파인드 이용한 트리 연습 */
+//		B_20955 b = new B_20955();
+//		B_1717 b = new B_1717();
+		
+		/* 위상 정렬 */
+//		B_2252 b = new B_2252();
+//		B_2623 b = new B_2623();
+//		B_21276 b = new B_21276();
+		
+		/* 최소 신장 트리 */
+//		B_1197_kruskal b = new B_1197_kruskal();
+//		B_1197_prim b = new B_1197_prim();
+//		B_9372 b = new B_9372();
+//		B_16398 b = new B_16398();
+		B_16398_2 b = new B_16398_2();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
