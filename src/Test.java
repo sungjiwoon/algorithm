@@ -221,7 +221,9 @@ public class Test {
 //		B_1197_prim b = new B_1197_prim();
 //		B_9372 b = new B_9372();
 //		B_16398 b = new B_16398();
-		B_16398_2 b = new B_16398_2();
+//		B_16398_2 b = new B_16398_2();
+//		B_1647 b = new B_1647();
+		B_13418 b = new B_13418();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();

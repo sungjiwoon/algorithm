@@ -16,40 +16,43 @@ public class Main {
 	public static void main(String[] args) throws Exception {		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		int n = Integer.parseInt(br.readLine());
-		int[][] graph = new int[n*n][3]; // 0,1 : 정점, 2; 비용. 
-		int k = 1;
-		for (int i = 1; i <= n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			ArrayList<int[]> list = new ArrayList<>();
-			for (int j = 1; j <= n; j++) {
-				int v = Integer.parseInt(st.nextToken());
-				if (i == j) continue;
-				graph[k][0] = i;
-				graph[k][1] = j;
-				graph[k++][2] =v;
-			}
+		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		int[][] graph = new int[m][3];
+		
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			graph[i][0] = Integer.parseInt(st.nextToken());
+			graph[i][1] = Integer.parseInt(st.nextToken());
+			graph[i][2] = Integer.parseInt(st.nextToken());
 		}
 		
+		//비용 정렬.
 		Arrays.sort(graph, new Comparator<int[]>() {
 			@Override
 			public int compare(int[] o1, int[] o2) {
-				return o1[2] - o2[2];
+				return o1[2]-o2[2];
 			}
 		});
+	
 		
-		//System.out.println(Arrays.deepToString(graph));
 		parent = new int[n+1];
-		for (int i = 1; i<= n; i++) parent[i] = i;
-		long cnt = 0;
-		for (int i = 1; i <= k; i++) {
+		for (int i = 1; i <= n; i++) parent[i] = i;
+		
+		long ans = 0; //최종비용. 
+		int cnt_vis = 0; 
+		for (int i = 0; i < m; i++) {
 			if (find(graph[i][0]) != find(graph[i][1])) {
 				union(graph[i][0], graph[i][1]);
-				cnt+= graph[i][2];
+				
+				cnt_vis++;
+				ans += graph[i][2];
+				//System.out.println(graph[i][0] + " " + graph[i][1] + " : " + graph[i][2]);
+				if (cnt_vis == n-2) break;
 			}
-			
 		}
-		
-		System.out.println(cnt);	
+		System.out.println(ans);
 	}
 }
