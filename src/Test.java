@@ -22,6 +22,7 @@ import b_24_tree.*;
 import b_24_tree_unionfind.*;
 import b_25_topology_sort.*;
 import b_26_mst.*;
+import b_27_floyd.*;
 import b_40_permutation.*;
 import study.*;
 import programmers.*;
@@ -108,6 +109,7 @@ public class Test {
 //		B_14502 b = new B_14502();
 //		B_16234 b = new B_16234();
 //		B_14500 b = new B_14500();
+//		B_16235 b = new B_16235();
 		
 		/*dp 파트 */
 //		B_1463 b = new B_1463();
@@ -223,7 +225,12 @@ public class Test {
 //		B_16398 b = new B_16398();
 //		B_16398_2 b = new B_16398_2();
 //		B_1647 b = new B_1647();
-		B_13418 b = new B_13418();
+//		B_13418 b = new B_13418();
+//		B_13418_2 b = new B_13418_2();
+		B_1368 b = new B_1368();
+		
+		/* 플로이드 알고리즘 */
+//		B_11404 b = new B_11404();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();

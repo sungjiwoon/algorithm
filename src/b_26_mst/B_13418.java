@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.Map.Entry;
 /*
  * 학교 탐방하기 (골3)
- * 
+ * 프림 알고리즘 
  */
 public class B_13418 {
 	static int n;

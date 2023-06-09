@@ -1,10 +1,12 @@
+package b_26_mst;
+
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
 
-public class Main {	
-	
-	public static void main(String[] args) throws Exception {		
+public class B_1368 {
+
+	public void work() throws Exception {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		int n = Integer.parseInt(br.readLine());
@@ -78,3 +80,12 @@ public class Main {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
