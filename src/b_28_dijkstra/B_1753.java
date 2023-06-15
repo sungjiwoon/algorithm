@@ -20,9 +20,11 @@ class Pair {
 	}
 }
 public class B_1753 {
+	
 	static final int INF = Integer.MAX_VALUE;
 	static ArrayList<Pair>[] adj = new ArrayList[20005];
 	static int[] d = new int[20005]; //최단 거리 테이블 
+	
 	public void work() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
@@ -33,9 +35,6 @@ public class B_1753 {
 			
 		for (int i = 1; i <= v; i++) {
 			d[i] = INF;
-		}
-		
-		for (int i = 1; i <= v; i++) {
 			adj[i] = new ArrayList<Pair>();
 		}
 		
@@ -66,7 +65,7 @@ public class B_1753 {
 		while (!qu.isEmpty()) {
 			Pair q = qu.poll();
 			//if (d[q.y] != q.x) continue;
-			for (Pair nxt : adj[q.y]) {
+			for (Pair nxt : adj[q.y]) { // q.y에 연결된 정점들의 집합. 
 				if (d[nxt.y] <= d[q.y]+nxt.x) continue;
 				d[nxt.y] = d[q.y] + nxt.x;
 				qu.add(new Pair(d[nxt.y], nxt.y));

@@ -1,11 +1,13 @@
+package b_28_dijkstra;
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
 
-public class Main {	
-	public static void main(String[] args) throws Exception {		
-		
-		
+/*
+ * 파티 (꼴3) 다익스트라 
+ * 모든 정점을 기준으로 다익스트라 정렬.
+ */
+public class B_1238 {
+	public void work() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		int n = Integer.parseInt(st.nextToken());
@@ -69,5 +71,17 @@ public class Main {
 			System.out.println(i + " " + d[i][x] + " " + d[x][i]);
 		}
 		System.out.println(max);
+		
+		
 	}
 }
+
+
+
+
+
+
+
+
+
+
