@@ -7,7 +7,7 @@ import java.util.*;
  * 아~~~~~~~~~
  * 양방향 다익스트라 문제 정말 어렵다~~~~~
  * 문제명 : 특정한 최단 경로 
- * 난이도 : 골드 4
+ * 난이도 : 골드 4 
  */
 public class B_1504 {
 	static final int INF = Integer.MAX_VALUE;
