@@ -4,7 +4,9 @@ package b_28_dijkstra;
 import java.io.*;
 import java.util.*;
 
-
+/*
+ * 메모리 초과~~~~~~~~~~~~~~~~~~~~~~~~
+ */
 public class B_1916 {
 	public void work() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,10 +31,13 @@ public class B_1916 {
 		int a = Integer.parseInt(st.nextToken());
 		int b = Integer.parseInt(st.nextToken());
 		
-		int[] d = new int[n+1]; // a -> i 지점으로 가는 최소 거리 집합. 
+		
+		
+		int[] d = new int[n+1]; // a -> d[i] 지점으로 가는 최소 거리 집합. 
 		Arrays.fill(d, Integer.MAX_VALUE);
 		d[a] = 0;
 		
+		//[0] : 정점 [1] : 거리 
 		PriorityQueue<int[]> qu = new PriorityQueue<int[]>(new Comparator<int[]>() {
 			@Override
 			public int compare(int[] o1, int[] o2) {
@@ -40,7 +45,7 @@ public class B_1916 {
 			}
 		});
 		
-		int[] at = {a, 0};
+		int[] at = {a, d[a]};
 		qu.add(at);
 		while (!qu.isEmpty()) {
 			int[] q = qu.poll();
