@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 /*
- * 메모리 초과~~~~~~~~~~~~~~~~~~~~~~~~
+ * 메모리 초과~~~~~~~~~~~~~~~~~~~~~~~~ ! 안해.. ^^
  */
 public class B_1916 {
 	public void work() throws Exception {
