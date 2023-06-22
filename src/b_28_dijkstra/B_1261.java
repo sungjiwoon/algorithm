@@ -13,6 +13,7 @@ public class B_1261 {
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		int m = Integer.parseInt(st.nextToken());
 		int n = Integer.parseInt(st.nextToken());
+		
 		int[] dx = {-1,0,1,0};
 		int[] dy = {0,1,0,-1};
 		int[][] map = new int[n+1][m+1];
@@ -21,13 +22,14 @@ public class B_1261 {
 			@Override
 			public int compare(int[] o1, int[] o2) {
 				if (o1[2] == o2[2]) {
-					//0의 좌표가 n에 가까울수록, 1의 좌표가 m에 가까울 수록. 					
+					//0(i)의 좌표가 n에 가까울수록, 1(j)의 좌표가 m에 가까울 수록. 					
 					return ((m-o1[1]) + (n-o1[0])) - ((m-o2[1]) + (n-o2[0]));			
 				}
-				return o1[2] - o2[2]; // 0 : i좌표, 1: j좌표, 2 : 지금까지의 총 비용. 
+				return o1[2] - o2[2]; // 0 : i좌표, 1: j좌표, 2 : 지금까지의 벽 부수는 횟수 
 				
 			}
 		}); 
+		
 		for (int i = 1; i <= n; i++) {
 			String line = br.readLine();
 			for (int j = 1; j <= m; j++) {
@@ -35,12 +37,14 @@ public class B_1261 {
 			}
 		}
 		
-		int[][] vis = new int[n+1][m+1];
+		
+		int[][] vis = new int[n+1][m+1]; //벽을 부수는 횟수를 담은 배열. 
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
-				vis[i][j] = 1000;
+				vis[i][j] = 1002; //n 과 m 의 최대가 100이므로 100*100 이상의 값으로 초기화. 
 			}
 		}
+		
 		int[] start = {1,1,0};
 		qu.add(start);
 		
