@@ -54,7 +54,8 @@ public class B_11779 {
 			if (p.c != d[p.v]) continue;
 			
 			for (Bus nxt :adj[p.v]) {
-				if (d[nxt.v] < p.c + nxt.c) continue;
+				if (d[nxt.v] <= p.c + nxt.c) continue;
+				// < -> <= 고치니 메모리초과ㅜ 고쳐짐.
 				d[nxt.v] = p.c + nxt.c;
 				qu.add(new Bus(nxt.v, d[nxt.v]));
 				pre[nxt.v] = p.v;
