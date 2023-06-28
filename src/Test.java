@@ -70,6 +70,8 @@ public class Test {
 //		SW_1868 b = new SW_1868(); //지뢰찾기.
 //		B_15591 b = new B_15591();
 //		B_3190 b = new B_3190(); /* 포기  */
+//		B_9328 b = new B_9328();
+//		B_11967 b = new B_11967();
 		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
@@ -202,6 +204,8 @@ public class Test {
 //		B_5567 b = new B_5567();
 //		B_11403 b = new B_11403();
 //		B_2660 b = new B_2660();
+//		B_1043 b = new B_1043();
+		B_5214 b = new B_5214();
 		
 		/* 트리 */
 //		B_11725 b = new B_11725();
@@ -238,11 +242,16 @@ public class Test {
 //		B_21940 b = new B_21940();
 //		B_1956 b = new B_1956();
 //		B_11562 b = new B_11562();
-		B_1238_floyd b = new B_1238_floyd();
+//		B_1238_floyd b = new B_1238_floyd();
 		
 		/* 다익스트라 알고리즘 */
 //		B_1753 b = new B_1753();
 //		B_1238 b = new B_1238();
+//		B_1504 b = new B_1504();
+//		B_1916 b = new B_1916();
+//		B_1261 b = new B_1261();
+//		B_17835 b = new B_17835();
+//		B_11779 b = new B_11779();
 		
 		/* 다음 순열 이전 순열 */
 //		NextPermutationTest b = new NextPermutationTest();
