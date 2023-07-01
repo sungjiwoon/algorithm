@@ -2,81 +2,55 @@ import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
 
-public class Main {	
-	private static String before(String be, String s, String ans) {
-		if (be.equals("")) return ans;
-		
-		if (s.equals("INT") || s.equals("LONG") ) {
-			while (ans.length() % 8 != 0) {
-				ans += ".";
-			}
-		} else {
-			
-			if (be.equals("BOOL")) {
-				if (s.equals("BOOL")) return ans;
-				
-				if (s.equals("FLOAT")) {
-					//4น่. 
-					while (ans.length() % 4 != 0) {
-						ans += ".";
-					}
-				} else if (s.equals("SHORT")) {
-					if (ans.length() % 2 != 0) ans += ".";
-					
-				}
-			}
-			
-		}
-		return ans;
-		
+class State {
+	int x, t;
+	State(int x, int t){
+		this.x = x;
+		this.t = t;
 	}
-	private static void solution(String[] arr) {
-		String ans = "";
-		String be = "";
-		for (int i = 0; i < arr.length; i++) {
-			
-			String s = arr[i];
-			ans = before(be,s,ans);
-			if (s.equals("BOOL")) {
-				ans += "#";
-			} else if (s.equals("SHORT")) {
-				ans += "##";
-			} else if (s.equals("FLOAT")) {
-				ans += "####";
-			} else if (s.equals("INT")) {
-				ans += "########";
-			} else if (s.equals("LONG")) {
-				ans += "################";
+}
+
+public class Main {	
+
+	public static void main(String[] args) throws Exception {	
+	
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuffer sb = new StringBuffer();
+		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken());
+		
+		int[] map = new int[100001];
+		int[] dx = {-1,1};
+		
+		PriorityQueue<State> qu = new PriorityQueue<>(new Comparator<State>() {
+			@Override
+			public int compare(State o1, State o2) {
+				
+				return o1.t - o2.t;
 			}
+		});
+		qu.add(new State(n,0));
+		int ans = 100000;
+		while (!qu.isEmpty()) {
+			State q = qu.poll();
 			
-			//if (s.length()%8 == 0) ans += "\n";
-			be = s;
-			
-			if (ans.length() > 128) {
-				ans = "HALT";
+			if (q.x == k) {
+				ans = Math.min(q.t, ans);
 				break;
 			}
 			
+			for (int kk = 0; kk < 2; kk++) {
+				int xx = q.x + dx[kk];
+				if (xx < 0 || xx >= 100001) continue;
+				qu.add(new State(xx, q.t+1));
+			}
+			
+			if (q.x * 2 < 100001) qu.add(new State(q.x*2, q.t)); 
 		}
 		
-		while (ans.length() % 8 != 0) ans += ".";
-		
-		for (int i = 1; i <= ans.length(); i++) {			
-			
-			System.out.print(ans.charAt(i-1));
-			if (i % 8 == 0) System.out.println();
-			
-		}
-		
-	}
-	public static void main(String[] args) throws Exception {	
-//		int[] arr = {3,2,4,4,2,5,2,5,5};
-//		String[] arr = {"INT", "INT", "BOOL", "SHORT", "LONG"};
-		String[] arr = {"BOOL", "SHORT", "FLOAT","SHORT"};
-		
-//		String[] arr = {"FLOAT", "SHORT", "BOOL", "BOOL", "BOOL", "INT"};
-		
-//		String[] arr = {"BOOL", "LONG", "SHORT", "LONG", "BOOL", "LONG", "BOOL", "LONG", "SHORT", "LONG", "LONG"};
-		solution(arr);
+		System.out.println(ans);
+	
 	}
 }

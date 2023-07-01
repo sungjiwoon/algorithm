@@ -72,6 +72,7 @@ public class Test {
 //		B_3190 b = new B_3190(); /* 포기  */
 //		B_9328 b = new B_9328();
 //		B_11967 b = new B_11967();
+		B_13549 b = new B_13549();
 		
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
@@ -205,7 +206,7 @@ public class Test {
 //		B_11403 b = new B_11403();
 //		B_2660 b = new B_2660();
 //		B_1043 b = new B_1043();
-		B_5214 b = new B_5214();
+//		B_5214 b = new B_5214();
 		
 		/* 트리 */
 //		B_11725 b = new B_11725();
@@ -223,6 +224,7 @@ public class Test {
 //		B_2252 b = new B_2252();
 //		B_2623 b = new B_2623();
 //		B_21276 b = new B_21276();
+//		B_1766 b = new B_1766();
 		
 		/* 최소 신장 트리 */
 //		B_1197_kruskal b = new B_1197_kruskal();
