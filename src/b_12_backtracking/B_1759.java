@@ -1,10 +1,7 @@
 package b_12_backtracking;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 /*
  * 문제 명 : 암호만들기 
  * 난이도 : 골드 5(그정도 안되는듯???)
@@ -44,27 +41,27 @@ import java.util.StringTokenizer;
 public class B_1759 {
 	static int l, c;
 	static char[] map;
+	static StringBuilder sb = new StringBuilder();
 	private static void func(int st, String res) {
-		if (res.length()==l) {
-			if (have_aeiou(res)==0 || l-have_aeiou(res) < 2) return;
-			System.out.println(res);
+		if (res.length() == l) {
+			int mos = 0;			
+			if (res.contains("a")) mos++;
+			if (res.contains("e")) mos++;
+			if (res.contains("o")) mos++;
+			if (res.contains("i")) mos++;
+			if (res.contains("u")) mos++;
+			if (mos >= 1 && l- mos >= 2) sb.append(res).append("\n");
+			
+			
 			return;
 		}
 		
 		for (int i = st; i < c; i++) {
-			res += String.valueOf(map[i]); //추가!
+			String tmp = res;
+			res += map[i];
 			func(i+1, res);
-			res = res.substring(0,res.length()-1); //다시 원상 복구용.
+			res = tmp;
 		}
-	}
-	private static int have_aeiou(String res) {
-			int cnt=0;
-			if (res.contains("a")) cnt++;
-			if (res.contains("e")) cnt++;
-			if (res.contains("i")) cnt++;
-			if (res.contains("o")) cnt++;
-			if (res.contains("u")) cnt++;
-			return cnt;
 	}
 	public void work() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -79,5 +76,6 @@ public class B_1759 {
 		Arrays.sort(map);
 		
 		func(0,"");
+		System.out.println(sb);
 	}
 }

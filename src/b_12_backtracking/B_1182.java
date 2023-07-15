@@ -31,14 +31,24 @@ public class B_1182 {
 	static boolean[] vis;
 	static int[] arr;
 	static int cnt = 0;
-	private static void func(int idx, int count) {
-		if (idx == n) {
-			if (count==s) cnt++;
+	private static void func(int idx, int size, int nxt) {
+		if (idx == size) {
+			int sum = 0;
+			for (int i = 0; i < size; i++) {
+				sum += arr[i];
+			}
+			
+			if (sum == s) {
+				System.out.println(Arrays.toString(arr));
+				cnt++;
+			}
 			return;
 		}
 		
-		func(idx+1, count+arr[idx]);
-		func(idx+1, count);
+		for (int i = nxt; i < n; i++) {
+			arr[idx] = map[i];
+			func(idx+1, size, i+1);
+		}
 		
 	}
 	public void work() throws IOException {
@@ -47,12 +57,16 @@ public class B_1182 {
 		n = Integer.parseInt(st.nextToken());
 		s = Integer.parseInt(st.nextToken());
 		
-		map = new int[n];
+		map = new int[n];		
 		vis = new boolean[n];
-		arr = new int[n+1];
-		map = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-		func(0,0);
-		if (s == 0) cnt--;
+		
+		st = new StringTokenizer(br.readLine(), " ");
+		for (int i= 0; i < n; i++) map[i] = Integer.parseInt(st.nextToken());
+		
+		for (int i = 1; i <= n; i++) {
+			arr = new int[i];
+			func(0,i,0);
+		}
 		System.out.println(cnt);
 	}
 }
