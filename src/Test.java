@@ -28,6 +28,7 @@ import b_40_permutation.*;
 import study.*;
 import programmers.*;
 import swexpert.*;
+import group_study.*;
 
 public class Test {
 
@@ -171,7 +172,7 @@ public class Test {
 //		B_10815 b = new B_10815();
 //		B_1822 b = new B_1822();
 //		B_2467 b = new B_2467();
-		B_3151_binarysearch b = new B_3151_binarysearch();
+//		B_3151_binarysearch b = new B_3151_binarysearch();
 		
 		/*수고르기*/
 //		B_2230 b = new B_2230();
@@ -299,6 +300,10 @@ public class Test {
 //		S_1244 b = new S_1244();
 //		S_2817 b = new S_2817();
 //		S_1209 b = new S_1209();
+		
+		/*그룹 스터디 용 코딩*/
+//		B_14495 b = new B_14495();
+		B_2666 b = new B_2666();
 		
 		
 		b.work();
