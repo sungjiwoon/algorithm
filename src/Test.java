@@ -101,7 +101,7 @@ public class Test {
 //		B_9663_2 b = new B_9663_2();
 //		B_1182 b = new B_1182();
 //		B_6603 b = new B_6603();
-		B_1759 b = new B_1759();
+//		B_1759 b = new B_1759();
 		
 		/* 시뮬레이션 파트 */
 //		B_15683 b = new B_15683();
@@ -117,6 +117,7 @@ public class Test {
 //		B_16235 b = new B_16235();
 //		B_16236 b = new B_16236();
 //		B_15686 b = new B_15686();
+//		B_2527 b = new B_2527();
 		
 		/*dp 파트 */
 //		B_1463 b = new B_1463();
@@ -170,7 +171,7 @@ public class Test {
 //		B_10815 b = new B_10815();
 //		B_1822 b = new B_1822();
 //		B_2467 b = new B_2467();
-//		B_3151 b = new B_3151();
+		B_3151_binarysearch b = new B_3151_binarysearch();
 		
 		/*수고르기*/
 //		B_2230 b = new B_2230();

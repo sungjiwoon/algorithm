@@ -1,11 +1,16 @@
+package b_19_twopointer;
+
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
-
-public class Main {	
+/*
+ * 합이 0
+ * 4초
+ * 
+ */
+public class B_3151 {
 	static int n;
 	static int[] borad;
-	public static void main(String[] args) throws Exception {	
+	public void work() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();		
 		
@@ -68,22 +73,9 @@ public class Main {
 	이 때 경우의 수는 10000C3 = 166,616,670,000이므로 long타입으로 정답을 출력해야 한다.
 
 	입력값을 오름차순으로 정렬한다.
+	<투포인터>
 	가장 작은 값(0번 인덱스)을 fix 시키고 1번인덱스와 마지막 인덱스를 start, end로 놓는다.
 	배열의 0, start, end의 값이 0인지 확인한다
 	합이 0보다 크면 end를 줄인다, 0보다 작거나 같으면 start를 늘린다.
 	 */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
