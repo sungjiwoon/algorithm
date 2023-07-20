@@ -5,57 +5,41 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
 
-		String lng = "", srt = "";
-		if (n > m) {
-			lng = br.readLine();
-			srt = br.readLine();
-		} else {
-			srt = br.readLine();
-			lng = br.readLine();
-		}
+		int tc = Integer.parseInt(br.readLine());
+		while (tc-- > 0) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int n = Integer.parseInt(st.nextToken());
+			int m = Integer.parseInt(st.nextToken());
 
-		st = new StringTokenizer(srt, " ");
-		int size_srt = st.countTokens();
-		int[] men = new int[size_srt+1];
-		for (int i = 1; i <= size_srt; i++) men[i] = Integer.parseInt(st.nextToken());
-
-		st = new StringTokenizer(lng, " ");
-		int size_lng = st.countTokens();
-		int[] women = new int[size_lng+1];
-		for (int i = 1; i <= size_lng; i++) women[i] = Integer.parseInt(st.nextToken());
-
-		Arrays.sort(men);
-		Arrays.sort(women);
-
-
-		//일단 n이 더 작다고 가정하여 문제 풀음.
-		int[][] dp = new int[1002][1002];
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= m; j++) {
-				dp[i][j] = Integer.MAX_VALUE;
+			st = new StringTokenizer(br.readLine());
+			int[] prioity = new int[10];
+			int max_pri = 1;
+			Queue<int[]> qu = new LinkedList<>();
+			for (int i = 0; i < n; i++) {
+				int[] num = new int[2];
+				num[0] = i;
+				num[1] = Integer.parseInt(st.nextToken());
+				qu.add(num);
+				prioity[num[1]]++;
+				if (num[1] > max_pri) max_pri = num[1];
 			}
-		}
-		for (int i = 1; i <= size_srt; i++) {
-			for (int j = i; j <= size_lng-size_srt+i; j++) {
-				int min = Integer.MAX_VALUE;
-				for (int k = i-1; k <= j-1; k++) {
-					min = Math.min(min, dp[i-1][k]);
+			int ans = 0;
+			while (!qu.isEmpty()) {
+				int[] q = qu.poll();
+				if (q[1] < max_pri) {
+					qu.add(q);
+					continue;
+				} else if (q[1] == max_pri) { //인쇄되는 경우.
+					prioity[max_pri]--;
+					while (max_pri > 1 && prioity[max_pri] == 0) max_pri--;
+					ans++;
 				}
-				//if (min == Integer.MAX_VALUE) min = 0;
-				dp[i][j] = min + Math.abs(men[i]-women[j]);
+				if (q[0] == m) break;
 			}
-		}
+			System.out.println(ans);
 
-		int ans = Integer.MAX_VALUE;
-		for (int i = 1; i <= size_lng; i++) {
-			ans = Math.min(dp[size_srt][i], ans);
 		}
-
-		System.out.println(ans);
 	
 	}
 
