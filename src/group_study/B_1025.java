@@ -34,6 +34,7 @@ public class B_1025 {
 
                         while (ii >= 0 && ii < n && jj >= 0 && jj < m) {
                             now += data[ii][jj];
+                            //System.out.println(now);
                             if (is_sqrt(now)) ans = Math.max(ans, Integer.parseInt(now)); //이게 더 빠름.
                             //if (sqrt_map.containsKey(now)) ans = Math.max(ans, Integer.parseInt(now));
                             ii += x;
