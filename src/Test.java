@@ -1,9 +1,38 @@
+import b_05_stack.*;
+import b_06_queue.*;
+import b_07_deque.*;
+import b_08_stack2.*;
+import b_09_bfs.*;
+import b_11_square.*;
+import b_12_backtracking.*;
+import b_13_simulation.*;
+import b_14_sort.*;
+import b_15_dp.*;
+import b_16_greedy.*;
+import b_17_math.*;
+import b_18_binarysearch.*;
+import b_19_twopointer.*;
+import b_20_hash.*;
+import b_21_binary_tree.*;
+import b_22_priority_queue.*;
+import b_23_graph.*;
+import b_24_tree.*;
+import b_24_tree_unionfind.*;
+import b_25_topology_sort.*;
+import b_26_mst.*;
+import b_27_floyd.*;
+import b_28_dijkstra.*;
+import b_40_permutation.*;
+import study.*;
+import programmers.*;
+import swexpert.*;
 import group_study.*;
 
 public class Test {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+
 //		B_2751 b = new B_2751();
 //		B_2108 b = new B_2108();
 //		B_10808 b = new B_10808();
@@ -24,8 +53,8 @@ public class Test {
 //		B_2841 b = new B_2841();
 //		B_9012 b = new B_9012();
 
-		/* bfs ºÎºĞ */
-		
+		/* bfs ë¶€ë¶„ */
+
 //		B_1926 b = new B_1926();
 //		B_2178 b = new B_2178();
 //		B_7576 b = new B_7576();
@@ -36,16 +65,16 @@ public class Test {
 //		B_7569 b = new B_7569();
 //		B_7562 b = new B_7562();
 //		B_5427 b = new B_5427();
-//		B_2583 b = new B_2583(); 
+//		B_2583 b = new B_2583();
 //		B_9466 b = new B_9466();
-//		SW_1868 b = new SW_1868(); //Áö·ÚÃ£±â.
+//		SW_1868 b = new SW_1868(); //ì§€ë¢°ì°¾ê¸°.
 //		B_15591 b = new B_15591();
-//		B_3190 b = new B_3190(); /* Æ÷±â  */
+//		B_3190 b = new B_3190(); /* í¬ê¸°  */
 //		B_9328 b = new B_9328();
 //		B_11967 b = new B_11967();
 //		B_13549 b = new B_13549();
 //		B_13913 b = new B_13913();
-		
+
 //		B_1629 b = new B_1629();
 //		B_11729 b = new B_11729();
 //		B_1074 b = new B_1074();
@@ -54,7 +83,7 @@ public class Test {
 //		B_2630 b = new B_2630();
 //		B_1992 b = new B_1992();
 //		B_2447 b = new B_2447();
-		/* ¹éÆ®·¡Å· ºÎºĞ */
+		/* ë°±íŠ¸ë˜í‚¹ ë¶€ë¶„ */
 //		B_15649 b = new B_15649();
 //		B_15650 b = new B_15650();
 //		B_15651 b = new B_15651();
@@ -73,8 +102,8 @@ public class Test {
 //		B_1182 b = new B_1182();
 //		B_6603 b = new B_6603();
 //		B_1759 b = new B_1759();
-		
-		/* ½Ã¹Ä·¹ÀÌ¼Ç ÆÄÆ® */
+
+		/* ì‹œë®¬ë ˆì´ì…˜ íŒŒíŠ¸ */
 //		B_15683 b = new B_15683();
 //		B_18808 b = new B_18808();
 //		B_14891 b = new B_14891();
@@ -89,8 +118,8 @@ public class Test {
 //		B_16236 b = new B_16236();
 //		B_15686 b = new B_15686();
 //		B_2527 b = new B_2527();
-		
-		/*dp ÆÄÆ® */
+
+		/*dp íŒŒíŠ¸ */
 //		B_1463 b = new B_1463();
 //		B_9095 b = new B_9095();
 //		B_2579 b = new B_2579();
@@ -110,8 +139,8 @@ public class Test {
 //		B_1699 b = new B_1699();
 //		B_1904 b = new B_1904();
 //		B_2156 b = new B_2156();
-		
-		/*±×¸®µğ ¾Ë°í¸®Áò*/
+
+		/*ê·¸ë¦¬ë”” ì•Œê³ ë¦¬ì¦˜*/
 //		B_11047 b = new B_11047();
 //		B_1931 b = new B_1931();
 //		B_2217 b = new B_2217();
@@ -132,9 +161,9 @@ public class Test {
 //		B_1676 b = new B_1676();
 //		B_9613 b = new B_9613();
 //		B_1790 b = new B_1790();
-		
-		
-		/* ÀÌºĞÅ½»ö */
+
+
+		/* ì´ë¶„íƒìƒ‰ */
 //		B_1920 b = new B_1920();
 //		B_10816 b = new B_10816();
 //		B_18870 b = new B_18870();
@@ -143,66 +172,66 @@ public class Test {
 //		B_1822 b = new B_1822();
 //		B_2467 b = new B_2467();
 //		B_3151_binarysearch b = new B_3151_binarysearch();
-		
-		/*¼ö°í¸£±â*/
+
+		/*ìˆ˜ê³ ë¥´ê¸°*/
 //		B_2230 b = new B_2230();
 //		B_1806 b = new B_1806();
 //		B_1644 b = new B_1644();
 //		B_13144 b = new B_13144();
 //		B_22862 b = new B_22862();
-		
-		/* ÇØ½Ã */
+
+		/* í•´ì‹œ */
 //		B_7785 b = new B_7785();
 //		B_1620 b = new B_1620();
 //		B_13414 b = new B_13414();
 //		B_17219 b = new B_17219();
 //		B_20166 b = new B_20166();
-		
-		/* ÀÌÁø °Ë»ö Æ®¸® */
+
+		/* ì´ì§„ ê²€ìƒ‰ íŠ¸ë¦¬ */
 //		TreeMapTest b = new TreeMapTest();
 //		B_7662 b = new B_7662();
 //		B_1202 b = new B_1202();
 //		B_21939 b = new B_21939();
 //		B_23326 b = new B_23326();
-		
-		/* ¿ì¼±¼øÀ§ Èü */
+
+		/* ìš°ì„ ìˆœìœ„ í™ */
 //		PriorityQueueTest b = new PriorityQueueTest();
 //		B_1927_heap b = new B_1927_heap();
 //		B_11286 b = new B_11286();
 //		B_1715 b = new B_1715();
 //		B_2075 b = new B_2075();
-		
-		/* ±×·¡ÇÁ! */
-//		B_11724 b = new B_11724();	
+
+		/* ê·¸ë˜í”„! */
+//		B_11724 b = new B_11724();
 //		B_1260 b = new B_1260();
 //		B_2606 b = new B_2606();
-//		B_1707 b = new B_1707(); //¹Ì¿Ï¼º.
+//		B_1707 b = new B_1707(); //ë¯¸ì™„ì„±.
 //		B_2617 b = new B_2617();
 //		B_5567 b = new B_5567();
 //		B_11403 b = new B_11403();
 //		B_2660 b = new B_2660();
 //		B_1043 b = new B_1043();
 //		B_5214 b = new B_5214();
-		
-		/* Æ®¸® */
+
+		/* íŠ¸ë¦¬ */
 //		B_11725 b = new B_11725();
 //		B_1991 b = new B_1991();
 //		B_4803 b = new B_4803();
 //		B_1240 b = new B_1240();
 //		B_14267 b = new B_14267();
 //		B_2250 b = new B_2250();
-		
-		/* À¯´Ï¿Â ÆÄÀÎµå ÀÌ¿ëÇÑ Æ®¸® ¿¬½À */
+
+		/* ìœ ë‹ˆì˜¨ íŒŒì¸ë“œ ì´ìš©í•œ íŠ¸ë¦¬ ì—°ìŠµ */
 //		B_20955 b = new B_20955();
 //		B_1717 b = new B_1717();
-		
-		/* À§»ó Á¤·Ä */
+
+		/* ìœ„ìƒ ì •ë ¬ */
 //		B_2252 b = new B_2252();
 //		B_2623 b = new B_2623();
 //		B_21276 b = new B_21276();
 //		B_1766 b = new B_1766();
-		
-		/* ÃÖ¼Ò ½ÅÀå Æ®¸® */
+
+		/* ìµœì†Œ ì‹ ì¥ íŠ¸ë¦¬ */
 //		B_1197_kruskal b = new B_1197_kruskal();
 //		B_1197_prim b = new B_1197_prim();
 //		B_9372 b = new B_9372();
@@ -212,8 +241,8 @@ public class Test {
 //		B_13418 b = new B_13418();
 //		B_13418_2 b = new B_13418_2();
 //		B_1368 b = new B_1368();
-		
-		/* ÇÃ·ÎÀÌµå ¾Ë°í¸®Áò */
+
+		/* í”Œë¡œì´ë“œ ì•Œê³ ë¦¬ì¦˜ */
 //		B_11404 b = new B_11404();
 //		B_11780 b = new B_11780();
 //		B_14938 b = new B_14938();
@@ -221,8 +250,8 @@ public class Test {
 //		B_1956 b = new B_1956();
 //		B_11562 b = new B_11562();
 //		B_1238_floyd b = new B_1238_floyd();
-		
-		/* ´ÙÀÍ½ºÆ®¶ó ¾Ë°í¸®Áò */
+
+		/* ë‹¤ìµìŠ¤íŠ¸ë¼ ì•Œê³ ë¦¬ì¦˜ */
 //		B_1753 b = new B_1753();
 //		B_1238 b = new B_1238();
 //		B_1504 b = new B_1504();
@@ -230,12 +259,12 @@ public class Test {
 //		B_1261 b = new B_1261();
 //		B_17835 b = new B_17835();
 //		B_11779 b = new B_11779();
-		
-		/* ´ÙÀ½ ¼ø¿­ ÀÌÀü ¼ø¿­ */
+
+		/* ë‹¤ìŒ ìˆœì—´ ì´ì „ ìˆœì—´ */
 //		NextPermutationTest b = new NextPermutationTest();
 //		PrePermutationTest b = new PrePermutationTest();
 //		B_10973 b = new B_10973();
-		
+
 		/*study*/
 //		B_14499 b = new B_14499();
 //		S_230425 b = new S_230425();
@@ -246,11 +275,11 @@ public class Test {
 //		S_230501_5 b = new S_230501_5();
 //		S_230501_6 b = new S_230501_6();
 //		S_230501_7 b = new S_230501_7();
-		
+
 //		P_230503 b = new P_230503();
 //		P_230503_2 b = new P_230503_2();
 //		P_230503_3 b = new P_230503_3();
-		
+
 //		P_230504 b = new P_230504();
 //		P_230504_2 b = new P_230504_2();
 //		P_230504_3 b = new P_230504_3();
@@ -258,21 +287,20 @@ public class Test {
 //		P_230504_5 b = new P_230504_5();
 //		P_230504_6 b = new P_230504_6();
 //		P_230504_7 b = new P_230504_7();
-		
+
 //		KAKAO_2020_1 b = new KAKAO_2020_1();
 //		Dev_Matching_2021 b = new Dev_Matching_2021();
 //		DFS_43164 b = new DFS_43164();
-		
+
 //		P_230505_1 b = new P_230505_1();
-		
+
 //		B_4396 b = new B_4396();
-		
+
 //		S_1244 b = new S_1244();
 //		S_2817 b = new S_2817();
 //		S_1209 b = new S_1209();
-		
-		/*±×·ì ½ºÅÍµğ ¿ë ÄÚµù*/
-		/*±×·ì ½ºÅÍµğ ¿ë ÄÚµù */
+
+		//ê·¸ë£¹ ìŠ¤í„°ë””
 //		B_14495 b = new B_14495();
 //		B_2666 b = new B_2666();
 //		B_1727 b = new B_1727();
