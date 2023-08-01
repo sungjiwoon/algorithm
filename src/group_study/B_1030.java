@@ -9,22 +9,21 @@ import java.util.StringTokenizer;
 public class B_1030 {
     static int s,n,k,r1,r2,c1,c2;
     static char[][] borad;
-    private static void solve(int now, int byeon_i, int byeon_j, long size) {
+    private static void solve(int now, int byeon_i, int byeon_j) {
         if (now < 1) return;
-
-        //홀수 일 때.
-        // k의 범위 byeon/2 - byeon_k/2
+        int size = (int) Math.pow(n,now-1);
+//        if (byeon_i + size < r1 || byeon_i > r2 || byeon_j + size < c1 || byeon_j > c2) return;
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                int nxt_i = (int) (byeon_i + i*size/n);
-                int nxt_j = (int) (byeon_j + j*size/n);
-                int nxt_size = (int) (size/n);
+                int nxt_i = byeon_i + i*size; //다음 변의 시작 i
+                int nxt_j = byeon_j + j*size; //다음 변의 시작 j
+//                int nxt_size = size/n;
 
                 if ((n%2==0 && is_center_even_ver(i,j)) || (n%2!=0 && is_center_odd_ver(i,j))) {
-                    fill_black(nxt_i, nxt_j, nxt_size);
-                } else if (nxt_i>= r1 && nxt_i <= r2 && nxt_j >= c1 && nxt_j <= c2){ //불필요한 재귀를 막기 위한, 장치.
-                    solve(now-1, nxt_i, nxt_j, nxt_size);
+                    fill_black(nxt_i, nxt_j, size); //검정색을 칠해야하는 범위라면,
+                } else { //불필요한 재귀를 막기 위한.... ㅜ
+                    solve(now-1, nxt_i, nxt_j);
                 }
             }
         }
@@ -39,8 +38,9 @@ public class B_1030 {
     }
 
     private static void fill_black(int size_i, int size_j, int size) {
-        for (int i = size_i; i <= size_i+size-1; i++) {
-            for (int j = size_j; j <= size_j+size-1; j++) {
+
+        for (int i = size_i; i <= size_i + size - 1; i++) {
+            for (int j = size_j; j <= size_j + size- 1; j++) {
                 if (i <= r2 && j <= c2)
                     borad[i][j] = '1';
             }
@@ -60,7 +60,7 @@ public class B_1030 {
     public void work() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         reset(new StringTokenizer(br.readLine(), " "));
-        solve(s, 0,0,(long)Math.pow(n,s));
+        solve(s, 0,0);
         print();
 
     }

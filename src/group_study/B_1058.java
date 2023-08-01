@@ -15,7 +15,7 @@ public class B_1058 {
         for (int i = 0; i < n; i++) {
             String s = br.readLine();
             for (int j = 0; j < n; j++) {
-                if (s.charAt(j) == 'N') friends[i][j] = 100; //50보다 큰 숫자.
+                if (s.charAt(j) == 'N') friends[i][j] = 100; //50보다 큰 숫자. 그냥 편하게 100으로 지정.
                 else friends[i][j] = 1;
             }
         }
