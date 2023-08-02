@@ -3,6 +3,7 @@ package b_05_stack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -22,37 +23,37 @@ import java.util.StringTokenizer;
  * 답안지 참고, 
  */
 public class B_17298 {
-
-	public void work() throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int N = Integer.parseInt(br.readLine());
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		
-		int[] nums = new int[N]; //정답 배열
+	static int n;
+	static int[] data, res;
+	private static void solve() {
+		/*
+		linkedList 를 쓰면 시간이 더 빨리 걸리는 반에, 메모리를 더 사용하고,
+		Stack을 쓰면 시간이 더 오래걸리지만 메모리를 덜 사용함. 미세한 차이임.
+		 */
+//        LinkedList<Integer> stack = new LinkedList<>();
 		Stack<Integer> stack = new Stack<>();
-		int[] data = new int[N]; //기존 값 보관
-		for (int i = 0; i < N; i++) {
-			int value = Integer.parseInt(st.nextToken());
-			data[i] = value;	
+		for (int i = 0; i < n; i++) {
+			while (!stack.isEmpty() && data[stack.peek()] < data[i]) {
+				res[stack.pop()] = data[i];
+			}
+			stack.push(i);
 		}
-		
-		for (int i = 0; i < N; i++) {			
-
-			while (!stack.isEmpty() && data[stack.peek()] <= data[i]) {
-				nums[stack.pop()] = data[i];
-			}		
-			
-			stack.push(i);	
-			
-		}
-		
 		while (!stack.isEmpty()) {
-			nums[stack.pop()] = -1;
+			res[stack.pop()] = -1;
 		}
-		for (int i =0; i < N; i++) {
-			sb.append(nums[i] + " ");			
-		}
+	}
+	public void work() throws NumberFormatException, IOException {
+		input();
+		solve();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i< n; i++) sb.append(res[i] + " ");
 		System.out.println(sb);
+
+	}
+	private static void input() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		n = Integer.parseInt(br.readLine());
+		data = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+		res = new int[n];
 	}
 }

@@ -18,16 +18,11 @@ public class B_1138 {
                 k++;
             }
         }
-
     }
     public void work() throws IOException {
-
         input(new BufferedReader(new InputStreamReader(System.in)));
-
         solve();
-
         for (int i = 0; i < n; i++) System.out.print(res[i] + " ");
-
     }
     private static void input(BufferedReader br) throws IOException {
         n = Integer.parseInt(br.readLine());
