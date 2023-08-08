@@ -7,14 +7,7 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-//class NGE {
-//	int index;
-//	int value;
-//	NGE (int index, int value) {
-//		this.index = index;
-//		this.value = value;
-//	}
-//}
+
 /*
  * 스택 이용
  * 골드 4
@@ -30,7 +23,7 @@ public class B_17298 {
 		linkedList 를 쓰면 시간이 더 빨리 걸리는 반에, 메모리를 더 사용하고,
 		Stack을 쓰면 시간이 더 오래걸리지만 메모리를 덜 사용함. 미세한 차이임.
 		 */
-//        LinkedList<Integer> stack = new LinkedList<>();
+//      LinkedList<Integer> stack = new LinkedList<>();
 		Stack<Integer> stack = new Stack<>();
 		for (int i = 0; i < n; i++) {
 			while (!stack.isEmpty() && data[stack.peek()] < data[i]) {

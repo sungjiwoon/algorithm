@@ -1,4 +1,32 @@
+import b_05_stack.*;
+import b_06_queue.*;
+import b_07_deque.*;
+import b_08_stack2.*;
+import b_09_bfs.*;
+import b_11_square.*;
+import b_12_backtracking.*;
+import b_13_simulation.*;
+import b_14_sort.*;
+import b_15_dp.*;
+import b_16_greedy.*;
+import b_17_math.*;
+import b_18_binarysearch.*;
+import b_19_twopointer.*;
+import b_20_hash.*;
+import b_21_binary_tree.*;
+import b_22_priority_queue.*;
 import b_23_graph.*;
+import b_24_tree.*;
+import b_24_tree_unionfind.*;
+import b_25_topology_sort.*;
+import b_26_mst.*;
+import b_27_floyd.*;
+import b_28_dijkstra.*;
+import b_40_permutation.*;
+import study.*;
+import programmers.*;
+import swexpert.*;
+import group_study.*;
 
 public class Test {
 
@@ -24,6 +52,7 @@ public class Test {
 //		B_2304 b = new B_2304();
 //		B_2841 b = new B_2841();
 //		B_9012 b = new B_9012();
+//		B_1158 b = new B_1158();
 
 		/* bfs 부분 */
 
@@ -183,7 +212,7 @@ public class Test {
 //		B_11403 b = new B_11403();
 //		B_2660 b = new B_2660();
 //		B_1043_unionfind b = new B_1043_unionfind();
-		B_1043_2 b = new B_1043_2();
+//		B_1043_2 b = new B_1043_2();
 //		B_5214 b = new B_5214();
 
 		/* 트리 */
@@ -282,6 +311,14 @@ public class Test {
 //		B_17413 b = new B_17413();
 //		B_1027_faild_stack b = new B_1027_faild_stack();
 //		B_1027 b = new B_1027();
+//		B_1051 b = new B_1051();
+//		B_1058 b = new B_1058();
+//		B_1030 b = new B_1030();
+//		B_1034 b = new B_1034();
+//		B_1101 b = new B_1101();
+//		B_1138 b = new B_1138();
+		B_2812 b = new B_2812();
+
 		b.work();
 		
 	}
