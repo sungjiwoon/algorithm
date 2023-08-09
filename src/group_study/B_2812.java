@@ -15,7 +15,7 @@ public class B_2812 {
             @Override
             public int compare(Integer o1, Integer o2) {
                 if (data[o1] == data[o2]) return o1-o2;
-                return data[o1]-data[o1];
+                return data[o2]-data[o1];
             }
         });
 
