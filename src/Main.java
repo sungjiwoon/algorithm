@@ -1,84 +1,114 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Main {
-	static int n,m;
-	static int[] parent;
-	static ArrayList<Integer>[] graph, party;
-	private static int find(int x) {
-		if (parent[x] == x) return x;
-		return parent[x] = find(parent[x]);
-	}
-	private static void union(int x, int y) {
-		int a = find(x);
-		int b = find(y);
-		if (a > b) parent[a] = b;
-		else parent[b] = a;
-	}
-	private static void reset() {
 
-		parent = new int[n+1];
-		for (int i = 1; i <= n; i++) parent[i] = i;
+public class Main
+{
+	static int n, S,T;
+	static ArrayList<Integer>[] graph;
+	static HashMap<Integer, Integer> common, course;
+	static ArrayList<Integer> res;
+	static boolean[] vis;
+	static int[][] pre;
 
-		graph = new ArrayList[n+1];
-		for (int i = 1; i <= n; i++) graph[i] = new ArrayList<Integer>();
+	private static void track_pre(int nxt, int v, int start) {
 
-		party = new ArrayList[m];
-
-	}
-	public static void main(String[] args) throws Exception {
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
-
-		reset(); //graph, party, parent reset
-
-		st = new StringTokenizer(br.readLine(), " ");
-		int k = Integer.parseInt(st.nextToken()); //진실 아는 사람의 수.
-		while (k-- > 0) {
-			int kk = Integer.parseInt(st.nextToken());
-			parent[kk] = 0;
+		while (pre[nxt][v] != start) {
+			course.put(nxt, course.get(nxt)+1);
+			course.put(v, course.get(v)+1);
+			int tmp = v;
+			v = pre[nxt][v];
+			nxt = tmp;
+			System.out.println("pre: " + nxt);
 		}
 
-		for (int i = 0; i < m; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-			party[i] = new ArrayList<>();
-			int member = Integer.parseInt(st.nextToken()); //파티에 오는 수.
+	}
+	private static void dfs(int pre_v, int v, int target, int start) {
 
-			while (member-- > 0) { //파티 맴버들
-				party[i].add(Integer.parseInt(st.nextToken()));
-			}
+		for (int nxt : graph[v]) {
+			if (vis[nxt]) continue;
+			pre[nxt][v] = pre_v;
+			System.out.println("pre["+nxt+"]["+v+"] = " + pre_v);
 
-			for (int p : party[i]) {
-				for (int q : party[i]) {
-					if (p == q) continue;
-					graph[p].add(q);
-				}
+			if (nxt == target || course.get(nxt) >= 1) {
+				track_pre(nxt, v, start);
+				return;
 			}
+			vis[v] = true;
+			dfs(v, nxt, target, start);
+
+		}
+	}
+	private static void go_to_work() {
+		//출근길 모든 길 조사.
+
+		vis = new boolean[n+1];
+		course = new HashMap<>();
+		for (int i = 1; i <= n; i++) course.put(i, 0);
+		pre = new int[n+1][n+1];
+		common = new HashMap<>();
+
+		for (int nxt : graph[S]) {
+			if (course.get(nxt) >= 1) continue;
+			//pre[nxt][S] = S;
+			dfs(S, nxt, T, S);
 		}
 
 		for (int i = 1; i <= n; i++) {
-			for (int p : graph[i]) {
-				union(i,p);
-			}
+			if (course.get(i) >= 1) common.put(i, 1);
 		}
+		System.out.println();
 
-		int ans = 0;
-		for (int i = 0; i < m; i++) {
-			boolean ok = true;
-			for (int p : party[i]) {
-				if (parent[p] == 0) {
-					ok = false;
-					break;
-				}
-			}
-			if (ok) ans++;
-		}
-
-		System.out.println(ans);
 	}
+	private static void go_to_home() {
 
+		vis = new boolean[n+1];
+		course = new HashMap<>();
+		for (int i = 1; i <= n; i++) course.put(i, 0);
+		pre = new int[n+1][n+1];
+
+		for (int nxt : graph[T]) {
+			if (course.get(nxt) >= 1) continue;
+			pre[nxt][T] = T;
+			dfs(T, nxt, S,T);
+		}
+
+		for (int i = 1; i <= n; i++) {
+			if (course.get(i) >= 1 && common.containsKey(i) && i != S && i != T) res.add(i);
+		}
+
+	}
+	public static void main(String args[]) throws IOException
+	{
+
+		input();
+		go_to_work();
+		go_to_home();
+		for (int r: res) {
+			System.out.println(r);
+		}
+
+	}
+	private static void input() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+
+		graph = new ArrayList[n+1];
+		for (int i = 1; i <= n; i++) {
+			graph[i] = new ArrayList<Integer>();
+		}
+
+		while (m-- > 0) {
+			st = new StringTokenizer(br.readLine(), " ");
+			graph[Integer.parseInt(st.nextToken())].add(Integer.parseInt(st.nextToken()));
+		}
+
+		st = new StringTokenizer(br.readLine(), " ");
+		S = Integer.parseInt(st.nextToken());
+		T = Integer.parseInt(st.nextToken());
+
+		res = new ArrayList<>();
+	}
 }
-
