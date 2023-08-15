@@ -35,6 +35,30 @@ public class B_1062 {
             }
         }
     }
+    static private void dfs_bitmask(int depth, int flag, int st) {
+        if (depth == k) {
+            int cnt = 0;
+            for (int i = 0; i < n; i++) {
+                boolean isVaild = true;
+                for (int j = 0; j < data[i].length(); j++) {
+                    int check = data[i].charAt(j) - 'a';
+                    if ((flag & (1 << check)) == 0) {
+                        //flag에 해당 글자가 없다는 뜻.
+                        isVaild = false;
+                        break;
+                    }
+                }
+                if (isVaild) cnt++;
+            }
+            res = Math.max(res, cnt);
+            return;
+        }
+        for (int i = st; i < 26; i++) {
+            if ((flag & (1 << i)) == 0) {
+                dfs_bitmask(depth+1, flag | (1 << i), i+1);
+            }
+        }
+    }
     public static void main(String[] args) throws IOException{
 
         input();
@@ -46,11 +70,21 @@ public class B_1062 {
 
         k -= 5; //antic
 
-        boolean[] vis = new boolean[26];
-        vis['n'-'a'] = vis['c'-'a'] = vis['i'-'a'] = vis['t'-'a'] = vis['a'-'a'] = true;
-        dfs(0, 0, vis);
+//        boolean[] vis = new boolean[26];
+//        vis['n'-'a'] = vis['c'-'a'] = vis['i'-'a'] = vis['t'-'a'] = vis['a'-'a'] = true;
+//        dfs(0, 0, vis);
+//
+//        System.out.println(res);
 
+        int flag = 0;
+        flag |= (1 << ('a'-'a'));
+        flag |= (1 << ('c'-'a'));
+        flag |= (1 << ('i'-'a'));
+        flag |= (1 << ('t'-'a'));
+        flag |= (1 << ('n'-'a'));
+        dfs_bitmask(0,flag,0);
         System.out.println(res);
+
 
         /*
         문제 : 가르침 (골4)
