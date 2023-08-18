@@ -23,7 +23,9 @@ public class B_2178 {
         int[] dy = {0,-1,0,1};
 
         Queue<Pair> qu = new LinkedList<>();
+
         qu.add(new Pair(1,1));
+        //int[] : [0] = x, [1] = y
         d[1][1] = 1;
 
         while (!qu.isEmpty()) {
