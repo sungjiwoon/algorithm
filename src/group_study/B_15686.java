@@ -82,13 +82,13 @@ public class B_15686 {
         2) solve_d_from_house_to_chicken() : O(치킨집의 최대갯수(13)*집의 최대갯수(250-13)) = O(13*237) = O(3081)
         3) backtracking() : 치킨집 최대 갯수 C m -> 13 C 6 = O(1716) : m이 6,7일때 가장 큼
         4) find_min_d() : O(house.size() * 6) = O(237*6) = O(1422)
-        각각의 메소드가 움직이는 것이므로 시간 복잡도는 1초를 넘기지 않는다. 최악의 경우에도 1)+2)+3)+4) < 1초
+        각각의 메소드가 움직이는 것이므로 시간 복잡도는 1초를 넘기지 않는다. 1) + 2) + 3)*4) -> 최댓값 : 1716*1422 = 약 천만
 
 
          */
 
     }
-    private static void input() {
+     private static void input() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
