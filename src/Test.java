@@ -33,9 +33,9 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-//		B_2751 b = new B_2751();
-//		B_2108 b = new B_2108();
-//		B_10808 b = new B_10808();
+//		study_alone.B_2751 b = new study_alone.B_2751();
+//		study_alone.B_2108 b = new study_alone.B_2108();
+//		study_alone.B_10808 b = new study_alone.B_10808();
 //		B_10828 b = new B_10828();
 //		B_10845 b = new B_10845();
 //		B_1874 b = new B_1874();
