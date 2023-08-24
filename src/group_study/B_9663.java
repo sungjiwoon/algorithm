@@ -6,6 +6,7 @@ public class B_9663 {
     static int n;
     static int sum = 0;
     private static void solve(int num, int[] locate) {
+
         if (num > n) {
             sum++;
             return;
@@ -20,6 +21,7 @@ public class B_9663 {
     }
 
     private static boolean is_n_queen(int[] locate, int num) {
+
         //num이 놓은 위치가 n_queen이 적절해질지 검사.
 
         /*
