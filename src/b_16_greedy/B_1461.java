@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
-// https://www.acmicpc.net/problem/1461
+
 public class B_1461 {
     static int n, m;
     static ArrayList<Integer> arr_pos, arr_neg;
