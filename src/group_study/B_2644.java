@@ -7,9 +7,10 @@ public class B_2644 {
     static int n;
     static int p1, p2;
     static ArrayList<Integer>[] graph; //가족 구성도를 나타내는 관계도
+
     private static int bfs() {
-        int[][] d = new int[n+1][n+1];
-        boolean[] vis = new boolean[n+1];
+        int[][] d = new int[n+1][n+1]; //촌수 담는 배열 d[i][j] = i와 j의 촌수.
+        boolean[] vis = new boolean[n+1]; // 방문한 정점은 다시 방문 못하게하는.
 
         Queue<Integer> qu = new LinkedList<>();
         qu.add(p1);

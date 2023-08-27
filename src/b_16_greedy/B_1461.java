@@ -11,48 +11,9 @@ public class B_1461 {
     static ArrayList<Integer> arr_pos, arr_neg;
     public static void main(String[] args) {
         input();
-        Collections.sort(arr_pos);
-        Collections.sort(arr_neg, Collections.reverseOrder());
 
-        boolean[] vis = new boolean[n];
 
-        //일단 양수 부터
-        int sum = 0;
-        int j = 0;
-        int remain = 0;
-        while (j < arr_pos.size()) {
-            int tmp = m;
-            while (tmp > 0 && j < arr_pos.size()) {
-                j++;
-                tmp--;
-            }
-            if (tmp == 0) sum += 2 * arr_pos.get(j-1);
-            if (j == arr_pos.size() && tmp > 0) {
-                remain = tmp;
-                sum += 2 * arr_pos.get(j-1);
-            }
-        }
 
-        //음수 처리
-        j = 0;
-        while (j < arr_neg.size()) {
-            int tmp = m;
-            if (remain > 0) {
-                tmp = remain;
-                remain = 0;
-            }
-            while (tmp > 0 && j < arr_neg.size()) {
-                j++;
-                tmp--;
-            }
-            if (tmp == 0) sum += -2 * arr_neg.get(j-1);
-            if (j == arr_neg.size() && tmp > 0) {
-                remain = tmp;
-                sum += -2 * arr_neg.get(j-1);
-            }
-        }
-
-        System.out.println(sum);
 
     }
     private static void input() {
