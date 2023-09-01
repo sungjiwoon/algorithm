@@ -18,13 +18,22 @@ public class B_16236 {
             this.hp = hp;
         }
     }
-    static class Fish {
+    static class Fish implements Comparable<Fish>{
         int x, y, size, d;
         Fish(int x, int y, int size, int d) {
             this.x = x;
             this.y = y;
             this.size = size;
             this.d = d;
+        }
+
+        @Override
+        public int compareTo(Fish o) {
+            //물고기 먹는 조건
+            //거리가 가장 가까울수록 -> 거리가 같다면 좌표상 위에 있을수록 -> 둘다 같다면 좌표상 왼쪽에 있을수록.
+            if (d != o.d) return d-o.d;
+            if (x != o.x) return x-o.x;
+            return y-o.y;
         }
     }
     private static int bfs(Fish f) {
@@ -58,29 +67,19 @@ public class B_16236 {
 
         //아기 상어의 위치에 따라 거리 다 재기.
 
-        Comparator<Fish> cp = (o1,o2) -> {
-            if (o1.d == o2.d) {
-                if (o1.x == o2.x) return o1.y - o2.y;
-                return o1.x - o2.x;
-            }
-            return o1.d - o2.d;
-        };
-
         while (true) {
-            PriorityQueue<Fish> qu = new PriorityQueue<>(cp);
+            PriorityQueue<Fish> qu = new PriorityQueue<>();
             for (Fish f : fishes) {
-                if (map[f.x][f.y] == 0|| f.size >= shark.size) continue;
-
+                if (map[f.x][f.y] == 0 || f.size >= shark.size) continue;
                 f.d = bfs(f);
                 //만약 도달할 수 없다면 -1 반환.
                 if (f.d != -1) qu.add(f);
-
             }
 
             if (qu.isEmpty()) return res;
 
             Fish eat = qu.poll();
-            map[eat.x][eat.y] = 0;
+            map[eat.x][eat.y] = 0; //먹었으면 0 처리
             shark.x = eat.x;
             shark.y = eat.y;
             shark.hp++;
@@ -89,9 +88,7 @@ public class B_16236 {
                 shark.size++;
                 shark.hp = 0;
             }
-
         }
-
 
     }
     public static void main(String[] args) {
