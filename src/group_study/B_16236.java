@@ -36,30 +36,32 @@ public class B_16236 {
             return y-o.y;
         }
     }
-    private static int bfs(Fish f) {
-        int[] dx = {-1,0,1,0};
-        int[] dy = {0,-1,0,1};
+    private static PriorityQueue<Fish> bfs() {
+        int[] dx = { 0, -1, 0, 1 };
+        int[] dy = { -1, 0, 1, 0 };
 
         Queue<Shark> queue = new LinkedList<>();
+        PriorityQueue<Fish> able_to_eat = new PriorityQueue<>();
+
         queue.add(shark);
         int[][] d = new int[n][n];
 
         while (!queue.isEmpty()) {
             Shark s = queue.poll();
-            if (s.x == f.x && s.y == f.y) {
-                return d[s.x][s.y];
-            }
             for (int k = 0; k < 4; k++) {
                 int xx = s.x + dx[k];
                 int yy = s.y + dy[k];
                 if (xx < 0 || yy < 0 || xx >= n || yy >= n) continue;
                 if (map[xx][yy] > shark.size || d[xx][yy] != 0) continue;
                 d[xx][yy] = d[s.x][s.y] + 1;
+                if (map[xx][yy] >= 1 && map[xx][yy] < shark.size) {
+                    able_to_eat.add(new Fish(xx,yy,map[xx][yy],d[xx][yy]));
+                }
                 queue.add(new Shark(xx,yy, shark.size, shark.hp));
             }
         }
 
-        return -1;
+        return able_to_eat;
 
     }
     private static int solve() {
@@ -68,17 +70,11 @@ public class B_16236 {
         //아기 상어의 위치에 따라 거리 다 재기.
 
         while (true) {
-            PriorityQueue<Fish> qu = new PriorityQueue<>();
-            for (Fish f : fishes) {
-                if (map[f.x][f.y] == 0 || f.size >= shark.size) continue;
-                f.d = bfs(f);
-                //만약 도달할 수 없다면 -1 반환.
-                if (f.d != -1) qu.add(f);
-            }
 
-            if (qu.isEmpty()) return res;
+            PriorityQueue<Fish> able_eat = bfs();
+            if (able_eat.isEmpty()) return res;
 
-            Fish eat = qu.poll();
+            Fish eat = able_eat.poll();
             map[eat.x][eat.y] = 0; //먹었으면 0 처리
             shark.x = eat.x;
             shark.y = eat.y;
