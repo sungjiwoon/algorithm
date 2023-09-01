@@ -47,7 +47,6 @@ public class B_14503 {
                     break;
                 }
                 clean++; //청소 돼있음.
-
             }
 
             if (clean == 4) {
