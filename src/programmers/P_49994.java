@@ -45,12 +45,33 @@ public class P_49994 {
         return res;
     }
     public static void main(String[] args) {
-        P_49994 p = new P_49994();
-        System.out.println(p.solution("ULURRDLLU"));
-        System.out.println(p.solution("LULLLLLLU"));
+//        P_49994 p = new P_49994();
+//        System.out.println(p.solution("ULURRDLLU"));
+//        System.out.println(p.solution("LULLLLLLU"));
+            System.out.println(isCorrectAnswer(" ", 0,100));
+            System.out.println(isCorrectAnswer("--", 0,100));
+            System.out.println(isCorrectAnswer(" 12", 0,100));
+            System.out.println(isCorrectAnswer("0", 0,100));
+            System.out.println(isCorrectAnswer("12", 50,100));
+            System.out.println(isCorrectAnswer("9999", 0,1000));
+        System.out.println(isCorrectAnswer("1000", 0,1000));
+    }
+        private static boolean isCorrectAnswer(String input, int start, int end) {
+            //문자열이 모두 숫자로 되어 있는지 확인.
+            int correctNum;
+            try {
+                correctNum = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+
+            if (correctNum >= start && correctNum <= end) return true;
+
+            return false;
+        }
         /*
         경로를 (x,y,nxt_x,nxt_y) 를 해쉬맵에 저장하여
         다음에도 같은 경로가 나오면 res를 추가 안하도록 함.
          */
-    }
+
 }
