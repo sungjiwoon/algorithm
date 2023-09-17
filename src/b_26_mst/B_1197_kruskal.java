@@ -24,7 +24,8 @@ public class B_1197_kruskal {
 		if (x > y) parent[x] = y;
 		else parent[y] = x;
 	}
-	public void work() throws Exception {
+
+	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
@@ -59,12 +60,12 @@ public class B_1197_kruskal {
 		//낮은 비용부터 크루스칼 알고리즘. 
 		for (int i = 0; i < e; i++) {
 			if (find(graph[i][0] - 1) != find(graph[i][1] - 1)) {
-//				System.out.println("< 선택된 간선  > ");
-//				System.out.println(Arrays.toString(graph[i]));
+				System.out.println("< 선택된 간선  > ");
+				System.out.println(Arrays.toString(graph[i]));
 				union(graph[i][0] - 1, graph[i][1] - 1);
 				cnt += graph[i][2];
-//				System.out.println("<각 노드가 가리키고 있는 부모>");
-//				System.out.println(Arrays.toString(parent) + "\n");
+				System.out.println("<각 노드가 가리키고 있는 부모>");
+				System.out.println(Arrays.toString(parent) + "\n");
 				continue;
 			}
 		}
