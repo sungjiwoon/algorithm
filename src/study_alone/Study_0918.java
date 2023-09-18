@@ -4,19 +4,37 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] nums, int target){
         int[] answer = new int[2];
-        Arrays.sort(nums);
 
-        int left = 0, right = nums.length - 1;
-        while (left < right) {
-            //two pointer // O(nlogN)
-            if (nums[left] + nums[right] > target) right--;
-            else if (nums[left] + nums[right] < target) left++;
-            else {
-                answer[0] = nums[left];
-                answer[1] = nums[right];
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int n : nums) {
+            hm.put(n, n);
+        }
+
+        for (int x : nums) {
+            int y = target - x;
+            if (hm.containsKey(y)) {
+                if (x > y) {
+                    answer[0] = y;
+                    answer[1] = x;
+                } else {
+                    answer[0] = x;
+                    answer[1] = y;
+                }
                 return answer;
             }
         }
+//        Arrays.sort(nums);
+//        int left = 0, right = nums.length - 1;
+//        while (left < right) {
+//            //two pointer // O(nlogN)
+//            if (nums[left] + nums[right] > target) right--;
+//            else if (nums[left] + nums[right] < target) left++;
+//            else {
+//                answer[0] = nums[left];
+//                answer[1] = nums[right];
+//                return answer;
+//            }
+//        }
 
         return answer;
     }
