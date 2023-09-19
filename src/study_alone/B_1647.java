@@ -37,9 +37,18 @@ public class B_1647 {
 
         return cost;
     }
+    private static int solvePrim() {
+        int cost = 0;
+
+        Arrays.sort(graph, (o1,o2) -> o1[2]-o2[2]);
+
+
+        return cost;
+    }
     public static void main(String[] args) {
         input();
-        System.out.println(solve());
+        //System.out.println(solve());
+        System.out.println(solvePrim());
     }
     private static void input() {
         try {
