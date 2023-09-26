@@ -1,9 +1,8 @@
 package algo_class;
-
 import java.util.*;
 
-//무인도 여행 (프로그래머스)
-class Solution {
+//무인도여행 (프로그래머스) : https://school.programmers.co.kr/learn/courses/30/lessons/154540
+public class Solution6_4 {
     int cnt = 0;
     int[] dr = {-1,0,1,0};
     int[] dc = {0,1,0,-1};
@@ -54,3 +53,4 @@ class Solution {
         return answer;
     }
 }
+
