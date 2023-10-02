@@ -3,6 +3,7 @@ package b_15_dp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 /*
  * 가장 긴 증가하는 부분 수열 성공
@@ -29,7 +30,7 @@ import java.util.StringTokenizer;
 4
  */
 public class B_11053 {
-	public void work() throws IOException {
+	public static void main(String[] args)  throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder(); 
 		
@@ -42,25 +43,18 @@ public class B_11053 {
 		for (int i = 1; i <= n; i++) {
 			values[i] = Integer.parseInt(st.nextToken()); 
 		}
+
+		Arrays.fill(dp, 1);
 		
-		dp[1] = 1; //dp[i] = i번째 인덱스에서 가장 긴 수열의 갯수. 
 		for (int i = 2; i <= n; i++) {
-			
-			int v = values[i];
-			dp[i] = 1; //일단 i값은 처음에는 초기화.
 			for (int j = 1; j < i; j++) {
-				if (v > values[j]) {
-					dp[i] = Math.max(dp[j]+1, dp[i]);
+				if (values[j] < values[i]) {
+					dp[i] = Math.max(dp[i], dp[j] + 1);
 				}
 			}
-				
 		}
-		int max = Integer.MIN_VALUE;
-		for (int i = 1; i <= n; i++) {
-			if (dp[i] > max) max = dp[i];
-		}
-		System.out.println(max);
-		
+
+		System.out.println(Arrays.stream(dp).max().getAsInt());
 		
 	}
 }
