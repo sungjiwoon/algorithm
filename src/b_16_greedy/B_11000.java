@@ -1,67 +1,64 @@
 package b_16_greedy;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class B_11000 {
-    static int n;
-    static Course[] courses;
-    static ArrayList<Integer> rooms;
-    static class Course {
-        int s,t;
-        Course(int s, int t) {
+    int n;
+    Class[] classes;
+    class Class implements Comparable<Class> {
+        int s, t;
+        Class(int s, int t) {
             this.s = s;
             this.t = t;
         }
-    }
-    private static int solve() {
+        @Override
+        public int compareTo(Class com) {
+            if (this.s == com.s)
+                return this.t - com.t;
+            return this.s - com.s;
+        }
 
-        Arrays.sort(courses, (o1, o2) -> {
-            if (o1.s == o2.s) return o1.t - o2.t;
-            return o1.s - o2.s;
-        });
+    }
+    private int solve() {
+        //수강신청의 마스터 김종혜 선생님에게 새로운 과제가 주어졌다.
+        //김종혜 선생님한테는 Si에 시작해서 Ti에 끝나는 N개의 수업이 주어지는데,
+        // 최소의 강의실을 사용해서 모든 수업을 가능하게 해야 한다.
+        //참고로, 수업이 끝난 직후에 다음 수업을 시작할 수 있다.
+        // (즉, Ti ≤ Sj 일 경우 i 수업과 j 수업은 같이 들을 수 있다.)
+
+        Arrays.sort(classes);
 
         PriorityQueue<Integer> qu = new PriorityQueue<>();
-        for (int i = 0; i < n; i++) {
-            if (!qu.isEmpty() && qu.peek() > courses[i].s) {
-                qu.add(courses[i].t);
-            } else {
-                qu.poll();
-                qu.add(courses[i].t);
+        //끝나는 시간을 담는 우선순위 큐 .
+        //빨리 끝나는 시간이 먼저 나온다.
+
+        for (Class c : classes) {
+            //끝나는 시간을 기준으로 계산.
+            if (qu.isEmpty()) qu.offer(c.t);
+            else {
+                if (qu.peek() <= c.s) qu.poll();
+                qu.offer(c.t);
             }
         }
 
         return qu.size();
     }
-
     public static void main(String[] args) {
-        input();
-
-        int res = solve();
-
-        System.out.println(res);
-
-        /*
-        시작시간이 가장 빠른 것부터 정렬후에,
-        끝나는시간이 가장 빠른 순부터 정렬이 가능한 우선순위 큐를 만들어 계산한다.
-        시간 복잡도 n * logN
-         */
+        B_11000 b = new B_11000();
+        b.input();
+        System.out.println(b.solve());
     }
-    private static void input() {
+    private void input() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader br =
+                    new BufferedReader(new InputStreamReader(System.in));
             n = Integer.parseInt(br.readLine());
-            courses = new Course[n];
+            classes = new Class[n];
             for (int i = 0; i < n; i++) {
-                StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-                int s = Integer.parseInt(st.nextToken());
-                int t = Integer.parseInt(st.nextToken());
-                courses[i] = new Course(s,t);
+                String[] sp = br.readLine().split(" ");
+                classes[i] = new Class(Integer.parseInt(sp[0]), Integer.parseInt(sp[1]));
             }
-            rooms = new ArrayList<>();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
     }
 }
