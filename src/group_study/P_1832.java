@@ -14,10 +14,10 @@ public class P_1832 {
     int MOD = 20170805;
     public int solution(int m, int n, int[][] cityMap) {
 
-        int[][][] dp = new int[501][501][2]; //거리 담는 배열.
+        int[][][] dp = new int[501][501][2];
 
         //dp[i][j][0] 왼쪽에서 오는 방향 Left -> Right -> j-1에서 오는 방향
-        //dp[i][j][1] 위쪽에서 오는 방향 Up -> Down -> i-1 에서 오는 방향
+        //dp[i][j][1] 위쪽에서 오는 방향 Up -> Down -> i-1 에서 오는 방국
 
         for (int j = 0; j < n; j++) {
             if (cityMap[0][j] == 1) break;
