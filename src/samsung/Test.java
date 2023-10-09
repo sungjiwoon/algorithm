@@ -32,6 +32,10 @@ public class Test {
         hm.put(new Pair(1, 3), 0);
         hm.put(new Pair(1, 3), 1);
         hm.put(new Pair(1, 3), 2);
+        hm.put(new Pair(3, 1), 3);
+
+        System.out.println(Objects.hash(1, 3));
+        System.out.println(Objects.hash(3, 1));
 
         for (Pair p : hm.keySet()) {
             System.out.println(p.toString() + ": " + hm.get(p));
