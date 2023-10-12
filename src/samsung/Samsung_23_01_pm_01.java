@@ -3,7 +3,10 @@ package samsung;
 import java.util.*;
 import java.io.*;
 
-public class Samsung_23_01_01 {
+//베이스 캠프 (골3)
+//https://www.codetree.ai/training-field/frequent-problems/problems/maze-runner/description?page=1&pageSize=20
+//23년 상반기 오후 1번
+public class Samsung_23_01_pm_01 {
     int n, m, k;
     int[][] map;
     HashMap<Pair, Integer> hasPerson;
@@ -215,7 +218,7 @@ public class Samsung_23_01_01 {
 
     public static void main(String[] args) {
        // Main m = new Main();
-        Samsung_23_01_01 m = new Samsung_23_01_01();
+        Samsung_23_01_pm_01 m = new Samsung_23_01_pm_01();
         m.input();
 
         int ans = m.solve();

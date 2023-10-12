@@ -1,8 +1,11 @@
 package samsung;
 import java.util.*;
 import java.io.*;
-
-public class Samsung_23_01_02 {
+/*
+나무 박멸 (골4)
+22년 상반기 오후 2번
+ */
+public class Samsung_22_01_pm_02 {
     int n, m, k, c;
     int[][] map, spreayMap;
     int[] dx = {-1,0,1,0}, dy = {0,-1,0,1};
@@ -177,7 +180,7 @@ public class Samsung_23_01_02 {
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         //Main m = new Main();
-        Samsung_23_01_02 m = new Samsung_23_01_02();
+        Samsung_22_01_pm_02 m = new Samsung_22_01_pm_02();
         m.input();
         m.solve();
     }

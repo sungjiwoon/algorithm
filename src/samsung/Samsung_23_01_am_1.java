@@ -2,10 +2,11 @@ package samsung;
 import java.util.*;
 import java.io.*;
 
-//포탑 터뜨리기
+//포탑 터뜨리기 (23년 상반기 오전 1번)
+//https://www.codetree.ai/training-field/frequent-problems/problems/destroy-the-turret/description?page=1&pageSize=20
 //bfs시 경로 저장하는 방법 배움
 //정말 어려웠다.
-public class Samsung_22_01_1 {
+public class Samsung_23_01_am_1 {
     int n, m, k;
     int[][] map, attackMap;
     boolean[][] stepMap;
@@ -244,7 +245,7 @@ public class Samsung_22_01_1 {
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         //Main m = new Main();
-        Samsung_22_01_1 m = new Samsung_22_01_1();
+        Samsung_23_01_am_1 m = new Samsung_23_01_am_1();
         m.input();
         m.solve();
         m.print();

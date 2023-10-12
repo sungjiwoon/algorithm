@@ -4,7 +4,13 @@ package samsung;
 import java.util.*;
 import java.io.*;
 
-public class Samsung_22_02_2 {
+/*
+코드트리 빵 (골드2)
+22년 하반기 오후 1번
+시뮬레이션, BFS
+https://www.codetree.ai/training-field/frequent-problems/problems/codetree-mon-bread/description?page=1&pageSize=20
+ */
+public class Samsung_22_02_pm_1 {
     int n, m;
     ArrayList<Pair> person;
     Queue<Pair> presentLoc = new LinkedList<>();
@@ -134,7 +140,7 @@ public class Samsung_22_02_2 {
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
 
-        Samsung_22_02_2 M = new Samsung_22_02_2();
+        Samsung_22_02_pm_1 M = new Samsung_22_02_pm_1();
         M.input();
         int ans = M.solve();
         System.out.println(ans);

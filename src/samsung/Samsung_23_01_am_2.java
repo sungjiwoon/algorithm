@@ -3,9 +3,14 @@ package samsung;
 import java.util.*;
 import java.io.*;
 
+/*
+토끼와 경주 (23년 상반기 오전 2번)
+구현구현..
+ */
+
 // 객체 분리를 잘하자...
 // 값이 자주 바뀌는 부분은 배열로 따로 빼서 id로 관리하기.
-public class Samsung_22_01_2 {
+public class Samsung_23_01_am_2 {
     int q, n, m, p;
     Rabit[] rabitList;
     HashMap<Integer, Integer> idxToId = new HashMap<>();
@@ -264,7 +269,7 @@ public class Samsung_22_01_2 {
     }
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
-        Samsung_22_01_2 m = new Samsung_22_01_2();
+        Samsung_23_01_am_2 m = new Samsung_23_01_am_2();
         m.input();
     }
     public void input() {

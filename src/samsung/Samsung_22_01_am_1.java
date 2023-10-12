@@ -1,7 +1,12 @@
 package samsung;
 import java.util.*;
 import java.io.*;
+/*
 
+술래잡기 (22년 상반기 오전 1번)
+https://www.codetree.ai/training-field/frequent-problems/problems/hide-and-seek/description?page=1&pageSize=20
+빡구현
+ */
 public class Samsung_22_01_am_1 {
     int n, m, h, k;
     int[][] map;
