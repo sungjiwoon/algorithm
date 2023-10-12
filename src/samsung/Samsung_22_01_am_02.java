@@ -200,7 +200,7 @@ public class  Samsung_22_01_am_02{
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         //Main m = new Main();
-        Samsung_22_01_am_02 m = Samsung_22_01_am_02();
+        Samsung_22_01_am_02 m = new Samsung_22_01_am_02();
         m.input();
         m.solve();
     }
