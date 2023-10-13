@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.Array;
 import java.util.*;
 
 public class Main {
@@ -99,33 +100,7 @@ public class Main {
 			//printMap();
 		}
 	}
-	public int[][] bomb(int st) {
-		int[][] tmp = {{-1}, {0}};
-		while (true) {
-			int j = st;
-			int v = monster[st];
-			if (v == 0) break;
-			while (j < n * n && monster[++j] == v);
-			int size = j - st;
-			int idx = 0;
-			if (size >= 4) {
-				tmp = new int[2][size];
-				System.out.println("D:" + st + "->" + j + ",size: " + size);
-				System.out.println("score: " + monster[st]);
-				for (int k = j; k < j + size; k++) {
-					if (k >= n * n) break;
-					tmp[0][idx++] = monster[k];
-					score += monster[k - size];
-				}
-				tmp[1][0] = j + idx - 1;
-				st = j + idx;
-			} else {
-				break;
-			}
-		}
 
-		return tmp;
-	}
 	public boolean idDelete() {
 		boolean ok = false;
 		int[] newMonster = new int[n * n + 1];
@@ -133,17 +108,20 @@ public class Main {
 		for (int i = 1; i < n * n - 4; i++) {
 			if (monster[i] == 0) break;
 
-			int[][] tmp = bomb(i);
-			if (tmp[0][0] == -1) {
+			int sum = 1;
+			ArrayList<Integer> dL = new ArrayList<>();
+			for (int j = i+1; j < n * n; j++) {
+				if (monster[j] == monster[i]) sum++;
+				else break;
+			}
+			if (sum < 4) {
 				newMonster[idx++] = monster[i];
-				continue;
+			} else {
+				ok = true;
+				score += sum * monster[i];
+				i += sum - 1;
 			}
-			for (int j = 0; j < tmp[0].length; j++) {
-				if (tmp[0][j] == 0) break;
-				newMonster[idx++] = tmp[0][j];
-			}
-			i = tmp[1][0];
-			ok = true;
+
 		}
 
 		for (int i = 0; i < n * n; i++) {
@@ -152,38 +130,7 @@ public class Main {
 
 		return ok;
 	}
-//	public boolean idDelete() {
-//		boolean ok = false;
-//		int[] newMonster = new int[n*n+1];
-//		int idx = 1;
-//		for (int i = 1; i < n*n; i++) {
-//			if (monster[i] == 0) break;
-//
-//			int j = i;
-//			while (j < n*n && monster[++j] == monster[i]);
-//			int size = j - i;
-//			if (size >= 4) {
-//				for (int k = j; k < j + size; k++) {
-//					if (k >= n*n) break;
-//					newMonster[idx++] = monster[k];
-//				}
-//				System.out.println("D:" + i + "->" + j+ ",size: " + size);
-//				System.out.println("score: " + monster[i] * size);
-//				score += monster[i] * size;
-//				i = j + size - 1;
-//				ok = true;
-//
-//			} else {
-//				newMonster[idx++] = monster[i];
-//			}
-//		}
-//
-//		for (int i = 0; i < n*n; i++) {
-//			monster[i] = newMonster[i];
-//		}
-//
-//		return ok;
-//	}
+
 
 	public void makePair() {
 		ArrayList<int[]> list = new ArrayList<>();
