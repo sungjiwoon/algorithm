@@ -1,114 +1,256 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
+public class Main {
+	int n, m;
+	int[][] map;
+	int[][] player;
+	int[][] seq;
+	int[] monster;
+	int[] dx = {0, 1, 0, -1}, dy = {1, 0, -1, 0};
+	long score = 0;
 
-public class Main
-{
-	static int n, S,T;
-	static ArrayList<Integer>[] graph;
-	static HashMap<Integer, Integer> common, course;
-	static ArrayList<Integer> res;
-	static boolean[] vis;
-	static int[][] pre;
-
-	private static void track_pre(int nxt, int v, int start) {
-
-		while (pre[nxt][v] != start) {
-			course.put(nxt, course.get(nxt)+1);
-			course.put(v, course.get(v)+1);
-			int tmp = v;
-			v = pre[nxt][v];
-			nxt = tmp;
-			System.out.println("pre: " + nxt);
+	class Pair {
+		int x, y;
+		Pair (int x, int y) {
+			this.x = x;
+			this.y = y;
 		}
-
 	}
-	private static void dfs(int pre_v, int v, int target, int start) {
 
-		for (int nxt : graph[v]) {
-			if (vis[nxt]) continue;
-			pre[nxt][v] = pre_v;
-			System.out.println("pre["+nxt+"]["+v+"] = " + pre_v);
+	public void init() {
+		//달팽이 모양으로 인덱스 부여한 seq 배열 만들기.
 
-			if (nxt == target || course.get(nxt) >= 1) {
-				track_pre(nxt, v, start);
-				return;
+		monster = new int[n*n+1];
+		seq = new int[n][n];
+		int dir = 2, mv = 1;
+		int x = n/2, y = n/2;
+		int k = 1;
+		seq[x][y] = 0;
+
+		while (k < n * n) {
+			for (int j = 0; j < mv; j++) {
+				x = x + dx[dir];
+				y = y + dy[dir];
+				if (x < 0 || y < 0 || x >= n || y>= n) break;
+				monster[k] = map[x][y];
+				seq[x][y] = k++;
 			}
-			vis[v] = true;
-			dfs(v, nxt, target, start);
-
+			dir = (dir - 1 + 4) % 4;
+			if (dir == 0 || dir == 2) mv++;
 		}
 	}
-	private static void go_to_work() {
-		//출근길 모든 길 조사.
 
-		vis = new boolean[n+1];
-		course = new HashMap<>();
-		for (int i = 1; i <= n; i++) course.put(i, 0);
-		pre = new int[n+1][n+1];
-		common = new HashMap<>();
+	public void attack(int idx) {
+		//플레이어 공격
+		int attackDir = player[idx][0];
+		int attackSize = player[idx][1];
 
-		for (int nxt : graph[S]) {
-			if (course.get(nxt) >= 1) continue;
-			//pre[nxt][S] = S;
-			dfs(S, nxt, T, S);
+		int x = n/2, y = n/2;
+
+		for (int i = 1; i <= attackSize; i++) {
+			x = x + dx[attackDir];
+			y = y + dy[attackDir];
+			if (x < 0 || y< 0 || x >= n || y >= n) break;
+			int attacked = seq[x][y];
+			if (monster[attacked] == 0) break;
+			score += monster[attacked];
+			System.out.println("kill: " + monster[attacked]);
+			monster[attacked] = -1;
 		}
-
-		for (int i = 1; i <= n; i++) {
-			if (course.get(i) >= 1) common.put(i, 1);
+	}
+	public void printMap() {
+		for (int i = 1; i < n*n; i++) {
+			System.out.print(monster[i]+"("+i+") ");
 		}
 		System.out.println();
+	}
+	public void monsterMove() {
+
+		int[] newMonster = new int[n*n+1];
+		int idx = 1;
+
+//		System.out.println("before:");
+		//printMap();
+
+		for (int i = 1; i < n*n; i++) {
+			if (monster[i] == 0) break;
+			if (monster[i] != -1) newMonster[idx++] = monster[i];
+			else if (monster[i] == -1) {
+				int j = i + 1;
+				while (monster[j] != -1 && monster[j] != 0) {
+					newMonster[idx++] = monster[j];
+					j++;
+				}
+				i = j-1;
+			}
+
+		}
+
+		for (int i = 0; i < n*n; i++) {
+			monster[i] = newMonster[i];
+		}
+
+//		System.out.println("after:");
+		printMap();
+
+		while (idDelete()) {
+			System.out.println("after2:");
+			//printMap();
+		}
+	}
+	public int[][] bomb(int st) {
+		int[][] tmp = {{-1}, {0}};
+		while (true) {
+			int j = st;
+			int v = monster[st];
+			if (v == 0) break;
+			while (j < n * n && monster[++j] == v);
+			int size = j - st;
+			int idx = 0;
+			if (size >= 4) {
+				tmp = new int[2][size];
+				System.out.println("D:" + st + "->" + j + ",size: " + size);
+				System.out.println("score: " + monster[st]);
+				for (int k = j; k < j + size; k++) {
+					if (k >= n * n) break;
+					tmp[0][idx++] = monster[k];
+					score += monster[k - size];
+				}
+				tmp[1][0] = j + idx - 1;
+				st = j + idx;
+			} else {
+				break;
+			}
+		}
+
+		return tmp;
+	}
+	public boolean idDelete() {
+		boolean ok = false;
+		int[] newMonster = new int[n * n + 1];
+		int idx = 1;
+		for (int i = 1; i < n * n - 4; i++) {
+			if (monster[i] == 0) break;
+
+			int[][] tmp = bomb(i);
+			if (tmp[0][0] == -1) {
+				newMonster[idx++] = monster[i];
+				continue;
+			}
+			for (int j = 0; j < tmp[0].length; j++) {
+				if (tmp[0][j] == 0) break;
+				newMonster[idx++] = tmp[0][j];
+			}
+			i = tmp[1][0];
+			ok = true;
+		}
+
+		for (int i = 0; i < n * n; i++) {
+			monster[i] = newMonster[i];
+		}
+
+		return ok;
+	}
+//	public boolean idDelete() {
+//		boolean ok = false;
+//		int[] newMonster = new int[n*n+1];
+//		int idx = 1;
+//		for (int i = 1; i < n*n; i++) {
+//			if (monster[i] == 0) break;
+//
+//			int j = i;
+//			while (j < n*n && monster[++j] == monster[i]);
+//			int size = j - i;
+//			if (size >= 4) {
+//				for (int k = j; k < j + size; k++) {
+//					if (k >= n*n) break;
+//					newMonster[idx++] = monster[k];
+//				}
+//				System.out.println("D:" + i + "->" + j+ ",size: " + size);
+//				System.out.println("score: " + monster[i] * size);
+//				score += monster[i] * size;
+//				i = j + size - 1;
+//				ok = true;
+//
+//			} else {
+//				newMonster[idx++] = monster[i];
+//			}
+//		}
+//
+//		for (int i = 0; i < n*n; i++) {
+//			monster[i] = newMonster[i];
+//		}
+//
+//		return ok;
+//	}
+
+	public void makePair() {
+		ArrayList<int[]> list = new ArrayList<>();
+		for (int i = 1; i < n*n; i++) {
+			if (monster[i] == 0) break;
+			int v = monster[i];
+			int j = i;
+			while (j < n*n && monster[++j] == monster[i]);
+			list.add(new int[]{j-i, v});
+			i = j - 1;
+		}
+
+		int i = 1;
+		monster = new int[n*n + 1];
+		for (int[] it : list) {
+			if (i < n*n) monster[i++] = it[0];
+			if (i < n*n) monster[i++] = it[1];
+			if (i > n*n) break;
+		}
+
+		//System.out.println("makePair():\n" + Arrays.toString(monster));
+	}
+
+	public void solve() {
+		init();
+
+		for (int i = 0; i < m; i++) {
+			//1. 플레이어 공격
+			attack(i);
+			//2. 비어있는 공간만큼 몬스터 이동.
+			//3. 이때 몬스터 4번만큼 나오면 몬스터 삭제 (반복)
+			monsterMove();
+
+			//4. 차례로 나열했을 때 같은 숫자끼리 짝을 지어줌. (갯수, 숫자의 크기)
+			//5.  삭제되는 몬스터의 번호만큼 점수 ++;
+			makePair();
+		}
+		System.out.println(score);
+
 
 	}
-	private static void go_to_home() {
-
-		vis = new boolean[n+1];
-		course = new HashMap<>();
-		for (int i = 1; i <= n; i++) course.put(i, 0);
-		pre = new int[n+1][n+1];
-
-		for (int nxt : graph[T]) {
-			if (course.get(nxt) >= 1) continue;
-			pre[nxt][T] = T;
-			dfs(T, nxt, S,T);
-		}
-
-		for (int i = 1; i <= n; i++) {
-			if (course.get(i) >= 1 && common.containsKey(i) && i != S && i != T) res.add(i);
-		}
+	public static void main(String[] args) {
+		// 여기에 코드를 작성해주세요.
+		Main m = new Main();
+		m.input();
+		m.solve();
 
 	}
-	public static void main(String args[]) throws IOException
-	{
+	public void input() {
+		try {
+			BufferedReader br =
+					new BufferedReader(new InputStreamReader(System.in));
+			String[] sp = br.readLine().split(" ");
+			n = Integer.parseInt(sp[0]);
+			m = Integer.parseInt(sp[1]);
 
-		input();
-		go_to_work();
-		go_to_home();
-		for (int r: res) {
-			System.out.println(r);
-		}
+			map = new int[n][n];
+			player = new int[m][2];
+			for (int i = 0; i < n; i++) {
+				sp = br.readLine().split(" ");
+				map[i] = Arrays.stream(sp).mapToInt(Integer::parseInt).toArray();
+			}
 
-	}
-	private static void input() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
-
-		graph = new ArrayList[n+1];
-		for (int i = 1; i <= n; i++) {
-			graph[i] = new ArrayList<Integer>();
-		}
-
-		while (m-- > 0) {
-			st = new StringTokenizer(br.readLine(), " ");
-			graph[Integer.parseInt(st.nextToken())].add(Integer.parseInt(st.nextToken()));
-		}
-
-		st = new StringTokenizer(br.readLine(), " ");
-		S = Integer.parseInt(st.nextToken());
-		T = Integer.parseInt(st.nextToken());
-
-		res = new ArrayList<>();
+			for (int i = 0; i < m; i++) {
+				sp = br.readLine().split(" ");
+				player[i] = Arrays.stream(sp).mapToInt(Integer::parseInt).toArray();
+			}
+		} catch (Exception e) {}
 	}
 }
