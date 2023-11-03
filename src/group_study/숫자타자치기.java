@@ -7,14 +7,17 @@ import java.util.*;
  * BFS 생각했는데 통과를 못한다..
  */
 class 숫자타자치기 {
+    int n = 0;
+    int res = Integer.MAX_VALUE;
     final int score1 = 1, score2 = 2, score3 = 3;
     int[] dx = {-1,0,1,0}, dy = {0,-1,0,1};
     int[] dx2 = {-1,-1,1,1}, dy2 = {-1,1,-1,1};
+
     int[][] map = {
             {1,2,3},{4,5,6},{7,8,9},{-1,0,-1}
     };
+
     int[][][] totalD = new int[4][3][10];
-    Pair left, right;
     HashMap<Integer, Integer> hX = new HashMap<>();
     HashMap<Integer, Integer> hY = new HashMap<>();
 
@@ -29,16 +32,8 @@ class 숫자타자치기 {
     public boolean isRange(int x, int y) {
         return x >= 0 && y >= 0 && x < 4 && y < 3;
     }
-    public boolean isNumberPad(int x, int y) {
-        return map[x][y] != -1 ? true : false;
-    }
 
-    public boolean isNotOther(Pair other, int x, int y) {
-        if (other.x == x && other.y == y) return false;
-        return true;
-    }
-
-    public int bfs(Pair loc, int goal, Pair other) {
+    public int bfs(Pair loc, int goal) {
         if (goal == map[loc.x][loc.y]) return score1;
 
         int gx = hX.get(goal);
@@ -61,7 +56,7 @@ class 숫자타자치기 {
             //1. 상하좌우 먼저 조사.
             for (int k = 0; k < 4; k++) {
                 int nx = x + dx[k], ny = y + dy[k];
-                if (isRange(nx, ny) && isNotOther(other, nx, ny)) {
+                if (isRange(nx, ny)) {
                     if (d[nx][ny] <= d[x][y] + score2) continue;
                     d[nx][ny] = d[x][y] + score2;
                     qu.add(new Pair(nx, ny));
@@ -71,7 +66,7 @@ class 숫자타자치기 {
             //2. 대각선 조사
             for (int k = 0; k < 4; k++) {
                 int nx = x + dx2[k], ny = y + dy2[k];
-                if (isRange(nx, ny) && isNotOther(other, nx, ny)) {
+                if (isRange(nx, ny)) {
                     if (d[nx][ny] <= d[x][y] + score3) continue;
                     d[nx][ny] = d[x][y] + score3;
                     qu.add(new Pair(nx, ny));
@@ -83,24 +78,34 @@ class 숫자타자치기 {
         return d[gx][gy];
 
     }
+
+    public void dfs(int depth, char[] nums, int sum, Pair left, Pair right) {
+        if (depth == n) {
+            res = Math.min(sum, res);
+            return;
+        }
+        char c = nums[depth];
+        int goal = c - '0';
+
+        if (map[left.x][left.y] == goal || map[right.x][right.y] == goal) {
+            dfs(depth + 1, nums, sum + score1, left, right);
+        } else {
+            int leftSum = totalD[left.x][left.y][goal];
+            int rightSum = totalD[right.x][right.y][goal];
+            dfs(depth + 1, nums, sum + leftSum, new Pair(hX.get(goal), hY.get(goal)), right);
+            dfs(depth + 1, nums, sum + rightSum, left, new Pair(hX.get(goal), hY.get(goal)));
+        }
+
+    }
+
     public int solution(String numbers) {
         int answer = 0;
         init();
+        n = numbers.length();
 
-        for (char c : numbers.toCharArray()) {
-            int goal = c - '0';
-            int leftSum = bfs(left, goal, right);
-            int rightSum = bfs(right, goal, left);
-            if (leftSum <= rightSum) {
-                left = new Pair(hX.get(goal), hY.get(goal));
-                answer += leftSum;
-            } else {
-                right = new Pair(hX.get(goal), hY.get(goal));
-                answer += rightSum;
-            }
-        }
-
-        return answer;
+        dfs(0, numbers.toCharArray(), 0,
+                new Pair(hX.get(4), hY.get(4)), new Pair(hX.get(6), hY.get(6)));
+        return res;
     }
 
     public void init() {
@@ -113,9 +118,14 @@ class 숫자타자치기 {
             }
         }
 
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k <= 9; k++) {
+                    totalD[i][j][k] = bfs(new Pair(i, j), k);
+                }
+            }
+        }
 
-        left = new Pair(hX.get(4), hY.get(4));
-        right = new Pair(hX.get(6), hY.get(6));
     }
 }
 
