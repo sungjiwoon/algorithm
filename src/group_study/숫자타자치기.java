@@ -7,9 +7,9 @@ import java.util.*;
  * BFS 생각했는데 통과를 못한다..
  */
 class 숫자타자치기 {
-    int n = 0;
-    int res = Integer.MAX_VALUE;
+
     final int score1 = 1, score2 = 2, score3 = 3;
+
     int[] dx = {-1,0,1,0}, dy = {0,-1,0,1};
     int[] dx2 = {-1,-1,1,1}, dy2 = {-1,1,-1,1};
 
@@ -17,7 +17,24 @@ class 숫자타자치기 {
             {1,2,3},{4,5,6},{7,8,9},{-1,0,-1}
     };
 
-    int[][][] totalD = new int[4][3][10];
+    int[][][] dp;
+    char[] nums;
+    int n = 0;
+
+    int[][] totalD = new int[10][10];
+    // int[][] cost = {
+    //     {1, 7, 6, 7, 5, 4, 5, 3, 2, 3},
+    //     {7, 1, 2, 4, 2, 3, 5, 4, 5, 6},
+    //     {6, 2, 1, 2, 3, 2, 3, 5, 4, 5},
+    //     {7, 4, 2, 1, 5, 3, 2, 6, 5, 4},
+    //     {5, 2, 3, 5, 1, 2, 4, 2, 3, 5},
+    //     {4, 3, 2, 3, 2, 1, 2, 3, 2, 3},
+    //     {5, 5, 3, 2, 4, 2, 1, 5, 3, 2},
+    //     {3, 4, 5, 6, 2, 3, 5, 1, 2, 4},
+    //     {2, 5, 4, 5, 3, 2, 3, 2, 1, 2},
+    //     {3, 6, 5, 4, 5, 3, 2, 4, 2, 1}
+    // };
+
     HashMap<Integer, Integer> hX = new HashMap<>();
     HashMap<Integer, Integer> hY = new HashMap<>();
 
@@ -47,6 +64,7 @@ class 숫자타자치기 {
         for (int i = 0; i < 4; i++) {
             Arrays.fill(d[i], 100);
         }
+
         d[loc.x][loc.y] = 0;
 
         while (!qu.isEmpty()) {
@@ -74,38 +92,50 @@ class 숫자타자치기 {
             }
         }
 
-
         return d[gx][gy];
 
     }
 
-    public void dfs(int depth, char[] nums, int sum, Pair left, Pair right) {
-        if (depth == n) {
-            res = Math.min(sum, res);
-            return;
+    public int dfs(int idx, int L, int R) {
+        if (idx == n) {
+            return 0;
         }
-        char c = nums[depth];
+
+        if (dp[idx][L][R] != -1) {
+            return dp[idx][L][R];
+        }
+
+        char c = nums[idx];
         int goal = c - '0';
 
-        if (map[left.x][left.y] == goal || map[right.x][right.y] == goal) {
-            dfs(depth + 1, nums, sum + score1, left, right);
-        } else {
-            int leftSum = totalD[left.x][left.y][goal];
-            int rightSum = totalD[right.x][right.y][goal];
-            dfs(depth + 1, nums, sum + leftSum, new Pair(hX.get(goal), hY.get(goal)), right);
-            dfs(depth + 1, nums, sum + rightSum, left, new Pair(hX.get(goal), hY.get(goal)));
+        int res = Integer.MAX_VALUE;
+
+        //왼손움직임.
+        if (goal != R) {
+            res = Math.min(dfs(idx+1, goal, R) + totalD[L][goal], res);
         }
+
+        //오른손 움직임.
+        if (goal != L) {
+            res = Math.min(dfs(idx+1, L, goal) + totalD[R][goal], res);
+        }
+
+        return dp[idx][L][R] = res;
 
     }
 
     public int solution(String numbers) {
-        int answer = 0;
         init();
         n = numbers.length();
+        dp = new int[n+1][10][10];
+        nums = numbers.toCharArray();
 
-        dfs(0, numbers.toCharArray(), 0,
-                new Pair(hX.get(4), hY.get(4)), new Pair(hX.get(6), hY.get(6)));
-        return res;
+        for (int i = 0; i < n+1; i++) {
+            for (int j = 0; j < 10; j++) {
+                Arrays.fill(dp[i][j], -1);
+            }
+        }
+        return dfs(0, 4, 6);
     }
 
     public void init() {
@@ -121,11 +151,11 @@ class 숫자타자치기 {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k <= 9; k++) {
-                    totalD[i][j][k] = bfs(new Pair(i, j), k);
+                    if (map[i][j] == -1) continue;
+                    totalD[map[i][j]][k] = bfs(new Pair(i, j), k);
                 }
             }
         }
-
     }
 }
 
