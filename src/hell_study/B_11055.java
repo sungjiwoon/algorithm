@@ -13,7 +13,7 @@ public class B_11055 {
                 .mapToInt(Integer::parseInt).toArray();
 
         int[] dp = new int[n];
-        int max = 0;
+        int max = input[0];
         dp[0] = input[0];
 
         for (int i = 1; i < n; i++) {
