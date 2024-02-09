@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class B_9375 {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
         StringBuffer sb = new StringBuffer();
@@ -30,6 +30,7 @@ public class B_9375 {
                 res *= map.get(key) + 1;
             }
 
+            // 알몸인 경우 -1
             sb.append(res - 1).append("\n");
         }
         System.out.println(sb);
