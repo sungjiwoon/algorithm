@@ -19,6 +19,7 @@ public class B_18870 {
         int n = Integer.parseInt(br.readLine());
 
         int[] input = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
         Map<Integer, Integer> idxMap = new HashMap<>();
 
         Set<Integer> set = new TreeSet<>(); //input 의 데이터를 모두 넣으면 O(NlogN)
