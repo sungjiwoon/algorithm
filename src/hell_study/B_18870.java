@@ -12,7 +12,7 @@ public class B_18870 {
     // 중복되지 않는 값이 담긴 배열의 정렬이 정답
     // 중복되지 않는다 -> set 이용. 정렬 필요 -> 매번 정렬해주는 treeSet 활용.
     // log 2 (1,000,000) => 약 20
-    // 시간 max -> 1,000,000 * 20 = 200,000,000 (2억)
+    // 시간 max -> 1,000,000 * 20 = 200,000,000 (2억) -> 2초 예상
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,16 +27,16 @@ public class B_18870 {
             set.add(i); // logN
         }
 
-        // treeSet -> arr 변환.
+        // treeSet -> arr 변환. // N번
         int[] sortArr = Arrays.stream(set.toArray()).mapToInt(it -> (int) it).toArray();
 
         int idx = 0;
-        for (int val : sortArr) {
+        for (int val : sortArr) { // N번
             idxMap.put(val, idx++);
         }
 
-        StringBuffer sb = new StringBuffer(); //표준 입출력 사용하면 시간 초과남.
-        for (int i = 0; i < n; i++) {
+        StringBuffer sb = new StringBuffer(); // 표준 입출력 사용하면 시간 초과남.
+        for (int i = 0; i < n; i++) { // N번
             sb.append(idxMap.get(input[i]) + " ");
         }
         System.out.println(sb);
