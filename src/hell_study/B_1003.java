@@ -1,7 +1,6 @@
 package hell_study;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * 24-02-13 화 피보나치 함수 DP
@@ -22,11 +21,13 @@ public class B_1003 {
 
         StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         int T = Integer.parseInt(br.readLine());
         for (int tc = 0; tc < T; tc++) {
             int n = Integer.parseInt(br.readLine());
             sb.append(dp[n][0] + " " + dp[n][1]).append("\n");
         }
+
         System.out.println(sb);
     }
 }
