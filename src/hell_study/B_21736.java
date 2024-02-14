@@ -29,7 +29,7 @@ public class B_21736 {
         int[][] vis = new int[n][m];
         int res = 0;
 
-        Queue<Pair> qu = new LinkedList<>();
+        Deque<Pair> qu = new LinkedList<>();
         qu.add(init());
 
         // BFS 구간
