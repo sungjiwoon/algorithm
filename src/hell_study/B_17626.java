@@ -11,11 +11,29 @@ public class B_17626 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        int[] dp = new int[n + 1];
+        Map<Integer, Boolean> map = new HashMap<>();
+
+        for (int i = 1; i * i <= 50000; i++) {
+            map.put(i * i, true);
+        }
+
+        int[] dp = new int[50001];
         dp[1] = 1;
         dp[2] = 2;
         dp[3] = 3;
-        dp[4] = 1;
+
+        int near = 1;
+        for (int i = 4; i <= n; i++) {
+            if (map.containsKey(i)) {
+                near = i;
+            }
+            dp[i] = 1 + dp[i - near];
+//            System.out.println(i + ": " + dp[i]);
+        }
+
+        System.out.println(dp[n]);
+
+
 
         // 26 => 25 + 1 (2)
 
