@@ -2,111 +2,55 @@ package b_13_simulation;
 
 import java.io.*;
 import java.util.*;
-/*
- * ·Îº¿ Ã»¼Ò±â ¼º°ø (°ñµå 5)
- 
-	½Ã°£ Á¦ÇÑ	¸Ş¸ğ¸® Á¦ÇÑ	Á¦Ãâ	Á¤´ä	¸ÂÈù »ç¶÷	Á¤´ä ºñÀ²
-	2 ÃÊ	512 MB	46306	25207	16897	53.747%
-	¹®Á¦
-	·Îº¿ Ã»¼Ò±â°¡ ÁÖ¾îÁ³À» ¶§, Ã»¼ÒÇÏ´Â ¿µ¿ªÀÇ °³¼ö¸¦ ±¸ÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À.
-	
-	·Îº¿ Ã»¼Ò±â°¡ ÀÖ´Â Àå¼Ò´Â N¡¿M Å©±âÀÇ Á÷»ç°¢ÇüÀ¸·Î ³ªÅ¸³¾ ¼ö ÀÖÀ¸¸ç, 1¡¿1Å©±âÀÇ Á¤»ç°¢Çü Ä­À¸·Î ³ª´©¾îÁ® ÀÖ´Ù. °¢°¢ÀÇ Ä­Àº º® ¶Ç´Â ºó Ä­ÀÌ´Ù. Ã»¼Ò±â´Â ¹Ù¶óº¸´Â ¹æÇâÀÌ ÀÖÀ¸¸ç, ÀÌ ¹æÇâÀº µ¿, ¼­, ³², ºÏÁß ÇÏ³ªÀÌ´Ù. ÁöµµÀÇ °¢ Ä­Àº (r, c)·Î ³ªÅ¸³¾ ¼ö ÀÖ°í, rÀº ºÏÂÊÀ¸·ÎºÎÅÍ ¶³¾îÁø Ä­ÀÇ °³¼ö, c´Â ¼­ÂÊÀ¸·Î ºÎÅÍ ¶³¾îÁø Ä­ÀÇ °³¼öÀÌ´Ù.
-	
-	·Îº¿ Ã»¼Ò±â´Â ´ÙÀ½°ú °°ÀÌ ÀÛµ¿ÇÑ´Ù.
-	
-	ÇöÀç À§Ä¡¸¦ Ã»¼ÒÇÑ´Ù.
-	ÇöÀç À§Ä¡¿¡¼­ ÇöÀç ¹æÇâÀ» ±âÁØÀ¸·Î ¿ŞÂÊ¹æÇâºÎÅÍ Â÷·Ê´ë·Î Å½»öÀ» ÁøÇàÇÑ´Ù.
-	¿ŞÂÊ ¹æÇâ¿¡ ¾ÆÁ÷ Ã»¼ÒÇÏÁö ¾ÊÀº °ø°£ÀÌ Á¸ÀçÇÑ´Ù¸é, ±× ¹æÇâÀ¸·Î È¸ÀüÇÑ ´ÙÀ½ ÇÑ Ä­À» ÀüÁøÇÏ°í 1¹øºÎÅÍ ÁøÇàÇÑ´Ù.
-	¿ŞÂÊ ¹æÇâ¿¡ Ã»¼ÒÇÒ °ø°£ÀÌ ¾ø´Ù¸é, ±× ¹æÇâÀ¸·Î È¸ÀüÇÏ°í 2¹øÀ¸·Î µ¹¾Æ°£´Ù.
-	³× ¹æÇâ ¸ğµÎ Ã»¼Ò°¡ ÀÌ¹Ì µÇ¾îÀÖ°Å³ª º®ÀÎ °æ¿ì¿¡´Â, ¹Ù¶óº¸´Â ¹æÇâÀ» À¯ÁöÇÑ Ã¤·Î ÇÑ Ä­ ÈÄÁøÀ» ÇÏ°í 2¹øÀ¸·Î µ¹¾Æ°£´Ù.
-	³× ¹æÇâ ¸ğµÎ Ã»¼Ò°¡ ÀÌ¹Ì µÇ¾îÀÖ°Å³ª º®ÀÌ¸é¼­, µÚÂÊ ¹æÇâÀÌ º®ÀÌ¶ó ÈÄÁøµµ ÇÒ ¼ö ¾ø´Â °æ¿ì¿¡´Â ÀÛµ¿À» ¸ØÃá´Ù.
-	·Îº¿ Ã»¼Ò±â´Â ÀÌ¹Ì Ã»¼ÒµÇ¾îÀÖ´Â Ä­À» ¶Ç Ã»¼ÒÇÏÁö ¾ÊÀ¸¸ç, º®À» Åë°úÇÒ ¼ö ¾ø´Ù.
-	
-	ÀÔ·Â
-	Ã¹Â° ÁÙ¿¡ ¼¼·Î Å©±â N°ú °¡·Î Å©±â MÀÌ ÁÖ¾îÁø´Ù. (3 ¡Â N, M ¡Â 50)
-	
-	µÑÂ° ÁÙ¿¡ ·Îº¿ Ã»¼Ò±â°¡ ÀÖ´Â Ä­ÀÇ ÁÂÇ¥ (r, c)¿Í ¹Ù¶óº¸´Â ¹æÇâ d°¡ ÁÖ¾îÁø´Ù. d°¡ 0ÀÎ °æ¿ì¿¡´Â ºÏÂÊÀ», 1ÀÎ °æ¿ì¿¡´Â µ¿ÂÊÀ», 2ÀÎ °æ¿ì¿¡´Â ³²ÂÊÀ», 3ÀÎ °æ¿ì¿¡´Â ¼­ÂÊÀ» ¹Ù¶óº¸°í ÀÖ´Â °ÍÀÌ´Ù.
-	
-	¼ÂÂ° ÁÙºÎÅÍ N°³ÀÇ ÁÙ¿¡ Àå¼ÒÀÇ »óÅÂ°¡ ºÏÂÊºÎÅÍ ³²ÂÊ ¼ø¼­´ë·Î, °¢ ÁÙÀº ¼­ÂÊºÎÅÍ µ¿ÂÊ ¼ø¼­´ë·Î ÁÖ¾îÁø´Ù. ºó Ä­Àº 0, º®Àº 1·Î ÁÖ¾îÁø´Ù. ÁöµµÀÇ Ã¹ Çà, ¸¶Áö¸· Çà, Ã¹ ¿­, ¸¶Áö¸· ¿­¿¡ ÀÖ´Â ¸ğµç Ä­Àº º®ÀÌ´Ù.
-	
-	·Îº¿ Ã»¼Ò±â°¡ ÀÖ´Â Ä­ÀÇ »óÅÂ´Â Ç×»ó ºó Ä­ÀÌ´Ù.
-	
-	Ãâ·Â
-	·Îº¿ Ã»¼Ò±â°¡ Ã»¼ÒÇÏ´Â Ä­ÀÇ °³¼ö¸¦ Ãâ·ÂÇÑ´Ù.
-	
-	¿¹Á¦ ÀÔ·Â 1 
-	3 3
-	1 1 0
-	1 1 1
-	1 0 1
-	1 1 1
-	¿¹Á¦ Ãâ·Â 1 
-	1
- */
+
+/** 240223 ë°±ì¤€ 14503 ë¡œë´‡ì²­ì†Œê¸° ê³¨5 êµ¬í˜„ */
+
 public class B_14503 {
-	public void work() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder(); 
-		
-		/* ¼±¾ğ ¹× ÃÊ±âÈ­ ºÎºĞ */
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
-		st = new StringTokenizer(br.readLine(), " ");
-		int r = Integer.parseInt(st.nextToken());
-		int c = Integer.parseInt(st.nextToken());
-		int dir = Integer.parseInt(st.nextToken());
-		
-		int[][] map = new int[51][51];
-		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-			for (int j = 0; j < m; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-			}
+	static int n, m;
+	static int r, c, d;
+	static int[][] map;
+	static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
+	static int[] dr = {-1, 0, 1, 0}, dc = {0, 1, 0, -1};
+	static final int EMPTY = 0, WALL = 1, CLEAN = 2;
+
+	class Pair {
+		int r, c;
+		Pair(int r, int c) {
+			this.r = r;
+			this.c = c;
 		}
-		int[] dx = {-1,0,1,0};
-		int[] dy = {0,1,0,-1};
-		
-		// ½ÃÀÛ! 
+	}
+	private static int solve() {
+		int res = 0;
+
 		Queue<Pair> qu = new LinkedList<>();
-		qu.offer(new Pair(r, c));
-		
-		while (!qu.isEmpty()) {
-			Pair p = qu.poll();
-			map[p.X][p.Y] = 2; //Ã»¼Ò = 2
-			int clean = 0;
-			int orl = dir; //¿ø·¡ dir ÀúÀå. 
-			for (int k = 0; k < 4; k++) {
-				dir = ( dir + 3 ) % 4; //¹Ù¶óº¸´Â ¹æÇâÀÇ ¿ŞÂÊ ¹æÇâ 
-				int xx = p.X + dx[dir];
-				int yy = p.Y + dy[dir];
-				if (xx < 0 || yy < 0 || xx >= n || yy >= m) continue;
-				if (map[xx][yy] < 1 ) { //Ã»¼Ò°¡ ¾È µÇ¾îÀÖÀ¸¸é
-					qu.offer(new Pair(xx, yy));
-					break;
-				}
-				clean++;
+
+		return res;
+	}
+
+	public static void main(String[] args) {
+		input();
+		System.out.println(solve());
+	}
+
+	private static void input() {
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			int[] tmp = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+			n = tmp[0];
+			m = tmp[1];
+
+			tmp = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+			r = tmp[0];
+			c = tmp[1];
+			d = tmp[2];
+
+			map = new int[n][m];
+			for (int i = 0; i < n; i++) {
+				map[i] = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 			}
-			if (clean == 4) {
-				int rev = (orl + 2) % 4; //ÈÄÁø ¹æÇâ 
-				int xx = p.X + dx[rev];
-				int yy = p.Y + dy[rev];
-				if (xx < 0 || yy < 0 || xx >= n || yy >= m) break;
-				if (map[xx][yy] != 1) {
-					qu.offer(new Pair(xx, yy));
-				} else {
-					break;
-				}
-			}
-		}
-		int cnt = 0; //Ã»¼ÒÇÏ´Â Ä­ÀÇ °¹¼ö 
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				if (map[i][j] == 2) cnt++;
-			}
-		}
-		System.out.println(cnt);
-		
-		
+
+		} catch (Exception e) {}
+
 	}
 }
