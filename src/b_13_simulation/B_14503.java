@@ -36,7 +36,7 @@ public class B_14503 {
 				int nc = p.c + dc[k];
 				if (!isRange(nr, nc)) continue;
 				if (map[nr][nc] == EMPTY) {
-					// 3번 청소되지 않는 빈칸이 있는 경우
+				// 3번 청소되지 않는 빈칸이 있는 경우
 					isClean = false;
 					break;
 				}
