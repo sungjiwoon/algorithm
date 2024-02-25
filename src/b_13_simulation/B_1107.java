@@ -58,8 +58,7 @@ public class B_1107 {
             range++;
 
         }
-
-        System.out.println("near : " + near + ", not100 : " + not100);
+        System.out.println(near + " not100: " + not100);
         int len = not100 ? String.valueOf(near).length() : 0;
         int res = Math.abs(near - n) + len;
         return res;
