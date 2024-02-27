@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.*;
 /** 240226 백준 A->B BFS, DFS, 그래프 탐색 */
 public class B_16953 {
-
-    private static void dfs(long num, long b, Map<Long, Integer> vis) {
+    static Map<Long, Integer> vis = new HashMap<>();
+    private static void dfs(long num, long b) {
         if (num > b) {
             return;
         }
@@ -13,15 +13,15 @@ public class B_16953 {
         // * 2를 한다.
         long nxt = num * 2;
         if (nxt <= b && !vis.containsKey(nxt)) {
-            vis.put(nxt, vis.get(num + 1));
-            dfs(nxt, b, vis);
+            vis.put(nxt, vis.get(num) + 1);
+            dfs(nxt, b);
         }
 
         // 끝자리에 1을 더한다.
         nxt = num * 10 + 1;
         if (nxt <= b && !vis.containsKey(nxt)) {
-            vis.put(nxt, vis.get(num + 1));
-            dfs(nxt, b, vis);
+            vis.put(nxt, vis.get(num) + 1);
+            dfs(nxt, b);
         }
     }
 
@@ -31,9 +31,8 @@ public class B_16953 {
         long a = Integer.parseInt(input[0]);
         long b = Integer.parseInt(input[1]);
 
-        Map<Long, Integer> vis = new HashMap<>();
         vis.put(a, 0);
-        dfs(a, b, vis);
+        dfs(a, b);
 //        vis.put(a, 0);
 //
 //        // bfs
