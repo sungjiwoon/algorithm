@@ -2,7 +2,9 @@ package hell_study;
 
 import java.io.*;
 import java.util.*;
+
 /** 240227 백준 6593 상범 빌딩 BFS 응용 */
+
 public class B_6593 {
     int L, R, C;
     Pair st;
