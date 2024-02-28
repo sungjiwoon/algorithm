@@ -8,7 +8,6 @@ public class B_2805 {
     int n, m;
     long[] trees;
     Map<Long, Boolean> vis = new HashMap<>();
-    long maxLen;
     long res = 0;
 
     private void solve(long st, long en) {
