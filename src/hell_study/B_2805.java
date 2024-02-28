@@ -3,7 +3,7 @@ package hell_study;
 import java.io.*;
 import java.util.*;
 
-/** 240228 백준 나무자르기 이분탐색 */
+/** 240228 백준 나무자르기 실버 2 이분탐색 */
 public class B_2805 {
     int n, m;
     long[] trees;
