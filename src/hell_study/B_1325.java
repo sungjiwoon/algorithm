@@ -40,20 +40,26 @@ public class B_1325 {
         }
 
         // 1번부터 N번까지 search
+
+        Map<Integer, List<Integer>> resMap = new HashMap<>();
+        int max = N + 1;
+
         for (int i=1; i<N+1; i++) {
             isVisited = new boolean[N+1];
             DFS(i); // 메모리↓ 시간↑
 
+            List<Integer> get = resMap.getOrDefault(cntArr[i], new ArrayList<>());
+            get.add(i);
+            resMap.put(cntArr[i], get);
+            max = Math.min(max, cntArr[i]);
+
         }
 
-        // 해킹할 수 있는 최댓값 찾기
-        for (int i=1; i<N+1; i++) {
-            if (max<cntArr[i]) max = cntArr[i];
+        List<Integer> maxList = resMap.get(max);
+        Collections.sort(maxList);
+        for (int x : maxList) {
+            System.out.print(x + " ");
         }
-
-        // 최댓값인 컴퓨터 출력
-        for (int i=1; i<N+1; i++) if (max == cntArr[i]) System.out.print(i+" ");
-
     }
 
 }
