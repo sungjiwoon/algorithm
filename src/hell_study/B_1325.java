@@ -6,45 +6,39 @@ import java.util.*;
 public class B_1325 {
     static int n;
     static int[] cnt;
+    static boolean[] vis;
     static List<Integer>[] graph;
 
-    private static int dfs(int idx) {
+    private static void dfs(int idx) {
+        vis[idx] = true;
 
         // idx 에 연결된 컴퓨터들을 찾는다.
         for (int nxt : graph[idx]) {
-            if (cnt[nxt] != 0) {
-                // 이미 방문한 정점이라면 합해준다.
-                cnt[idx] += cnt[nxt] + 1;
+            if (vis[nxt]) {
                 continue;
             }
-
-            if (graph[nxt].size() == 0) {
-                cnt[idx]++;
-            } else {
-                cnt[idx] += dfs(nxt) + 1;
-            }
-
+            cnt[idx]++;
+            dfs(nxt);
 //            System.out.println(String.format("nxt : %d, cnt[%d] = %d", nxt, idx, cnt[idx]));
         }
-
-        return cnt[idx];
     }
 
     public static void main(String[] args) throws Exception {
         input();
 
         Map<Integer, List<Integer>> resMap = new HashMap<>();
-        int max = 0;
+        int max = n + 1;
 
         for (int i = 1; i <= n; i++) {
-            if (cnt[i] == 0) {
-                cnt[i] = dfs(i);
+            vis = new boolean[n+1];
+            dfs(i);
 
-            }
+            System.out.println(String.format("cnt[%d] = %d", i, cnt[i]));
+
             List<Integer> get = resMap.getOrDefault(cnt[i], new ArrayList<>());
             get.add(i);
             resMap.put(cnt[i], get);
-            max = Math.max(max, cnt[i]);
+            max = Math.min(max, cnt[i]);
         }
 
         List<Integer> maxList = resMap.get(max);
@@ -69,9 +63,10 @@ public class B_1325 {
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            graph[b].add(a);
+            graph[a].add(b);
         }
 
         cnt = new int[n+1];
+        vis = new boolean[n+1];
     }
 }
