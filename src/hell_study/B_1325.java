@@ -4,69 +4,56 @@ import java.io.*;
 import java.util.*;
 /** 240312 백준 1325 효율적인 해킹 DFS */
 public class B_1325 {
-    static int n;
-    static int[] cnt;
-    static boolean[] vis;
-    static List<Integer>[] graph;
+    static int N, M;
+    static ArrayList <Integer>[] arr;
+    static boolean isVisited[];
+    static int max;
+    static int cntArr[];
 
-    private static void dfs(int idx) {
-        vis[idx] = true;
-
-        // idx 에 연결된 컴퓨터들을 찾는다.
-        for (int nxt : graph[idx]) {
-            if (vis[nxt]) {
-                continue;
-            }
-            cnt[idx]++;
-            dfs(nxt);
-//            System.out.println(String.format("nxt : %d, cnt[%d] = %d", nxt, idx, cnt[idx]));
+    static void DFS(int start) {
+        isVisited[start] = true;
+        for (int i : arr[start]) {
+            if (isVisited[i]) continue;
+            cntArr[i]++; // i가 해킹할 수 있는 숫자 증가
+            DFS(i);
         }
     }
 
     public static void main(String[] args) throws Exception {
-        input();
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
 
-        Map<Integer, List<Integer>> resMap = new HashMap<>();
-        int max = n + 1;
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        for (int i = 1; i <= n; i++) {
-            vis = new boolean[n+1];
-            dfs(i);
+        isVisited = new boolean[N+1];
+        cntArr = new int[N+1];
 
-            System.out.println(String.format("cnt[%d] = %d", i, cnt[i]));
-
-            List<Integer> get = resMap.getOrDefault(cnt[i], new ArrayList<>());
-            get.add(i);
-            resMap.put(cnt[i], get);
-            max = Math.min(max, cnt[i]);
-        }
-
-        List<Integer> maxList = resMap.get(max);
-        Collections.sort(maxList);
-        for (int x : maxList) {
-            System.out.print(x + " ");
-        }
-
-    }
-
-    private static void input() throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-
-        graph = new ArrayList[n + 1];
-        for (int i = 1; i <= n; i++)
-            graph[i] = new ArrayList<>();
-
-        for (int i = 0; i < m; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
+        // 신뢰 관계 입력
+        arr = new ArrayList[N+1];
+        for (int i=0; i<N+1; i++) arr[i] = new ArrayList <Integer>();
+        for (int i=0; i<M; i++) {
+            st = new StringTokenizer(bf.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            graph[a].add(b);
+            arr[a].add(b); // a가 b를 신뢰, a는 b에게 해킹 당할 수 있음
         }
 
-        cnt = new int[n+1];
-        vis = new boolean[n+1];
+        // 1번부터 N번까지 search
+        for (int i=1; i<N+1; i++) {
+            isVisited = new boolean[N+1];
+            DFS(i); // 메모리↓ 시간↑
+
+        }
+
+        // 해킹할 수 있는 최댓값 찾기
+        for (int i=1; i<N+1; i++) {
+            if (max<cntArr[i]) max = cntArr[i];
+        }
+
+        // 최댓값인 컴퓨터 출력
+        for (int i=1; i<N+1; i++) if (max == cntArr[i]) System.out.print(i+" ");
+
     }
+
 }
