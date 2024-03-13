@@ -14,7 +14,7 @@ public class B_10830 {
         // 분할 정복
         // x가 짝수일 경우 A의 n승 = A의 n/2승의 곱
         // x가 홀수일 경우 A의 n승 = A의 (n-1)/2승의 곱 * A
-
+        System.out.println("calculate " + x);
         if (x == 1) return map;
 
         int[][] res = solve(x / 2);
@@ -25,6 +25,7 @@ public class B_10830 {
             int[][] res2 = calculate(res, map);
             return calculate(res, res2);
         }
+
     }
 
     private static int[][] calculate(int[][] arr1, int[][] arr2) {
