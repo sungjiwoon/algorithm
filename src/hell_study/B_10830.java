@@ -55,6 +55,8 @@ public class B_10830 {
                     .toArray();
         }
 
+        System.out.println(String.format("n : %d, b : %d", n, b));
+
         int[][] res = solve(b);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
