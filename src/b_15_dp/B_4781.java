@@ -9,20 +9,18 @@ public class B_4781 {
     static double m;
     static int[][] candy;
 
-    private static int solve() {
-        int max = 0;
-        int money = (int) (m * 100);
+    private static long solve() {
+        long max = 0;
+        int money = (int) (m * 100.0 + 0.5);
 
-        int[] dp = new int[money + 1]; //1원당 구매할 수 있는 가장 높은 칼로리
+        long[] dp = new long[money + 1]; //1원당 구매할 수 있는 가장 높은 칼로리
 
         for (int i = 0; i < n; i++ ) {
             int cal = candy[i][0], price = candy[i][1];
-            for (int j = price; j + price <= money; j++) {
+            for (int j = price; j <= money; j++) {
                 dp[j] = Math.max(dp[j-price] + cal, dp[j]);
-                System.out.println(String.format("dp[%d] = %d", j, dp[j]));
                 max = Math.max(dp[j], max);
             }
-            System.out.println();
         }
 
         return max;
@@ -44,7 +42,7 @@ public class B_4781 {
                 int c = Integer.parseInt(st.nextToken());
                 double p  = Double.parseDouble(st.nextToken());
                 candy[i][0] = c;
-                candy[i][1] = (int) (p * 100);
+                candy[i][1] = (int) (p * 100.0 + 0.5);
             }
 
             sb.append(solve()+"\n");
