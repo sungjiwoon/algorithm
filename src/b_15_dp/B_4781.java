@@ -11,7 +11,7 @@ public class B_4781 {
 
     private static long solve() {
         long max = 0;
-        int money = (int) (m * 100.0 + 0.5);
+        int money = (int) (m * 100.0 + 0.5); // 오차 방지를 위해 최소한의 값을 더해주는 작업 필요함
 
         long[] dp = new long[money + 1]; //1원당 구매할 수 있는 가장 높은 칼로리
 
