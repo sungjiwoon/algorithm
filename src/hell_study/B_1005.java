@@ -56,7 +56,7 @@ public class B_1005 {
                 int a = Integer.parseInt(tz.nextToken());
                 int b = Integer.parseInt(tz.nextToken());
                 graph[a].add(b);
-                seq[b]++;
+                seq[b]++; /** 중요!! */
             }
 
             w = Integer.parseInt(br.readLine());
