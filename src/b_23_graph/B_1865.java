@@ -6,10 +6,31 @@ import java.util.*;
 public class B_1865 {
 
     static int n, m, w; // 지점 수, 도로 수, 웜홀 수
-    static List<int[]>[] graph;
+    static List<int[]> graph;
+    static final long INF = Integer.MAX_VALUE;
 
     private static String solve() {
 
+        for (int i = 1; i <= n; i++) {
+            // 모든 지점을 전부 출발지점이라고 생각한다.
+            long[] d = new long[n+1];
+            Arrays.fill(d, INF);
+            d[i] = 0;
+
+            for (int j = 1; j <= n; j++) {
+                for (int[] edge : graph) {
+                    if (d[edge[0]] != INF && d[edge[1]] > d[edge[0]] + edge[2]) {
+                        d[edge[1]] = d[edge[0]] + edge[2];
+                        if (j == n) {
+                            // 마지막 까지 값이 변한다면 음수가 있는 것이다. 그러면 시간이 줄어든간 뜻이므로 YES를 반환.
+                            return "YES\n";
+                        }
+                    }
+                }
+            }
+
+
+        }
 
 
         return "NO\n";
@@ -27,16 +48,15 @@ public class B_1865 {
             m = Integer.parseInt(tz.nextToken());
             w = Integer.parseInt(tz.nextToken());
 
-            graph = new ArrayList[n+1];
-            for (int i = 1; i <= n; i++) graph[i] = new ArrayList<>();
+            graph = new ArrayList<>();
 
             for (int i = 0; i < m; i++) {
                 tz = new StringTokenizer(br.readLine(), " ");
                 int s = Integer.parseInt(tz.nextToken());
                 int e = Integer.parseInt(tz.nextToken());
                 int t = Integer.parseInt(tz.nextToken());
-                graph[s].add(new int[]{e, t});
-                graph[e].add(new int[]{s, t});
+                graph.add(new int[]{s, e, t});
+                graph.add(new int[]{e, s, t});
             }
 
             for (int i = 0; i < w; i++) {
@@ -44,7 +64,7 @@ public class B_1865 {
                 int s = Integer.parseInt(tz.nextToken());
                 int e = Integer.parseInt(tz.nextToken());
                 int t = Integer.parseInt(tz.nextToken());
-                graph[s].add(new int[]{e, t * (-1)});
+                graph.add(new int[]{s, e, t * (-1)});
             }
 
             sb.append(solve());
