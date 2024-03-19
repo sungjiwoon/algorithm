@@ -17,19 +17,24 @@ public class B_1865 {
             Arrays.fill(d, INF);
             d[i] = 0;
 
+            boolean ok = false;
+
             for (int j = 1; j <= n; j++) {
+                ok = false;
                 for (int[] edge : graph) {
                     if (d[edge[0]] != INF && d[edge[1]] > d[edge[0]] + edge[2]) {
                         d[edge[1]] = d[edge[0]] + edge[2];
+                        ok = true;
                         if (j == n) {
                             // 마지막 까지 값이 변한다면 음수가 있는 것이다. 그러면 시간이 줄어든간 뜻이므로 YES를 반환.
                             return "YES\n";
                         }
                     }
                 }
+
+                // 단 한개도 정점에 연결된 그래프가 없는 경우 -> 굳이 웜홀 찾을 필요도 없이 break -> 시간 초과 대비
+                if (!ok) break;
             }
-
-
         }
 
 
