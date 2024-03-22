@@ -44,7 +44,7 @@ public class B_1916 {
 				return o1[1] - o2[1]; //오름차순 정렬 .
 			}
 		});
-		
+
 		int[] at = {a, d[a]};
 		qu.add(at);
 		while (!qu.isEmpty()) {
