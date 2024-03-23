@@ -2,7 +2,7 @@ package b_28_dijkstra;
 
 import java.io.*;
 import java.util.*;
-/** 240322 백준 발전소 다익스트라 골드 4 */
+/** 240322 백준 발전소 다익스트라 골드 4  */
 public class B_1277 {
 
     static final Double INF = 200001.0;
