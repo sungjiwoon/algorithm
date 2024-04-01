@@ -48,7 +48,6 @@ public class P_240401 {
 
                 if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
                 if (board[nx][ny] == 1) continue;
-                if (vis[nx][ny][k]) continue;
 
                 if (dir == -1 || dir == k) {
                     // 직선방향이면,
@@ -56,8 +55,8 @@ public class P_240401 {
                 } else {
                     nCost += 600;
                 }
-
-                if (price[nx][ny] >= nCost && !vis[nx][ny][k]) {
+                // 방문을 했어도 더 저렴할 수 있으니 체크해줘야한다.
+                if (price[nx][ny] >= nCost || !vis[nx][ny][k]) {
                     vis[nx][ny][k] = true;
                     price[nx][ny] = nCost;
                     qu.add(new Pair(nx, ny, k, nCost));
