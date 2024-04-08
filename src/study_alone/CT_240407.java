@@ -2,7 +2,7 @@ package study_alone;
 
 import java.io.*;
 import java.util.*;
-/** 240407 코드트리 팩맨 골1 구현 */
+/** 240407 코드트리 삼성 팩맨 골1 구현 */
 public class CT_240407 {
     final int N = 5;
     int[] dr = {-1, -1, 0, 1, 1, 1, 0, -1}, dc = {0, -1, -1, -1, 0, 1, 1, 1};
