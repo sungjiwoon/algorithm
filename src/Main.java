@@ -1,194 +1,208 @@
 import java.io.*;
 import java.util.*;
+
 public class Main {
-	final int N = 11;
-	int n, m, k;
-	int[][] map = new int[N][N];
-	int[][] personMap = new int[N][N];
-	int exitX = 0, exitY = 0;
-	int res = 0;
-	int rx = 0, ry = 0, size = 0;
+    final int N = 16;
+    final int M = 31;
 
-	int[] dx = {-1, 1, 0, 0}, dy = {0, 0, -1, 1};
+    boolean[][] basecamp = new boolean[N][N];
+    boolean[][] notMoveCamp = new boolean[N][N];
 
-	public int getD(int x1, int x2, int y1, int y2) {
-		return Math.abs(x1-x2) + Math.abs(y1-y2);
-	}
+    Pair[] peopleWant = new Pair[M]; //원하는 편의점.
+    Pair[] peopleLoc = new Pair[M]; // 현재 위치.
+    boolean[] peopleArrive = new boolean[M];
 
-	public int movePerson() {
-		int[][] newPersonMap = new int[N][N];
-		int cnt = 0;
+    int n, m;
+    int[] dx = {-1, 0, 0, 1}, dy = {0, -1, 1, 0};
+    int t = 1;
 
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				if (personMap[i][j] == 0) continue;
-				int mD = getD(i, exitX, j, exitY);
-				int minD = mD, minX = i, minY = j;
-				for (int d = 0; d < 4; d++) {
-					int nx = i + dx[d], ny = j + dy[d];
-					if (nx <= 0 || ny <= 0 || nx > n || ny > n || map[nx][ny] > 0) continue;
-					int dd = getD(nx, exitX, ny, exitY);
-					if (mD > dd && minD > dd) {
-						minD = dd;
-						minX = nx;
-						minY = ny;
-					}
-				}
-				newPersonMap[minX][minY] += personMap[i][j];
-				if (minD < mD) cnt += personMap[i][j];
-				if (minX == exitX && minY == exitY) {
-					newPersonMap[minX][minY] = 0;
-				}
-			}
-		}
-		personMap = newPersonMap;
-		return cnt;
+    class Pair {
+        int x, y;
+        Pair (int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
 
-	}
+    public Pair bfsBasecamp(int wx, int wy) {
 
-	public void findMinSquare() {
-		for (int sz = 2; sz <= n; sz++) {
-			for (int x1 = 1; x1 <= n - sz + 1; x1++) {
-				for (int y1 = 1; y1 <= n - sz + 1; y1++) {
-					int x2 = x1 + sz - 1, y2 = y1 + sz - 1;
-					if (!(x1 <= exitX && x2 >= exitX && y1 <= exitY && y2 >= exitY)) continue;
-					for (int p1 = x1; p1 <= x2; p1++) {
-						for (int p2 = y1; p2 <= y2; p2++) {
-							if (personMap[p1][p2] > 0) {
-								size = sz;
-								rx = x1;
-								ry = y1;
-								return;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+        Queue<Pair> qu = new LinkedList<>();
+        qu.add(new Pair(wx, wy));
+        boolean[][] vis = new boolean[N][N];
+        vis[wx][wy] = true;
 
-	public void rotate() {
-		//출구를 포함한 가장 작은 정사각형 찾기.
-		findMinSquare();
+        int[][] minD = new int[N][N];
+        int minX = 0, minY = 0;
+        minD[0][0] = Integer.MAX_VALUE;
 
-		int[][] newMap = new int[N][N];
-		int[][] pNewMap = new int[N][N];
-		int[][] copyMap = new int[N][N];
-		int[][] pCopyMap = new int[N][N];
+        while (!qu.isEmpty()) {
+            Pair p = qu.poll();
 
+            for (int k = 0; k < 4; k++) {
+                int nx = p.x + dx[k], ny = p.y + dy[k];
+                if (nx <= 0 || ny <= 0 || nx > n || ny > n) continue;
+                if (vis[nx][ny] || notMoveCamp[nx][ny]) continue;
 
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				copyMap[i][j] = map[rx + i][ry + j];
-				pCopyMap[i][j] = personMap[rx + i][ry + j];
-			}
-		}
+                qu.add(new Pair(nx, ny));
+                minD[nx][ny] = minD[p.x][p.y] + 1;
+                vis[nx][ny] = true;
 
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				newMap[i][j] = copyMap[size-j-1][i];
-				pNewMap[i][j] = pCopyMap[size-j-1][i];
-				if (newMap[i][j] > 0) newMap[i][j]--;
-			}
-		}
+                if (basecamp[nx][ny]) {
+                    if (minD[nx][ny] < minD[minX][minY]) {
+                        minX = nx;
+                        minY = ny;
+                    } else if (minD[nx][ny] == minD[minX][minY]) {
+                        if (nx == minX && ny < minY) {
+                            minX = nx;
+                            minY = ny;
+                        } else if (nx < minX) {
+                            minX = nx;
+                            minY = ny;
+                        }
+                    }
+                }
+            }
+        }
+        return new Pair(minX, minY);
+    }
 
-		int cx = exitX - rx;
-		int cy = exitY - ry;
-		int ex = cy;
-		int ey = size - cx - 1;
-		int tmpX = exitX, tmpY = exitY;
-		exitX = ex + rx;
-		exitY = ey + ry;
+    public void selectBacecamp() {
+        Pair wp = peopleWant[t];
 
+        Pair bp = bfsBasecamp(wp.x, wp.y);
+        basecamp[bp.x][bp.y] = false;
+        notMoveCamp[bp.x][bp.y] = true;
+        peopleLoc[t] = new Pair(bp.x, bp.y);
 
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				map[rx+i][ry+j] = newMap[i][j];
-				personMap[rx+i][ry+j] = pNewMap[i][j];
-			}
-		}
-	}
+    }
 
-	public void print() {
-		System.out.println("= Map print = ");
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				System.out.print(map[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
+    public Pair bfs(int wx, int wy, int lx, int ly) {
+        Queue<Pair> qu = new LinkedList<>();
+        qu.add(new Pair(wx, wy));
+        boolean[][] vis = new boolean[N][N];
+        vis[wx][wy] = true;
 
-	public void printP() {
-		System.out.println("= person Map print = ");
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				System.out.print(personMap[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
+        int[][] minD = new int[N][N];
+        for (int i = 1; i <= n; i++) {
+            Arrays.fill(minD[i], Integer.MAX_VALUE);
+        }
 
-	public boolean finish() {
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				if (personMap[i][j] > 0) return false;
-			}
-		}
-		return true;
-	}
+        int minX = 0, minY = 0;
+        minD[lx][ly] = Integer.MAX_VALUE;
+        minD[wx][wy] = 0;
 
+        while (!qu.isEmpty()) {
+            Pair p = qu.poll();
 
+            for (int k = 0; k < 4; k++) {
+                int nx = p.x + dx[k], ny = p.y + dy[k];
+                if (nx <= 0 || ny <= 0 || nx > n || ny > n) continue;
+                if (notMoveCamp[nx][ny]) continue;
+                if (vis[nx][ny] || minD[p.x][p.y] + 1 > minD[nx][ny]) continue;
 
-	public void solve() {
-		for (int i = 1; i <= k; i++) {
-			// System.out.println("= " + i + " =");
-			//1. 1초마다 모든 참가자의 1칸씩 이동
-			res += movePerson();
-			if (finish()) break;
+                if (nx == lx && ny == ly) {
+                    if (minD[p.x][p.y] + 1 < minD[nx][ny]) {
+                        minX = p.x;
+                        minY = p.y;
+                    } else if (minD[p.x][p.y] + 1 == minD[nx][ny]) {
+                        if (p.x == minX && p.y < minY) {
+                            minX = p.x;
+                            minY = p.y;
+                        } else if (p.x < minX) {
+                            minX = p.x;
+                            minY = p.y;
+                        }
+                    }
+                }
 
-			//2. 미로 회전
-			rotate();
-		}
+                minD[nx][ny] = minD[p.x][p.y]+1;
+                qu.add(new Pair(nx, ny));
+                vis[nx][ny] = true;
+            }
+        }
 
-		System.out.println(res);
-		System.out.println(exitX + " " + exitY);
-	}
+        return new Pair(minX, minY);
+    }
 
-	public static void main(String[] args) throws Exception {
-		// 여기에 코드를 작성해주세요.
-		Main m = new Main();
-		m.init();
-		m.solve();
+    public void move() {
+        List<Pair> notMoveList = new ArrayList<>();
 
-	}
+        for (int i = 1; i <= m; i++) {
+            if (i >= t) break; // 격자에 없다면.
+            if (peopleArrive[i]) continue; //이미 편의점에 도착했다면.
 
-	public void init() throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            Pair loc = peopleLoc[i];
+            Pair wp = peopleWant[i];
+            Pair np = bfs(wp.x, wp.y, loc.x, loc.y);
 
-		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
-		k = Integer.parseInt(st.nextToken());
+            if (np.x == wp.x && np.y == wp.y) {
+                // 편의점 도착 .
+                notMoveList.add(np);
+                peopleArrive[i] = true;
+            }
+            peopleLoc[i] = new Pair(np.x, np.y);
 
-		for (int i = 1; i <= n; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-			for (int j = 1; j <= n; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-			}
-		}
+        }
 
-		for (int i = 1; i <= m; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-			int x = Integer.parseInt(st.nextToken());
-			int y = Integer.parseInt(st.nextToken());
-			personMap[x][y]++;
-		}
+        for (Pair p : notMoveList) {
+            notMoveCamp[p.x][p.y] = true;
+        }
+    }
 
-		st = new StringTokenizer(br.readLine(), " ");
-		exitX = Integer.parseInt(st.nextToken());
-		exitY = Integer.parseInt(st.nextToken());
+    public boolean finish() {
+        for (int i = 1; i <= m; i++) {
+            if (!peopleArrive[i]) return false;
+        }
+        return true;
+    }
 
 
-	}
+    public void solve() {
+        while (true) {
+            // 1 - 격자 안에 있는 사람들 본인이 가고싶은 편의점 방향 향해 1칸 전진.
+            // 최단거리로 움직임.
+            // 2. 편의점 도착하면, 편의점에서 멈추고, 그 칸은 못 움직인다.
+            move();
+            if (finish()) break;
+
+            // 3. 베이스 캠프로 이동. t번째 사람이 이동함.
+            // 가장 가까운 베이스 캠프로 이동한다.
+            if (t <= m) selectBacecamp();
+
+            t++;
+        }
+
+        System.out.println(t);
+    }
+
+    public static void main(String[] args) throws Exception {
+        Main m = new Main();
+        m.init();
+        m.solve();
+    }
+
+    public void init() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        int idx = 0;
+        for (int i = 1; i <= n; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            for (int j = 1; j <= n; j++) {
+                if (Integer.parseInt(st.nextToken()) == 1) {
+                    basecamp[i][j] = true;
+                }
+            }
+        }
+
+        for (int i = 1; i <= m; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            peopleWant[i] = new Pair(x, y);
+        }
+
+    }
 }
