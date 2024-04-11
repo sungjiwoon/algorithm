@@ -2,7 +2,7 @@ package study_alone;
 
 import java.io.*;
 import java.util.*;
-/** 240411 정육면체 한번 더 굴리기 골드 3*/
+/** 240411 정육면체 한번 더 굴리기 골드 3 */
 public class CT_240411 {
     final int N = 21;
     final int RIGHT = 0, DOWN = 1, LEFT = 2, UP = 3;
@@ -13,12 +13,10 @@ public class CT_240411 {
     int res = 0;
 
     int[] dx = {0, 1, 0, -1}, dy = {1, 0, -1, 0};
-    int dir = RIGHT, dice = 0; // 초기 방향 : 오른쪽, 다이스 아래 : rightDice[0];
-    int bottom = 6;
     Pair loc = new Pair(1, 1);
-    int[] rightDice = {6, 3, 1, 4};
-    int[] downDice = {6, 2, 1, 5};
 
+    int U = 1, F = 2, R = 3, D = 6;
+    int dir = RIGHT;
 
     class Pair {
         int x, y;
@@ -78,20 +76,21 @@ public class CT_240411 {
 
         loc = new Pair(nx, ny);
 
+        int tmpU = U, tmpR = R, tmpF = F;
         if (dir == RIGHT) {
-            dice = (dice+1) % 4;
-            bottom = rightDice[dice];
+            R = tmpU;
+            U = 7 - tmpR;
         } else if (dir == LEFT) {
-            dice = (dice +4 -1) % 4;
-            bottom = rightDice[dice];
+            U = tmpR;
+            R = 7 - tmpU;
         } else if (dir == DOWN) {
-            dice = (dice+1) % 4;
-            bottom = downDice[dice];
+            U = 7 - tmpF;
+            F = tmpU;
         } else if (dir == UP) {
-            dice = (dice +4 -1) % 4;
-            bottom = upDice[dice];
+            U = tmpF;
+            F = 7 - tmpU;
         }
-
+        D = 7 - U;
     }
 
 
@@ -105,17 +104,17 @@ public class CT_240411 {
 
             // 주사위 회전
             int now = map[loc.x][loc.y];
-            if (now > bottom) {
+            if (now > D) {
                 dir = (dir -1 + 4) % 4;
-            } else if (now < bottom) {
+            } else if (now < D) {
                 dir = (dir +1 + 4) % 4;
             }
-
         }
+        System.out.println(res);
     }
 
     public static void main(String[] args) throws Exception {
-        Main m = new Main();
+        CT_240411 m = new CT_240411();
         m.init();
         m.solve();
     }
