@@ -18,35 +18,44 @@ public class B_16933 {
         int[][][] dist = new int[1001][1001][12];
         // dist[x][y][k] - 벽을 k번 부수고, (x,y) 까지 오는데 비용. (x,y)가 벽이라서 부수는 비용도 포함
 
+        // 낮인 경우 > 벽 부수기 가능
+        // 밤인 경우 > 벽 부수기 불가능, 칸에 머물고, 낮에 벽 부수기 가능
+
         Queue<int[]> qu = new LinkedList<>();
-        qu.add(new int[]{1, 1, 0});
+        qu.add(new int[]{1, 1, 0, 0});
         dist[1][1][0] = 1;
 
         int res = -1;
         while (!qu.isEmpty()) {
             int[] q = qu.poll();
             int x = q[0], y = q[1], broken = q[2];
+            int time = q[3]; // 0 - 낮, 1 - 밤
             //System.out.println(String.format("dist[%d][%d][%d] = %d", x, y, broken, dist[x][y][broken]));
             if (x == n && y == m) {
                 res = dist[x][y][broken];
                 break;
             }
 
-            int nextDist = dist[x][y][broken] + 1;
             for (int d = 0; d < 4; d++) {
                 int nx = x + dx[d], ny = y + dy[d];
+                int nextTime = time ^ 1;
+                int nextDist = dist[x][y][broken] + 1;
+                int wb = broken;
                 if (nx <= 0 || nx > n || ny <= 0 || ny > m) continue;
 
                 // 만약 nx, ny가 벽이라면, 넣어보자. // k번까지는 부술 수 있음.
-                int wb = broken;
                 if (map[nx][ny] == 1) {
-                    //System.out.println(String.format("map[%d][%d] = 1, broken = %d", nx, ny, broken+1));
+                    //System.out.println(String.format("map[%d][%d] = 1, broken = %d", nx, ny, wb));
+                    if (time == 1) { // 밤
+                        nextTime = time;
+                        nextDist++;
+                    }
                     wb++;
                 }
 
-                if (wb > k || dist[nx][ny][wb] > 0) continue;
+                if (wb > k || (dist[nx][ny][wb] > 0 && dist[nx][ny][wb] < nextDist)) continue;
                 dist[nx][ny][wb] = nextDist;
-                qu.add(new int[]{nx, ny, wb});
+                qu.add(new int[]{nx, ny, wb, nextTime});
             }
         }
 
