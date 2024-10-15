@@ -22,7 +22,7 @@ public class B_10159 {
         for (int nxt : graph[x]) {
             if (vis[nxt]) continue;
             vis[nxt] = true;
-            values[root]++;
+            values[root]++; // root는 항상 +를 해줘야한다. 간선의 방향은 하나이기 때문에
             dfs(root, nxt, vis);
         }
 
