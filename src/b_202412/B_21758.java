@@ -25,12 +25,18 @@ public class B_21758 {
         // (sums[a] + sums[b] + nums[b]) // 최소
         // sums[b] + nums[b] -> 최소 구간 찾기
 
+        // 1. a가 0자리에 고정이고, 꿀은 n-1자리일 때
+        // 2. a가 n-1자리 고정이고, 꿀은 0자리 일때
+        // 3. a는 0자리, b는 n-1자리이고, 꿀은 가운데 일때
+        // 이중 최댓값 찾기
+
         int bMin = total;
         for (int i = 1; i < n; i++) {
             bMin = Math.min(bMin, sums[i] + nums[i]);
         }
 
         res = total - (sums[a] + bMin);
+        System.out.println(res);
 
         // 반대로 계산
         a = n-1;
@@ -48,7 +54,8 @@ public class B_21758 {
 //            System.out.println(i + ": " + bMin);
         }
 
-        res = Math.max(total - (sums[a] + bMin), res);
+        res = Math.max(total - (sums2[a] + bMin), res);
+        System.out.println((total-(sums2[a] + bMin)));
 
         // 꿀통이 a, b 가운데 있ㅎ을 때.
         // a와 b는 맨끝 고정이다.
