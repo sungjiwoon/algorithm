@@ -1,4 +1,4 @@
-package b_202412;
+package b_29_trie;
 
 import java.io.*;
 import java.util.*;

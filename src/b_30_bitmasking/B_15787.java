@@ -1,4 +1,4 @@
-package b_202412;
+package b_30_bitmasking;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
