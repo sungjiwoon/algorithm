@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 /** 240119 그리디, BFS 피자오븐 https://www.acmicpc.net/problem/19940 */
-public class B_19940 {
+public class B_19940_imp {
 
     int n;
     int[] T;
@@ -81,7 +81,7 @@ public class B_19940 {
     }
 
     public static void main(String[] args) {
-        B_19940 b = new B_19940();
+        B_19940_imp b = new B_19940_imp();
         b.solve();
     }
 }
