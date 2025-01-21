@@ -10,7 +10,7 @@ public class B_32069 {
     int n, k;
     long[] arr;
 
-    void solve() throws Exception {
+    void solve() {
         init();
 
         // BFS로 K개 까지 돈다
