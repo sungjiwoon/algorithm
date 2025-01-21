@@ -10,7 +10,7 @@ public class B_32069 {
     int n, k;
     long[] arr;
 
-    void solve() {
+    void solve() throws Exception {
         init();
 
         // BFS로 K개 까지 돈다
@@ -24,10 +24,11 @@ public class B_32069 {
             vis.put(arr[i], true);
         }
 
+        StringBuilder sb = new StringBuilder();
         int cnt = 0;
         while (!qu.isEmpty()) {
             long[] q = qu.poll();
-            System.out.println(q[1]);
+            sb.append(q[1]+"\n");
             cnt++;
             if (cnt == k) {
                 break;
@@ -45,7 +46,7 @@ public class B_32069 {
                 qu.add(new long[]{q2, q[1]+1L});
             }
         }
-
+        System.out.println(sb);
 
     }
 
@@ -56,7 +57,11 @@ public class B_32069 {
             l = Long.parseLong(tmp[0]);
             n = Integer.parseInt(tmp[1]);
             k = Integer.parseInt(tmp[2]);
-            arr = Arrays.stream(br.readLine().split(" ")).mapToLong(Integer::parseInt).toArray();
+            tmp = br.readLine().split(" ");
+            arr = new long[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = Long.parseLong(tmp[i]);
+            }
 
 
         } catch (Exception e) {}
