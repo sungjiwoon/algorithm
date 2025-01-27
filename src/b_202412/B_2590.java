@@ -36,8 +36,15 @@ public class B_2590 {
             } else if (i == 3) {
 
                 cnt += (nums[3] / 4);
+                if (nums[3] % 4 == 1) {
 
-                // 조건분기가 너무 많아서 GG
+                } else if (nums[3] % 4 == 2) {
+
+                } else if (nums[3] % 4 == 3) {
+
+                } else {
+
+                }
 
 
 
