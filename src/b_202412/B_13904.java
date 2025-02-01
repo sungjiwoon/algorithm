@@ -33,7 +33,6 @@ public class B_13904 {
             for (int i = d; i >= 1; i--) {
                 if (!days[i]) {
                     days[i] = true;
-                    System.out.println(d + "-> " + i + " " + s);
                     sum += s;
                     break;
                 }
