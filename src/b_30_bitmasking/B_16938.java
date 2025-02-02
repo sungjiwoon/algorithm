@@ -1,4 +1,4 @@
-package b_202502;
+package b_30_bitmasking;
 
 import java.io.*;
 import java.util.*;
