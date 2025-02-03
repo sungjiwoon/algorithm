@@ -7,7 +7,7 @@ import java.util.*;
 public class B_2800 {
     String s;
 
-    void solve() {
+    private void solve() {
 
         //1. 괄호의 쌍을 보관하는 인덱스 저장소 생성.
         List<int[]> list = new ArrayList<>();
@@ -62,7 +62,7 @@ public class B_2800 {
 
     }
 
-    void init() {
+    private void init() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             s = br.readLine();
