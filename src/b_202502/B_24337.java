@@ -77,25 +77,6 @@ public class B_24337 {
     private void init() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//
-//            StringBuilder sb = new StringBuilder();
-//            String str = "";
-//            while (!(str = br.readLine()).equals("")) {
-//                StringTokenizer st = new StringTokenizer(str, " ");
-//                n = Integer.parseInt(st.nextToken());
-//                a = Integer.parseInt(st.nextToken());
-//                b = Integer.parseInt(st.nextToken());
-//
-//                String ans = br.readLine();
-//                String my = solve();
-//                if (!ans.equals(my)) {
-//                    sb.append(n + " " + a + " " + b + "\n");
-//                    sb.append(ans).append("\n");
-//                    sb.append(my).append("\n\n");
-//                }
-//                str = br.readLine();
-//            }
-//            System.out.println(sb);
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             n = Integer.parseInt(st.nextToken());
             a = Integer.parseInt(st.nextToken());
