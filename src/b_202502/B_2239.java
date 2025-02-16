@@ -2,12 +2,14 @@ package b_202502;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.*;
-// 250215 스-스-스도쿠 골드4
-// 어렵다
-public class B_4056 {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    final String FAIL = "Could not complete this grid.";
+// 250215 스도쿠 골드4
+// 어렵다
+public class B_2239 {
+
     int[][] map = new int[9][9];
     boolean[][] width = new boolean[10][10];
     boolean[][] height = new boolean[10][10];
@@ -17,10 +19,6 @@ public class B_4056 {
     StringBuilder sb = new StringBuilder();
 
     private void print(boolean fail) {
-        if (!fail) {
-            sb.append(FAIL).append("\n");
-            return;
-        }
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -87,23 +85,18 @@ public class B_4056 {
     protected void init() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            int T = Integer.parseInt(br.readLine());
-            for (int t = 0; t < T; t++) {
-                for (int i = 0; i < 9; i++) {
-                    map[i] = Arrays.stream(br.readLine().split("")).mapToInt(Integer::parseInt).toArray();
-                }
-                width = new boolean[10][10];
-                height = new boolean[10][10];
-                box = new boolean[10][10];
-                solve();
-                sb.append("\n");
+
+            for (int i = 0; i < 9; i++) {
+                map[i] = Arrays.stream(br.readLine().split("")).mapToInt(Integer::parseInt).toArray();
             }
+            solve();
+
             System.out.println(sb);
         } catch (Exception e) {}
     }
 
     public static void main(String[] args) {
-        B_4056 b = new B_4056();
+        B_2239 b = new B_2239();
         b.init();
     }
 }
