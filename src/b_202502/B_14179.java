@@ -3,7 +3,7 @@ package b_202502;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
-
+// 250219 빗물 골드5 - 구현, 스택
 public class B_14179 {
 
     int h, w;
