@@ -3,7 +3,7 @@ package b_202502;
 
 import java.util.*;
 import java.io.*;
-
+// 2024 하반기 오후 1번, 메두사와 전사들
 public class Samsung_240201 {
 
     int N, M;
